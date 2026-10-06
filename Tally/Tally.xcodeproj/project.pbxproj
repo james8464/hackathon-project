@@ -6,6 +6,10 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		1A14373D3075614000CFBBF6 /* GIT guide.md in Resources */ = {isa = PBXBuildFile; fileRef = 1A14373C3075614000CFBBF6 /* GIT guide.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		1A14370A30755F8100CFBBF6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		1A1436FA30755F8000CFBBF6 /* Tally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tally.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A14370930755F8100CFBBF6 /* TallyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TallyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A14371330755F8100CFBBF6 /* TallyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TallyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A14373C3075614000CFBBF6 /* GIT guide.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "GIT guide.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -69,6 +74,7 @@
 		1A1436F130755F8000CFBBF6 = {
 			isa = PBXGroup;
 			children = (
+				1A14373C3075614000CFBBF6 /* GIT guide.md */,
 				1A1436FC30755F8000CFBBF6 /* Tally */,
 				1A14370C30755F8100CFBBF6 /* TallyTests */,
 				1A14371630755F8100CFBBF6 /* TallyUITests */,
@@ -197,6 +203,7 @@
 		1A1436F830755F8000CFBBF6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
+				1A14373D3075614000CFBBF6 /* GIT guide.md in Resources */,
 			);
 		};
 		1A14370730755F8100CFBBF6 /* Resources */ = {
