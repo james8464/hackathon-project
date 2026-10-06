@@ -136,6 +136,17 @@ These are real, they're just not for Oct 16:
 
 Rationale: two build days. A tight end-to-end flow beats a wide half-built one. Judges reward working demos, not ticket backlogs.
 
+### Cut order (if we're behind, remove in this order)
+
+1. PDF report (share sheet with a screenshot instead)
+2. StoreKit subscription demo
+3. MapKit builder map (list view only)
+4. Health score animation (static number)
+5. Quote sort/filter (hardcode sensible order)
+6. Foundation Models summaries (template text)
+
+Never cut: scan, detection, estimate, builder list, quote comparison, commission breakdown. That sequence is the pitch.
+
 ---
 
 ## 5. Technical approach
