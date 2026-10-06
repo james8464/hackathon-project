@@ -72,7 +72,7 @@ Four structural reasons the gap persists. They're also why our Apple-first appro
 - Contractors pay for dead leads, homeowners get ghosted
 - Both sides rate the platforms 2.5 to 3.3 stars on Trustpilot
 - Nobody has built a hiring layer where the platform only earns when work is completed
-- Our %-on-completion model (StoreKit for the platform fee, payments through the builders) aligns everyone
+- Our %-on-completion model aligns everyone: we only get paid when the homeowner and builder finish the job
 - It's a structural fix, not a feature
 
 ### 2.4 Four apps means four companies
@@ -97,7 +97,7 @@ This isn't a web app we happen to build in Xcode. It's an iOS app, and the hacka
 | **On-device AI / custom ML models** | Damage detection runs on the Neural Engine. A wall crack scan can't wait for a cloud round-trip, and home imagery shouldn't leave the device. |
 | **Apple Intelligence / Foundation Models** | Natural-language summaries of findings (*"The stain on your bedroom ceiling is consistent with a roof leak; budget £800 to £2,400"*), estimate explanation, quote comparison. |
 | **Vision framework** | Classification pass over scanned frames to flag candidate damage regions before the heavier model runs. |
-| **StoreKit** | Commission fee collection. The monetization path in the brief, implemented natively. |
+| **StoreKit 2** | Premium builder subscription tier, an in-app digital service. The 5% commission is billed on physical repair services outside IAP per App Review 3.1.5, the same model as Airbnb and Uber. Both monetization paths are native and App Review clean. |
 | **Siri / App Intents** | *"Hey Siri, what did my last scan find?"* Natural entry point for a tool people use once a month. |
 | **Liquid Glass** | Scan overlay UI, live floor-plan drawing during capture. |
 | **App Store Connect submission** | The challenge asks for a submitted build. On-device processing and local scan storage is what App Review likes to see. |
@@ -124,7 +124,7 @@ MWM brings product, growth, and monetization expertise. Tally has a clear, model
 
 **Revenue model**
 
-- 5% commission on completed repair jobs, collected via StoreKit
+- 5% commission on completed repair jobs, billed through Stripe (test mode for the MVP)
 - No charge for scanning, no subscription, no lead fees
 - The homeowner's cost to use Tally is zero
 - Builder acquisition is outbound (we email builders), so there's no paid-marketing cold start
@@ -156,7 +156,7 @@ The challenge asks for *"an app with a clear use case, a working core experience
 |-------------------|-------|
 | Clear use case | Scan your home, know what's wrong, know what it costs, hire someone |
 | Working core experience | One continuous flow; scan completes on-device in under a minute |
-| Path to monetization | 5% on completed jobs via StoreKit. No subscription, no lead fees. |
+| Path to monetization | 5% on completed jobs, Stripe billing, StoreKit 2 for the premium tier. No subscription for homeowners, no lead fees. |
 | Real user problem | Validated by insurance data: 70% of interior claims, $15K+ average water damage |
 | Plan to bring to market | Outbound builder acquisition city-by-city; free scans as the consumer hook |
 
@@ -191,6 +191,19 @@ Most hackathon apps demo as *"here's a thing it can do."* Tally demos as a narra
 > *You scan your kitchen wall. The app flags a crack, says it looks structural, estimates £400 to £1,200 to fix, and has three builders in your area ready to quote by tomorrow. You've gone from worried to informed to actioned in one session.*
 
 A three-minute pitch that lands without explanation. Judges should be able to imagine themselves using it, which is more than most submissions manage.
+
+### 5.6 It actually ships in two days
+
+Big visions die at hackathons. Ours is scoped to survive them:
+
+- **No backend.** Scans, detections, estimates, and quotes all live on-device in Core Data. Nothing to deploy, nothing to fall over.
+- **Detection is tiered.** Vision heuristics (edges, color anomalies, saliency) always work as a baseline. A Create ML classifier trained on a few hundred images upgrades it if accuracy clears the bar. If neither impresses, we label it honestly as beta and let users confirm every finding.
+- **Cost data is bundled.** No Zillow API keys, no approval queues. A JSON repair database plus regional multipliers ships in the bundle and works offline.
+- **Builders are seeded.** Eight to twelve researched profiles in the bundle. Real recruitment starts after the demo, not during it.
+- **Demo quotes are simulated, and we say so.** A local notification drops fake responses into the comparison table during the pitch. Announcing that out loud is a credibility gain, not a confession.
+- **Every cut is listed.** `planning.md` names what's out of scope (Mailgun, Stripe Connect, chat, i18n, admin dashboards) with a reason for each. Scope discipline is the single strongest signal that a team will finish.
+
+The test: a judge can walk up to the demo device, scan a wall, and see the whole flow work in 90 seconds, with no network connection.
 
 ---
 
