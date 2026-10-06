@@ -3,7 +3,10 @@
 Our project for "Build Challenge : Unaite, MWM, Apple & ⌘+F"
 
 ## Team
-- James (lead)
+- James
+- Klaus
+- Theophile
+- Guilhem
 
 ## Setup
 1. Clone the repo: `git clone https://github.com/james8464/hackathon-project.git`
