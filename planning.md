@@ -14,189 +14,631 @@
 ### LIDAR/camera scanning
 
 - Camera access and configuration
-  - Access device camera via AVFoundation framework
-    - Configure AVCaptureSession with appropriate preset (.hd1920x1080)
-    - Set up video data output with 30fps frame rate
-    - Implement delegate methods for sample buffer processing
-  - Handle camera permissions request and user approval flow
-  - Check for LIDAR availability using ARKit session
+  - Request camera permission from the user
+    - Add NSCameraUsageDescription to Info.plist
+    - Show system permission dialog on first launch
+    - Handle "deny" case by showing settings redirect alert
+  - Set up AVFoundation capture pipeline
+    - Create AVCaptureSession instance
+    - Select rear-facing wide-angle camera device
+    - Configure AVCaptureDeviceInput for the selected camera
+    - Set video preset to .hd1920x1080 for balanced quality
+    - Set video data output pixel format to kCVPixelFormatType_32BGRA
+    - Assign delegate for sample buffer processing
+    - Begin session on a background dispatch queue
+  - Check LIDAR hardware availability
+    - Query ARWorldTrackingConfiguration.supportsSceneReconstruction
+    - Detect iPhone Pro vs non-Pro model
     - Fall back to camera-only mode on non-Pro iPhones
+    - Show a note to non-Pro users about reduced scan accuracy
+
 - Live preview and UI
-  - Display live camera feed in preview layer within Xcode storyboard
-  - Add overlay UI for indicating scan area boundaries
-  - Implement pinch-to-zoom gesture for detailed wall inspection
-  - Add progress indicator for scan completion percentage
-  - Support both portrait and landscape scan orientations
+  - Add camera preview layer to the view controller
+    - Insert AVCaptureVideoPreviewLayer as the view's backing layer
+    - Resize preview layer on rotation and layout changes
+    - Set video gravity to .resizeAspectFill
+  - Add scanning overlay UI
+    - Draw a rectangular frame guide in the center of the screen
+    - Show a "Move slowly around the room" instructional label
+    - Add a flashlight toggle button for dark rooms
+  - Implement gesture controls
+    - Pinch-to-zoom for detailed wall inspection
+    - Double-tap to reset zoom level
+    - Pan gesture to move the preview viewport
+  - Show scanning progress
+    - Display a percentage-based progress bar at the top
+    - Update progress based on surfaces captured in ARSession
+    - Show a completion checkmark when scan is finished
+
 - Image capture and storage
-  - Capture high-resolution still image on user tap
-  - Save captured image to Photos library with PHAssetCollection
-  - Save captured image to app documents directory for offline use
-  - Implement undo last capture functionality
+  - Capture still images on user tap
+    - Add a large circular shutter button at the bottom
+    - Use AVCapturePhotoOutput to grab high-resolution frame
+    - Apply image compression (JPEG at 85% quality) before saving
+  - Save images locally
+    - Write to app's Documents directory using FileManager
+    - Create a per-scan subfolder named by timestamp
+    - Save a thumbnail version alongside the full-res image
+  - Save images to Photos library
+    - Request PHPhotoLibrary permission
+    - Create a dedicated PHAssetCollection named "Tally Scans"
+    - Add captured image with proper metadata
+  - Implement scan session management
+    - Allow undo of last captured image
+    - Allow deletion of entire scan session
+    - Confirm before destructive delete actions
+
 - Data handling
-  - Encode scan data as JSON with timestamp, location, device model
-  - Implement memory management to release pixel buffers after processing
-  - Optimize frame rate on older iPhone models (iPhone 8, SE)
-  - Add share button to export scan data via AirDrop or email
+  - Encode scan metadata as JSON
+    - Include timestamp (ISO 8601 format)
+    - Include GPS coordinates from CLLocationManager
+    - Include device model identifier
+    - Include scan dimensions if LIDAR data available
+  - Manage memory during scanning
+    - Release CVPixelBufferRef after processing each frame
+    - Use autorelease pools around buffer processing
+    - Monitor memory footprint with Instruments
+  - Optimize for older devices
+    - Reduce frame rate to 24fps on iPhone 8/SE
+    - Disable LIDAR depth overlay on non-Pro models
+    - Test smoothness at 1080p on oldest supported device
+  - Share scan data
+    - Export scan folder as a ZIP archive
+    - Offer AirDrop, Mail, and Messages share options
+    - Include a README in the export explaining file contents
 
 ### Damage identification
 
 - Training data preparation
-  - Curate training dataset of 500+ annotated wall crack images
-    - Label damage types: fine cracks, wide cracks, holes, water stains, peeling paint
-    - Implement data augmentation for training variability
-  - Evaluate model bias across different lighting conditions
+  - Collect source images
+    - Scrape/curate 500+ wall crack images from public datasets
+    - Include variety: plaster, concrete, drywall, tile surfaces
+    - Capture images under different lighting conditions
+  - Annotate images
+    - Draw bounding boxes around each damage instance
+    - Assign label category per box:
+      - Fine cracks
+      - Wide cracks
+      - Holes
+      - Water stains
+      - Peeling paint
+    - Export annotations in COCO or Pascal VOC format
+  - Augment the dataset
+    - Apply random rotation (±15 degrees)
+    - Apply random brightness/contrast shifts
+    - Apply random horizontal flip
+    - Apply Gaussian noise injection
+    - Target: triple the dataset size through augmentation
+  - Audit for bias
+    - Test model accuracy across different lighting conditions
+    - Test across different wall colors and textures
+    - Document any known weak spots
+
 - Model training
-  - Use OpenCV to preprocess images
-    - Grayscale conversion
-    - Gaussian blur
-    - Canny edge detection
-  - Extract features using HOG (Histogram of Oriented Gradients)
-  - Train a Core ML model using Create ML framework
-    - Test model accuracy on holdout validation set (target: >85% precision)
-    - Convert trained model to .mlmodel format for iOS integration
-  - Add ability to retrain model with user-contributed labels
+  - Preprocess images in OpenCV
+    - Convert to grayscale
+    - Apply Gaussian blur (kernel size 5x5)
+    - Apply Canny edge detection (thresholds 50/150)
+  - Extract features
+    - Compute HOG descriptors per image
+    - Optionally try SIFT keypoints as alternative
+  - Train classifier
+    - Split data: 80% train, 10% validation, 10% test
+    - Train using Create ML or scikit-learn (random forest / SVM)
+    - Log training metrics (accuracy, precision, recall, F1)
+    - Target: >85% precision on holdout set
+  - Export model
+    - Convert trained model to .mlmodel format
+    - Test model in Xcode playground before integration
+    - Add model to app bundle or set up remote download
+  - Enable continuous improvement
+    - Store user-confirmed labels for future retraining
+    - Schedule periodic retraining cycles (manual trigger for MVP)
+
 - On-device inference
-  - Add model download on first launch if user approves
-  - Implement image preprocessing pipeline within view controller
-  - Run inference on each captured frame at 15fps minimum
+  - Load Core ML model on first launch
+    - Check if model file exists in bundle or Documents
+    - If remote, show download progress indicator
+    - Cache model in memory after first load
+  - Preprocess incoming frames
+    - Resize frame to model input dimensions (e.g. 224x224)
+    - Normalize pixel values to 0-1 range
+    - Convert CVPixelBuffer to CVPixelBufferRef for model input
+  - Run inference
+    - Call model prediction on each frame
+    - Throttle to 15fps to avoid overwhelming CPU
+    - Skip frames if previous inference is still running
+  - Handle results
+    - Map model output index to damage category label
+    - Filter results below confidence threshold (e.g. 0.5)
+    - Pass filtered results to UI layer for display
+
 - Results display
-  - Display bounding boxes around detected damage regions
-    - Use different colors for each damage type (red=cracks, blue=water stains, etc.)
-    - Show confidence percentage for each detection
-  - Allow user to tap on detection to view details panel
-  - Provide "confirm detection" or "skip" user action
+  - Draw annotations on the preview
+    - Overlay a UIView layer on top of camera preview
+    - Draw UIView rectangles at each detection's bounding box
+    - Color-code by damage type:
+      - Red = cracks
+      - Blue = water stains
+      - Yellow = holes
+      - Orange = peeling paint
+    - Show confidence percentage as label on each box
+  - Interaction with detections
+    - Tap a box to open a detail panel
+    - Detail panel shows: type, confidence, suggested repair, estimated cost
+    - Provide "confirm detection" button (adds to user's report)
+    - Provide "not damage" button (dismisses false positive)
+  - Summary view
+    - Show a count of each damage type found
+    - Show overall "health score" for the scanned room
+    - Allow export of annotated screenshot
+
 - Data logging
-  - Log all detections with GPS location and timestamp
-  - Store detection history in Core Data stack
+  - Log each detection to persistent storage
+    - Capture GPS coordinates via CLLocationManager
+    - Capture timestamp
+    - Capture damage type, confidence, bounding box coordinates
+    - Capture room/area identifier (from scan session)
+  - Store in Core Data
+    - Create Detection entity with attributes above
+    - Create Relationship to ScanSession entity
+    - Implement NSFetchedResultsController for listing detections
+    - Support filtering detections by scan session or date
 
 ### Market research
 
 - API research and integration
-  - Research available property data APIs (Zillow, Redfin, local MLS APIs)
-    - Evaluate API cost vs free tier limitations for hackathon timeline
-  - Implement API key management and secure storage in Keychain
-  - Create network layer using Alamofire for API requests
+  - Survey available property data sources
+    - Zillow API (Zestimates, comparable sales)
+    - Redfin API (market trends, price history)
+    - Local government MLS APIs (permits, assessments)
+    - Evaluate each for: cost, rate limits, data coverage
+  - Choose API(s) for MVP based on hackathon timeline
+    - Prioritize free tier availability
+    - Prioritize documentation quality
+    - Prioritize response format clarity
+  - Implement secure key storage
+    - Store API keys in Keychain (not UserDefaults)
+    - Create KeychainService wrapper class
+    - Handle key rotation if API requires it
+  - Build network layer
+    - Create APIClient class using Alamofire
+    - Add request interceptor for auth headers
+    - Add retry logic for transient failures (5xx, timeout)
+    - Implement response caching with URLCache
+    - Handle offline state gracefully with cached/fallback data
+
 - Property search
-  - Define property search parameters
-    - City, zip code, address
-    - Reverse geocoding from user's current location
-    - Filter by property type: residential, single-family
-    - Filter by property age: built before 1980, 1980-2000, 2000+
-    - Filter for number of bedrooms/bathrooms
-  - Parse JSON response into Swift structs (Property, Sale, Price)
-  - Identify recent renovation permits from city database APIs
+  - Define search input flow
+    - Text field for address entry
+    - "Use current location" button (reverse geocode)
+    - Autocomplete suggestions as user types
+  - Build search filters UI
+    - Toggle: residential / single-family / condo / apartment
+    - Slider or picker: property age (pre-1980, 1980-2000, 2000+)
+    - Stepper: number of bedrooms
+    - Stepper: number of bathrooms
+    - Text field: square footage range
+  - Process API responses
+    - Decode JSON into Swift Codable structs (Property, Sale, Price)
+    - Handle missing or null fields gracefully
+    - Map API response fields to our internal model
+  - Enrich with permit data
+    - Query city/county permit database API
+    - Flag properties with recent renovation permits
+    - Display permit history in property detail view
+
 - Price estimation
-  - Calculate price per square foot for comparable properties
-  - Create repair cost database
-    - Drywall patch, paint, crack injection, etc.
-    - Store local repair cost constants in UserDefaults
-  - Implement regional price adjustment factors (urban vs suburban vs rural)
-  - Display cost range as "typically $500-$1,200" per repair type
+  - Calculate comparable pricing
+    - Pull recent sale prices within radius (0.5 mi)
+    - Calculate median price per square foot
+    - Exclude outliers (top/bottom 10%)
+  - Build repair cost database
+    - Drywall patch (small/medium/large)
+    - Interior painting (per room / per sqft)
+    - Crack injection / structural repair
+    - Tile repair / replacement
+    - Flooring repair
+    - Plumbing fixes
+    - Electrical fixes
+    - Store as static JSON in app bundle for MVP
+    - Allow remote config update later
+  - Apply regional adjustments
+    - Urban multiplier: 1.3x
+    - Suburban multiplier: 1.0x
+    - Rural multiplier: 0.8x
+    - Derive from cost-of-living index data
+  - Present estimates
+    - Show range: "Typically $500 – $1,200"
+    - Show what's included/excluded in range
+    - Allow user to tap for detailed breakdown per line item
+
 - User interaction
-  - Allow user to input custom budget range
-  - Save search history for quick re-access
-  - Support multiple property comparisons side-by-side
-- Performance
-  - Implement caching of recent search results
-  - Generate summary report PDF with comparable properties list
+  - Custom budget input
+    - Text field with currency formatting
+    - Validate input (positive number, reasonable bounds)
+    - Show what's achievable within the entered budget
+  - Search history
+    - Store last 20 searches in UserDefaults / Core Data
+    - Show history list on search screen
+    - One-tap to re-run a previous search
+  - Side-by-side comparison
+    - Allow selecting 2-3 properties to compare
+    - Show comparison table: price, size, age, estimated repairs
+    - Highlight best value option
+
+- Performance and reporting
+  - Cache results
+    - Cache API responses by search parameters
+    - Set cache expiry (e.g. 1 hour for market data)
+    - Show cached indicator when serving from cache
+  - Generate PDF report
+    - Include property overview
+    - Include comparable properties table
+    - Include repair cost estimates
+    - Include charts (price trends if available)
+    - Share PDF via share sheet
 
 ### Builder hiring
 
 - Contractor profiles
-  - Design contractor profile screen with fields
-    - Name, license number, specialty
-    - Add document upload for builder licenses and insurance certificates
-  - Integrate with Apple Contact framework for contact import
-  - Create onboarding flow for new builders to register in the app
-  - Store builder contacts in Core Data with relationship to projects
+  - Design profile screen
+    - Fields: name, company, license number, specialty
+    - Profile photo upload (camera or photo library)
+    - Bio / description field
+    - Service area radius (miles)
+    - Hourly rate or project rate range
+  - Document upload
+    - Upload driver's license / ID
+    - Upload proof of insurance
+    - Upload trade certification
+    - Store documents in Firebase Storage or local cache
+    - Validate file type (PDF, JPG, PNG) and size (< 10MB)
+  - Contact import
+    - Integrate ABPeoplePickerViewController
+    - Allow multi-select of contacts
+    - Pre-fill builder profile from contact card
+  - Onboarding flow
+    - Step 1: personal info
+    - Step 2: licensing & certifications
+    - Step 3: service area & specialties
+    - Step 4: bank / payout details (for commission payouts)
+    - Step 5: agree to terms of service
+    - Progress indicator across steps
+  - Data persistence
+    - Store builders in Core Data
+    - Create Builder entity (name, license, rating, contact info)
+    - Create Relationship to Project entity
+    - Create Relationship to Quote entity
+
 - Outreach
-  - Implement email composition view using MessageUI framework
-  - Create SMS outreach template with placeholders ({property_address}, {repair_type})
-  - Add button to send outreach to multiple builders simultaneously
-  - Set up push notifications for new quote requests
+  - Email outreach
+    - Compose email using MFMailComposeViewController
+    - Pre-fill recipient (builder email)
+    - Pre-fill subject: "Repair Quote Request – {property address}"
+    - Pre-fill body template with placeholders:
+      - {property_address}
+      - {repair_type}
+      - {estimated_cost_range}
+      - {deadline}
+    - Handle device without mail account configured (show alert)
+  - SMS outreach
+    - Compose SMS using MFMessageComposeViewController
+    - Use same placeholder template as email
+    - Truncate to fit SMS length limits
+  - Bulk outreach
+    - Allow selecting multiple builders at once
+    - Send outreach sequentially with small delay (rate limiting)
+    - Show progress: "Sending to 3 of 12 builders..."
+    - Log each outreach attempt (sent/failed/skipped)
+  - Push notifications
+    - Configure APNs (Apple Push Notification service)
+    - Send local notifications for:
+      - New quote received
+      - Builder responded
+      - Follow-up reminder due
+    - Configure notification categories and actions
+
 - Quote management
-  - Build quote comparison table view
-    - Columns: builder, estimate, timeline, status
-    - Implement swipe-to-action for accept/decline/reply per quote
-  - Track builder response status: pending, accepted, declined, no response
-  - Add phone call functionality using TLPhoneNumberView
+  - Quote comparison table
+    - Build UITableView with custom cells
+    - Columns:
+      - Builder name and avatar
+      - Quote amount (dollar value)
+      - Estimated timeline (days/weeks)
+      - Status badge (pending/accepted/declined)
+    - Sort by: price (low to high), timeline (fastest), rating
+    - Color-code status: green=accepted, yellow=pending, red=declined
+  - Swipe actions per quote
+    - Swipe right: accept quote
+    - Swipe left: decline quote
+    - Swipe left (further): reply with message
+    - Haptic feedback on action
+  - Response tracking
+    - Track status transitions: sent → viewed → quoted → accepted/declined
+    - Show elapsed time since outreach was sent
+    - Auto-flag "no response" after 7 days
+  - Direct contact
+    - Tap phone icon to call builder (CNContactViewController)
+    - Tap email icon to open mail composer
+    - Tap chat icon to open in-app chat
+
 - Scheduling and communication
-  - Schedule follow-up reminders using UserNotifications framework
-  - Implement in-app chat using MessageKit or Firebase
+  - Follow-up reminders
+    - Schedule UNNotificationRequest for follow-up date
+    - Default: 48 hours after outreach if no response
+    - Allow user to customize reminder interval
+    - Support snooze (remind again in 24 hours)
+  - In-app chat
+    - Integrate MessageKit for chat UI
+    - Or use Firebase Firestore for real-time messaging
+    - Support text messages only for MVP
+    - Show read receipts (delivered / read indicators)
+    - Store chat history linked to builder + project
+
 - Discovery
-  - Add search and filter for builders by location radius (5mi, 10mi, 25mi)
-  - Integrate with MapKit to show builder distances from property
+  - Builder search
+    - Search by name or specialty
+    - Filter by location radius (5mi / 10mi / 25mi)
+    - Filter by rating (min 3 stars, 4 stars, 5 stars)
+    - Filter by specialty (plumbing, electrical, painting, etc.)
+  - Map view
+    - Show builder pins on MKMapView
+    - Show property location as a distinct pin
+    - Display distance in miles from property to builder
+    - Tap pin to show builder mini-profile callout
+    - "Get directions" button opening Apple Maps
+
 - Performance tracking
-  - Implement rating system after job completion (1-5 stars with review text)
-  - Generate monthly report of builder performance metrics
-  - Add ability to export builder contact list as CSV
+  - Rating system
+    - 1-5 star input after job completion
+    - Optional text review field
+    - Average rating displayed on builder profile
+    - Weight recent ratings higher than old ones
+  - Monthly report
+    - Aggregate: quotes sent, accepted, avg response time
+    - Aggregate: avg project cost, on-time completion rate
+    - Display as charts using Swift Charts framework
+  - CSV export
+    - Export builder list with all fields
+    - Include rating, contact info, specialty
+    - Share via share sheet or AirDrop
 
 ### Commission model
 
 - Payment integration
-  - Integrate Stripe SDK for payment processing
-  - Create payment intent backend endpoint using Node/Express or Firebase Functions
-  - Implement secure payment method collection (CardField from Stripe)
-  - Save payment method token to Keychain for future use
+  - Stripe SDK setup
+    - Install Stripe iOS SDK via Swift Package Manager
+    - Initialize with publishable test key (MVP)
+    - Configure Apple Pay capability if supported
+  - Backend payment endpoint
+    - Create Firebase Cloud Function (or Node/Express endpoint)
+    - Endpoint: POST /create-payment-intent
+    - Accept: amount, currency, description
+    - Return: client_secret for Stripe widget
+    - Validate amount server-side (prevent tampering)
+  - Payment method collection
+    - Integrate Stripe CardField widget in app
+    - Validate card details client-side before submit
+    - Handle card errors (declined, insufficient funds, etc.)
+    - Save payment method token for recurring use
+  - Token storage
+    - Store Stripe payment method ID in Keychain
+    - Never store full card numbers or CVV
+    - Allow user to update / remove saved payment method
+
 - Commission calculation
-  - Calculate 5% commission on final repair quote amount
+  - Calculate 5% commission
+    - Input: final repair quote amount from builder
+    - Output: commission amount (round to 2 decimal places)
+    - Verify: commission + base cost = total charged to user
   - Display cost breakdown
-    - Base repair cost
-    - Commission amount (5%)
-    - Total
-  - Add terms of service and commission disclosure onboarding screen
+    - Line 1: Base repair cost ($X)
+    - Line 2: Tally commission 5% ($Y)
+    - Line 3: Total ($X + $Y)
+    - Show breakdown before user confirms payment
+  - Onboarding disclosure
+    - Screen explaining: "We take 5% of the repair quote"
+    - Show a concrete example with dollar amounts
+    - Require checkbox: "I understand and agree to the 5% commission"
+    - Link to full Terms of Service
+
 - Invoicing and receipts
-  - Generate PDF invoice with line items and totals
-  - Add email receipt generation after each transaction
-  - Add Stripe dashboard link for user to view transaction history
+  - PDF invoice generation
+    - Include: invoice number, date, property address
+    - Include: line items (repair work, materials, labor)
+    - Include: commission line item
+    - Include: payment method used
+    - Include: Tally branding and contact info
+    - Save PDF locally and offer share
+  - Email receipt
+    - Auto-send receipt after successful payment
+    - Include invoice PDF as attachment
+    - Include Stripe receipt link
+  - Transaction history
+    - List all past transactions in a table view
+    - Filter by date range
+    - Tap to view full invoice PDF
+    - Link out to Stripe dashboard (admin only)
+
 - Payouts
-  - Track commission payout date and status (pending, paid out)
-  - Support payout to builder via Stripe Connect or direct bank transfer
-  - Add subscription option for premium builders (monthly flat fee)
+  - Commission payout tracking
+    - Record: payout amount, date, status (pending/paid)
+    - Calculate total commissions owed to Tally
+    - Show admin summary dashboard
+  - Builder payouts
+    - Integrate Stripe Connect for builder onboarding
+    - Collect builder bank details during onboarding
+    - Schedule payouts after job completion + confirmation
+    - Support manual payout trigger for admin
+  - Subscription option
+    - Offer premium builder tier at monthly flat fee
+    - Integrate Stripe subscription API
+    - Manage plan upgrades/downgrades
+    - Grant premium builders: priority listing, lower commission
+
 - Edge cases
-  - Implement refund flow for cancelled repairs
-  - Support split payments if user pays portion, insurance covers portion
-  - Implement fraud detection for suspicious large transactions
-  - Add dispute resolution flow for chargebacks
-  - Support multiple currencies with automatic conversion
+  - Refund flow
+    - Detect cancelled repair job
+    - Calculate refund amount (base cost minus work completed)
+    - Process refund via Stripe refund API
+    - Send refund confirmation email
+  - Split payments
+    - Allow user to pay portion directly
+    - Allow insurance to cover portion (invoice insurance company)
+    - Track which portion is paid vs outstanding
+    - Calculate commission on total (not just user-paid portion)
+  - Fraud detection
+    - Flag transactions above threshold (e.g. $10,000)
+    - Flag rapid successive transactions from same account
+    - Require manual admin review for flagged transactions
+    - Log all transactions for audit trail
+  - Dispute resolution
+    - Handle Stripe chargeback notifications
+    - Notify user and builder of dispute
+    - Provide evidence submission flow (photos, messages)
+    - Escalate to admin for resolution
+  - Multi-currency
+    - Detect user's locale for default currency
+    - Convert amounts using live exchange rates
+    - Display prices in local currency with symbol
+
 - Scaling (future)
-  - Create admin panel to view all commissions taken
+  - Admin panel
+    - View all commissions taken (by date, by project)
+    - View revenue charts over time
+    - Export financial reports as CSV
+    - Manage dispute resolution queue
 
 ### Email automation
 
 - Template design
-  - Create three email template designs using Mailgun drag-and-drop builder
-    - Template 1: "Scan Complete - Here's What We Found"
-    - Template 2: "Repair Estimates - Get Multiple Quotes"
-    - Template 3: "Builder Hired - Next Steps"
-  - Write compelling subject lines for each template (A/B test later)
-  - Add template editor for advanced users to customize HTML/CSS
+  - Design three core templates in Mailgun
+    - Template 1: "Scan Complete – Here's What We Found"
+      - Show scan summary image
+      - List damage items detected
+      - CTA button: "View Full Report"
+    - Template 2: "Repair Estimates – Get Multiple Quotes"
+      - Show estimated cost range
+      - List recommended builders
+      - CTA button: "Review Quotes"
+    - Template 3: "Builder Hired – Next Steps"
+      - Show selected builder details
+      - Show project timeline
+      - CTA button: "Track Progress"
+  - Write subject lines
+    - A/B test variants for each template
+    - Keep under 50 characters for mobile preview
+    - Personalize with property address or builder name
+  - Template editor
+    - Allow advanced users to customize HTML/CSS
+    - Provide plain-text fallback for all templates
+    - Version control for template changes
+
 - Content generation
-  - Implement email content personalization with user name, property address
-  - Add dynamic insertion of scan images and damage annotations
-  - Generate summary PDF from scan data and attach to email
+  - Personalization
+    - Insert user first name
+    - Insert property address
+    - Insert scan date
+    - Insert damage summary (count by type)
+    - Insert estimated cost range
+  - Dynamic image insertion
+    - Attach scan screenshot with annotated bounding boxes
+    - Attach room photo thumbnail
+    - Generate chart image of cost breakdown
+  - PDF summary
+    - Generate PDF from scan data using PDFKit
+    - Include: property info, damage list, cost estimates
+    - Attach to email as application/pdf
+
 - Delivery infrastructure
-  - Use Mailgun API to send transactional emails from backend
-    - Set up SMTP credentials securely in environment variables
-  - Implement email send queue for batch operations
-  - Implement retry logic for failed email sends
-  - Test email deliverability across Gmail, Outlook, Apple Mail
+  - Mailgun API integration
+    - Register Mailgun account and verify domain
+    - Store API key in environment variables (server-side)
+    - Create send endpoint: POST /send-email
+    - Accept: to, subject, template_id, variables
+    - Return: message ID for tracking
+  - SMTP credentials
+    - Store in secure server environment (not in client code)
+    - Use separate credentials for transactional vs marketing
+  - Send queue
+    - Queue emails when sending in bulk
+    - Process queue with rate limiting (e.g. 100 emails/min)
+    - Show queue status in admin dashboard
+  - Retry logic
+    - Retry on 5xx errors up to 3 times
+    - Exponential backoff: 1s, 4s, 16s
+    - Log failed sends for manual review
+  - Deliverability testing
+    - Test across Gmail (inbox, promotions, spam)
+    - Test across Outlook / Office 365
+    - Test across Apple Mail
+    - Check SPF, DKIM, DMARC records
+    - Warm up sending domain gradually
+
 - Tracking and compliance
-  - Track email open rates using tracking pixel (optional)
-  - Add unsubscribe link footer to all outgoing emails
-  - Create A/B testing framework for subject line optimization
-  - Track email campaign ROI for builder acquisition costs
+  - Open tracking
+    - Embed 1x1 tracking pixel in email HTML
+    - Log open event with timestamp and user ID
+    - Display open rate in admin dashboard
+  - Compliance
+    - Add unsubscribe link in footer of every email
+    - Honor unsubscribe within 24 hours
+    - Include physical mailing address (CAN-SPAM)
+    - Include "Why am I receiving this?" link
+  - A/B testing
+    - Split recipients 50/50 for subject line test
+    - Track open rate per variant
+    - Auto-select winner after statistical significance
+  - ROI tracking
+    - Track: emails sent → opens → clicks → signups
+    - Calculate cost per acquisition via email
+    - Compare across campaigns
+
 - User preferences
-  - Add email preference toggle in app settings (weekly summaries vs instant)
-  - Support scheduling emails for later send time
-  - Integrate with user's default mail app if they prefer to edit before send
+  - Email settings screen
+    - Toggle: weekly summary emails (on/off)
+    - Toggle: instant notifications for new quotes (on/off)
+    - Toggle: marketing emails (on/off)
+    - Save preferences to backend (not just local)
+  - Scheduling
+    - Allow user to schedule email for later send time
+    - Use local notifications as backup reminder
+    - Support timezone-aware scheduling
+  - Default mail app integration
+    - Provide "Open in Mail app" option
+    - Prefill recipient, subject, body
+    - Let user edit before sending manually
+    - Fall back to in-app composer if no mail account
+
 - Internationalization
-  - Support localization for multiple languages (English, Spanish, French)
+  - Localize email templates
+    - English (default)
+    - Spanish
+    - French
+  - Localize app UI strings
+    - Use NSLocalizedString throughout
+    - Maintain .strings files per language
+  - Localize number and currency formats
+    - Use Locale.current for formatting
+    - Show currency symbol appropriate to locale
 
 ## Priorities & Timeline
 
 - Phase 1 MVP: scanning + basic damage detection + market research
   - Prioritize iPhone Pro LIDAR features first, camera-only fallback for non-Pro
+  - Core camera pipeline + overlay UI first
+  - Damage model: collect data → train → integrate (critical path)
+  - Market research: pick simplest API and get basic price ranges working
 - Phase 2: builder hiring integration + commission model
+  - Builder profiles + outreach + quote comparison
+  - Stripe integration with 5% commission calculation
+  - Email receipts and invoice generation
 - Phase 3: advanced AI retraining + email automation workflows
+  - User-contributed label pipeline for model retraining
+  - Full Mailgun template suite with A/B testing
+  - Admin dashboard for commissions and email metrics
 - Target hackathon demo: core scanning + damage identification + basic quotes
+  - Must work on at least one iPhone Pro device
+  - Must show end-to-end: scan → detect damage → estimate cost → suggest builders
+  - Prepare a short screen recording as backup if live demo fails
