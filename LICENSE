@@ -1,21 +1,63 @@
-MIT License
+Proprietary Software License
 
-Copyright (c) 2026 James Durup
+Copyright (c) 2026 James Durup, Klaus, Theophile, and Guilhem.
+All Rights Reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. DEFINITIONS
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+   "Software" refers to the source code, documentation, assets, and all
+   files contained within this repository.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+   "You" refers to any individual or entity accessing or using the Software.
+
+   "Project Members" refers to James Durup, Klaus, Theophile, and Guilhem
+   only.
+
+2. GRANT OF LICENSE
+
+   This Software is provided for viewing purposes only. No license is
+   granted to copy, modify, distribute, sublicense, publish, or create
+   derivative works of the Software.
+
+3. RESTRICTIONS
+
+   You may NOT:
+
+   a. Copy, modify, or create derivative works of the Software.
+   b. Distribute, sublicense, sell, or otherwise transfer the Software.
+   c. Reverse engineer, decompile, or disassemble the Software.
+   d. Remove or alter any proprietary notices or labels on the Software.
+   e. Use the Software for any commercial purpose without prior written
+      consent from the Project Members.
+   f. Claim ownership of the Software or any portion thereof.
+
+4. OWNERSHIP
+
+   The Software is licensed, not sold. The Project Members retain all
+   right, title, and interest in and to the Software, including all
+   intellectual property rights therein.
+
+5. CONTRIBUTIONS
+
+   Any contributions made to the Software by Project Members or approved
+   contributors shall become the exclusive property of the Project Members.
+
+6. TERMINATION
+
+   This license is effective until terminated. The Project Members may
+   terminate it at any time. Upon termination, you must destroy all copies
+   of the Software in your possession.
+
+7. DISCLAIMER
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+   OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+   NONINFRINGEMENT. IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR
+   ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE USE OF THE
+   SOFTWARE.
+
+8. GOVERNING LAW
+
+   This license shall be governed by and construed in accordance with
+   applicable copyright and intellectual property laws.
