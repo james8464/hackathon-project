@@ -5,7 +5,7 @@
 - Use the iPhone's LIDAR scanner or camera to map out interior spaces
 - Run AI analysis on the scans to spot wall damage, cracks, and other issues
 - Look up local property data to get a sense of reasonable repair costs/quotas
-- Handle the logistics of hiring builders — reach out, compare quotes, organize schedules
+- Handle the logistics of hiring builders: reach out, compare quotes, organize schedules
 - Take a small cut (around 5%) from whatever the user ends up paying for the repairs
 - Email the user summaries and help coordinate with contractors
 
@@ -249,7 +249,7 @@
     - Rural multiplier: 0.8x
     - Derive from cost-of-living index data
   - Present estimates
-    - Show range: "Typically $500 – $1,200"
+    - Show range: "Typically $500 to $1,200"
     - Show what's included/excluded in range
     - Allow user to tap for detailed breakdown per line item
 
@@ -315,7 +315,7 @@
   - Email outreach
     - Compose email using MFMailComposeViewController
     - Pre-fill recipient (builder email)
-    - Pre-fill subject: "Repair Quote Request – {property address}"
+    - Pre-fill subject: "Repair Quote Request: {property address}"
     - Pre-fill body template with placeholders:
       - {property_address}
       - {repair_type}
@@ -514,15 +514,15 @@
 
 - Template design
   - Design three core templates in Mailgun
-    - Template 1: "Scan Complete – Here's What We Found"
+    - Template 1: "Scan Complete: Here's What We Found"
       - Show scan summary image
       - List damage items detected
       - CTA button: "View Full Report"
-    - Template 2: "Repair Estimates – Get Multiple Quotes"
+    - Template 2: "Repair Estimates: Get Multiple Quotes"
       - Show estimated cost range
       - List recommended builders
       - CTA button: "Review Quotes"
-    - Template 3: "Builder Hired – Next Steps"
+    - Template 3: "Builder Hired: Next Steps"
       - Show selected builder details
       - Show project timeline
       - CTA button: "Track Progress"
