@@ -1,178 +1,63 @@
 # Market Research
 
-> **Scope:** Competitive analysis across four pillars — room scanning, damage detection, cost estimation, contractor hiring
-> **Sources:** App Store (US/UK/AU), Google Play, Trustpilot, G2, Capterra, Sensor Tower, PR Newswire, company sites
-> **Date:** October 2026
-
----
-
-## Table of Contents
-
-1. [Room Scanning & Floor Plans](#1-room-scanning--floor-plan-apps)
-2. [AI Damage Detection](#2-ai-damage-detection-apps)
-3. [Contractor Hiring Platforms](#3-contractor-hiring-platforms)
-4. [All-in-One Competitors](#4-all-in-one-competitors-closest-to-our-vision)
-5. [Competitive Matrix](#5-competitive-matrix)
-6. [Category Ratings Comparison](#6-category-ratings-comparison)
-7. [Patterns](#7-patterns)
-8. [The Gap](#8-the-gap)
-9. [Our Positioning](#9-our-positioning)
-10. [Risks](#10-risks)
+Competitive analysis across the four pillars of our project: room scanning, damage detection, cost estimation, contractor hiring. Sources: App Store, Google Play, Trustpilot, G2, Capterra, Sensor Tower, PR Newswire, company sites. October 2026.
 
 ---
 
 ## 1. Room Scanning & Floor Plan Apps
 
-### Summary
+| App | Rating | Reviews | Pricing | Offline | Estimation |
+|-----|:------:|--------:|---------|:-------:|:----------:|
+| magicplan | 4.7★ | 116K+ | 2 free projects, then sub | Partial | ❌ |
+| Polycam | 4.7★ | 43K+ | $26.99–$199.99/mo | ❌ | ❌ |
+| RoomScan Pro | 4.3★ | 2K+ | Free + IAP | Partial | ❌ |
+| CamPlan | 4.7★ | 26K+ | Subscription | ✅ | Materials only |
 
-| App | Rating | Reviews | Pricing | LiDAR | Offline | Estimation |
-|-----|:------:|--------:|---------|:-----:|:-------:|:----------:|
-| magicplan | 4.7★ | 116K+ | 2 free projects, then sub | ✅ | Partial | ❌ |
-| Polycam | 4.7★ | 43K+ | $26.99–$199.99/mo | ✅ | ❌ | ❌ |
-| RoomScan Pro | 4.3★ | 2K+ | Free + IAP | ✅ | Partial | ❌ |
-| CamPlan | 4.7★ | 26K+ | Subscription | ✅ | ✅ | ✅ (materials) |
+### magicplan
 
----
+The most established player — been around since 2012, 116K+ reviews, still shipping updates. Scanning is genuinely fast: point your phone at the corners of a room and the floor plan draws itself in real time. No waiting for cloud processing. One user measured their entire house in 15 minutes before a Home Depot trip, which tells you the workflow works.
 
-### 1.1 magicplan
+The free tier gives you two full projects with everything unlocked — no trial clock counting down, which is more generous than most competitors.
 
-**Rating:** 4.7/5 · 40K App Store · 116K Google Play
-**Pricing:** 2 free projects → subscription (undisclosed tiers)
-**Founded:** 2012 · 10+ years of updates
+Where it falls apart is post-scan. Measurements drift when you merge rooms — pull one wall and every connected room shifts with it. Users have been asking for a "lock room" feature for years and it still isn't there. Door/window detection is inconsistent (the same window sometimes comes back as a door in the next scan). Furniture placement is sloppy and objects move between sessions. There's no onboarding either; you're left to figure it out through trial and error, and reviews suggest it takes 12+ attempts to map a home properly.
 
-#### Strengths
+Pricing is a sore spot. One user left a 5-star review specifically so more people would see their complaint: *"I only rated this five stars so everyone can see what a MONEY SUCKING app this is."*
 
-- **Speed:** point phone at corners → room mapped in seconds; no cloud processing delay
-- **Real-time generation:** floor plan appears during scan, not after upload
-- **Free tier:** 2 full projects with complete feature access — no trial clock
-- **3D rendering:** consistently praised across reviews
-- **Workflow replacement:**
-  > "I used this app to quickly measure the rooms in my house to help me plan for some remodelling. This worked using the auto scanning feature in 15 minutes before heading out to Home Depot with all my measurements in hand."
-- **Reliability:** continuous iOS compatibility for 10+ years
+**The gap:** excellent scanning, no path to action. You finish the scan and then need a different app for estimates, another for hiring. That's our opening.
 
-#### Weaknesses
+### Polycam
 
-- **Measurement corruption:**
-  - Merging rooms shifts all connected measurements
-  - Pulling one wall corrupts adjacent rooms
-  - User-requested "lock room" feature still unimplemented
-- **Learning curve:** 12+ attempts to map a home adequately
-- **Paywall:** free tier caps at 2 projects
-- **3D limitations:** view-only; cannot edit objects in 3D mode
-- **Detection inconsistency:** same window classified as door in adjacent scans
-- **No onboarding:** no tutorials for first-time users
-- **Furniture bugs:** imprecise placement; objects shift between sessions
-- **Pricing sentiment:**
-  > "I only rated this five stars so everyone can see what a MONEY SUCKING app this is."
+4.7★ across 43K reviews, ~100K downloads and ~$500K revenue per month (Sensor Tower). Scans are accurate enough for professional 3D modeling, and photogrammetry mode works on any iPhone — no LiDAR needed. Exports feed into Blender, SketchUp, and nerfstudio, which makes it popular with contractors who need to reference measurements remotely.
 
-#### Positioning
+The problem is pricing, which has gone through three phases:
 
-> Scanning UX is best-in-class. No path from scan to action — users must switch apps for estimates and hiring. Our opening.
+| Period | Price |
+|--------|------:|
+| Launch | Free |
+| 2023 | $149/yr |
+| 2025 | $400/yr |
 
----
+That's for basic measurement features. Worse, scan data lives behind their cloud — stop paying and you lose access to measurements you already took. Reviews mention auto-enrollment in free trials without clear consent, scans vanishing mid-session, save hangs requiring force quits, and Polycam actively blocking Apple-initiated refunds. One user called the company *"predatory."* Another put it plainly: *"Now the app has all that functionality stripped out in favor of cloud processing and putting everything behind yet another subscription service."*
 
-### 1.2 Polycam
+Pricing drove what was once a well-liked app into a trust deficit.
 
-**Rating:** 4.7/5 · 43K+ App Store
-**Pricing:** $29.99/mo Basic · $26.99/mo Pro · $199.99/yr Pro
-**Revenue:** ~$500K/mo · ~100K downloads/mo (Sensor Tower)
+### RoomScan Pro LiDAR
 
-#### Strengths
+4.3★ across 2K reviews. The input method is clever — touch your phone against each wall and it draws the plan, which works in poorly-lit spaces where the camera fails. Measurements import directly into Symbility and Xactimate, which is why insurance adjusters use it. Developers respond to every review with specific fixes, which builds loyalty.
 
-- **Accuracy:** professional-grade scans for 3D modeling
-- **Accessibility:** photogrammetry works on any iPhone (no LiDAR required)
-- **Export formats:**
+But it crashes on complex rooms, and joining rooms places them in distorted positions with no easy way to correct. Features aren't self-explanatory. One reviewer called the pricing *"ridiculous."*
 
-  | 3D | Point Cloud | CAD |
-  |----|-------------|-----|
-  | OBJ, DAE, FBX, STL | PLY | DXF |
+Strong in its niche (insurance/restoration), rough everywhere else.
 
-- **Contractor use case:** remote measurement without return site visits
+### CamPlan
 
-#### Weaknesses
+4.7★, 26K ratings, 800K+ users. The standout feature is AI Video Scan — film a quick walkthrough on any iPhone (even without LiDAR) and AI draws the floor plan. A full apartment takes under 3 minutes. Works offline, exports in every format you'd want (PDF, PNG, DXF, SVG, USDZ, OBJ, DAE), and includes material quantity estimation for paint, flooring, and drywall straight from the scan.
 
-- **Pricing escalation:**
-
-  | Period | Price | Change |
-  |--------|------:|--------|
-  | Launch | Free | — |
-  | 2023 | $149/yr | +$149 |
-  | 2025 | $400/yr | +$251 |
-
-- **Data hostage:** scan data locked behind cloud — cancel subscription, lose existing measurements
-- **Dark patterns:**
-  - Auto-enrollment in free trials without clear consent
-  - Polycam blocks Apple-initiated refunds
-- **Stability:** scans vanish during multi-room sessions; save hangs requiring force quit
-- **Feature regression:** capabilities progressively paywalled across updates
-- **User sentiment:**
-  > "Now the app has all that functionality stripped out in favor of cloud processing and putting everything behind yet another subscription service."
-
-#### Positioning
-
-> Revenue-driven pricing has alienated the core user base. Trust deficit measurable in review sentiment.
-
----
-
-### 1.3 RoomScan Pro LiDAR
-
-**Rating:** 4.3/5 · 2K+ App Store
-**Pricing:** Free with in-app purchases
-
-#### Strengths
-
-- **Input method:** "touch phone against walls" — works in poorly-lit spaces where camera fails
-- **Insurance integration:** measurements import directly into Symbility and Xactimate
-- **Developer responsiveness:** replies to every review with specific fixes
-- **Niche dominance:** no direct competitor in insurance adjuster workflow
-  > "This app fills a hole for Symbility users. This has worked for me nearly 100% of the time."
-
-#### Weaknesses
-
-- **Stability:** crashes on complex rooms (multiple door/window transitions)
-- **Room joining:** distorted placement; no post-join repositioning
-- **Learning curve:** 12+ attempts for adequate home mapping
-- **Pricing:** called "ridiculous" by one reviewer
-
-#### Positioning
-
-> Strong vertical (insurance/restoration) but UX friction limits mainstream adoption.
-
----
-
-### 1.4 CamPlan
-
-**Rating:** 4.7/5 · 26K+ ratings · 800K+ users
-**Pricing:** Subscription (undisclosed)
-
-#### Strengths
-
-- **No LiDAR required:** AI Video Scan — film any iPhone walkthrough → AI draws floor plan
-- **Speed:** full apartment in under 3 minutes
-- **Offline:** works without connectivity; no extra hardware
-- **Auto-generation:** editable 2D projects from scan
-- **Export breadth:**
-
-  | Document | CAD | 3D |
-  |----------|-----|-----|
-  | PDF, PNG | DXF, SVG | USDZ, OBJ, DAE |
-
-- **Built-in estimation:** material quantity calculation (paint, flooring, drywall) from real measurements
-
-#### Weaknesses
-
-- Newer entrant; limited critical feedback
-- Subscription-based
-
-#### Positioning
-
-> Closest scanning competitor — scanning + estimation in one app. Contractor-focused: generates estimates for professionals to send clients. Does not address the homeowner's question: "What's wrong with my house and who should fix it?"
+It's the closest scanning competitor to our vision because it combines scanning with estimation. But it's built for contractors — you're creating estimates to send to clients. It doesn't address the homeowner's actual question: *"What's wrong with my house, what will it cost, and who should I call?"*
 
 ---
 
 ## 2. AI Damage Detection Apps
-
-### Summary
 
 | App | Type | Input | Single-Scan? | Pricing | Homeowner? |
 |-----|------|-------|:------------:|---------|:----------:|
@@ -183,254 +68,101 @@
 | Fixer AI | Consumer | Photo | ✅ | Free | ✅ |
 | RepairAI | Consumer | Photo | ✅ | Free | ✅ |
 
----
+### Homesly.ai
 
-### 2.1 Homesly.ai
+B2B for property managers. You walk through a rental unit with your phone, AI flags damage, compares move-in vs move-out footage, auto-calculates security deposit deductions, and dispatches vendors. Saves hours of manual inspection.
 
-**Type:** B2B SaaS — property managers, landlords
-**Model:** 14-day trial → paid
+But it needs *both* move-in and move-out footage to compare — a single-scan use case doesn't work. And it's entirely landlord-focused; there's no homeowner flow. Validates the concept of AI damage detection from video, but their model is comparing two states of a property. We'd detect damage from one scan and recommend fixes.
 
-#### Flow
+### Home Inspection AI
 
-```
-Phone video walkthrough
-  → AI flags damage
-  → Compares move-in vs move-out footage
-  → Auto-calculates security deposit deductions
-  → Dispatches vendors
-```
+New app, no meaningful ratings yet. Capture photos → AI highlights damage with bounding boxes, confidence scores, severity ratings, and recommended actions → export a PDF report. Detects cracks, water damage, mold, drywall holes, ceiling/window/door damage, electrical and plumbing issues. On-device processing by default, which is good for privacy.
 
-#### Strengths
+At $9.99/week or $29.99/month, it's priced for professional inspectors, not homeowners. Confirms the tech works commercially — and our commission model undercuts that subscription by orders of magnitude.
 
-- Eliminates hours of manual inspection
-- Frame-by-frame comparison isolates new damage from pre-existing wear
-- Deposit calculations auto-drafted as line items
-- Vendor dispatch triggered directly from damage findings
+### Chrp (Nationwide Insurance)
 
-#### Weaknesses
+AI-powered home risk platform partnered with Nationwide. Guided photo survey → AI reviews each image against 400+ known failure points → flags corrosion, faulty wiring, fire hazards → tailored report.
 
-- Requires both move-in AND move-out footage — single-scan unsupported
-- Exclusively for landlords/managers; no homeowner flow
-- Enterprise pricing not transparent
-
-#### Positioning
-
-> Validates AI damage detection from video. Their model compares two property states; we detect damage from a single scan and recommend fixes.
-
----
-
-### 2.2 Home Inspection AI
-
-**Rating:** New — insufficient data
-**Pricing:** $9.99/week or $29.99/month after 3-day trial
-
-#### Flow
-
-```
-Capture photos
-  → AI highlights damage (bounding boxes, confidence, severity)
-  → Recommended actions
-  → Export PDF report
-```
-
-#### Strengths
-
-- **Detection coverage:**
-  - Cracks · Water damage · Mold · Drywall holes
-  - Ceiling/window/door damage
-  - Electrical and plumbing issues
-- On-device processing by default (privacy)
-- Guided walkthrough for first-time users
-- Professional PDF report generation
-
-#### Weaknesses
-
-- $9.99/week is consumer-prohibitive — priced for professional inspectors
-- iPhone/iPad only; no Android
-- Zero ratings — unvalidated at scale
-
-#### Positioning
-
-> Confirms technical feasibility. Commission model (5% on completed jobs) undercuts subscription by orders of magnitude.
-
----
-
-### 2.3 Chrp (Nationwide Insurance partnership)
-
-**Type:** B2B insurance platform
-**Model:** Free to homeowners selected for renewal inspections
-
-#### Flow
-
-```
-Guided photo survey
-  → AI reviews against 400+ known failure points
-  → Flags corrosion, faulty wiring, fire hazards
-  → Tailored report
-  → Escalation to inspection team if significant
-```
-
-#### Market Data
+The data they've published is worth paying attention to:
 
 | Metric | Value |
 |--------|------:|
-| Non-catastrophic claims originating inside home | 70% |
+| Non-catastrophic claims originating inside the home | 70% |
 | Water damage rank (US homeowners claims) | #2 |
 | Avg. water damage claim cost | >$15,000 |
 | Avg. fire loss | >$88,000 |
-| Residential fires from electrical malfunctions/year | 23,700 |
-| Homes with active plumbing hazards (claim within 4 yrs) | 30% |
+| Homes with active plumbing hazards (claim within 4 years) | 30% |
 
-#### Positioning
+This validates the premise of our app. Homeowners consistently underestimate interior damage because they don't know what to look for. Chrp is insurer-driven and reactive (they only check during renewal). We'd be homeowner-driven and proactive.
 
-> Data validates core premise — homeowners underestimate interior damage because they don't know what to look for. Chrp is insurer-driven and reactive; we're homeowner-driven and proactive.
+### New Entrants (2025–2026)
 
----
+Three apps launched recently with overlapping value props:
 
-### 2.4 New Entrants (2025–2026)
+| App | Flow | Ratings |
+|-----|------|--------:|
+| **HomeScan AI** | Photo → AI diagnosis (severity + cost + repair steps) | 3 · 5.0★ |
+| **Fixer AI** | Project description + photo → pricing breakdown → match with pros | 0 |
+| **RepairAI** | Photo → AI calls local shops to collect quotes | 1 · 5.0★ |
 
-| App | Flow | Ratings | Status |
-|-----|------|--------:|--------|
-| **HomeScan AI** | Photo → AI diagnosis (severity + cost + repair steps) | 3 · 5.0★ | Early |
-| **Fixer AI** | Project description + photo → pricing breakdown → match with pros | 0 | Unvalidated |
-| **RepairAI** | Photo → AI calls local shops to collect quotes | 1 · 5.0★ | Unvalidated |
+They're all chasing the same idea — instant estimates from a photo — and they all share the same problem: too new to judge. Fixer AI has zero reviews. RepairAI's AI-calls-shops concept is interesting but has one rating.
 
-#### Common Strengths
-
-- Speed of estimates
-- Cost transparency
-- Eliminates contractor phone tag
-
-#### Common Weaknesses
-
-- All launched within last 18 months; sample sizes too small for signal
-- Fixer AI: zero reviews — unclear if it works at scale
-- RepairAI: AI-calls-shops concept unproven (1 rating)
-
-#### Positioning
-
-> Market converging on photo-based instant estimates. All are single-photo (point at one thing), not room-scan (map entire space). None combine scanning + damage detection + hiring.
+None of them combine physical room scanning with damage detection. They're all point-at-one-thing photo tools, not map-the-whole-space scanning tools.
 
 ---
 
 ## 3. Contractor Hiring Platforms
 
-### Summary
+| Platform | Rating | Reviews | Consumer Cost | Contractor Cost |
+|----------|:------:|--------:|---------------|-----------------|
+| Angi | 2.5★ | 7K (Trustpilot) | Free | $350/mo + per-lead |
+| Thumbtack | 3.3★ | 6K (Trustpilot) | Free | $40+/lead |
+| Taskrabbit | 4.2★ | 55K (Trustpilot) | Free + fees | % of job |
 
-| Platform | Rating | Reviews | Consumer Cost | Contractor Cost | Trust Signal |
-|----------|:------:|--------:|---------------|-----------------|--------------|
-| Angi | 2.5★ | 7K (Trustpilot) | Free | $350/mo + per-lead | ⚠️ Critical |
-| Thumbtack | 3.3★ | 6K (Trustpilot) | Free | $40+/lead | ⚠️ Poor |
-| Taskrabbit | 4.2★ | 55K (Trustpilot) | Free + fees | % of job | ✅ Positive |
+### Angi (formerly HomeAdvisor)
 
----
+2.5★ across 7,000 Trustpilot reviews. Founded 1998, largest home services marketplace globally. Free for homeowners; contractors pay $350/month plus per-lead fees.
 
-### 3.1 Angi (formerly HomeAdvisor)
-
-**Rating:** 2.5/5 · 7K Trustpilot reviews
-**Model:** Free for homeowners · contractors pay $350/mo + per-lead fees
-**Founded:** 1998 · largest home services marketplace globally
-
-#### Rating Distribution
+The rating distribution is bimodal:
 
 ```
 5-star ████████████████████████████████████████ 84%
 4-star █████ 10%
 3-star █ 2%
-2-star  <1%
 1-star █ 3%
-                        Avg: 2.5/5
 ```
 
-> Bimodal distribution: loyal users or furious detractors. No middle ground.
+84% five-star reviews but a 2.5 average — meaning the one-star reviews are *extremely* angry. Contractors bear the brunt:
 
-#### Strengths
-
-- Largest network globally
-- Free homeowner access
-- 84% 5-star reviews (when it works, it works)
-
-#### Weaknesses — Contractor Side
-
-- **Lead quality:**
-  > "I've had over 54 leads and only 4 have come to fruition." — 7% conversion
+- *"I've had over 54 leads and only 4 have come to fruition"* — 7% conversion rate
 - Same lead sold to multiple contractors simultaneously
 - Disconnected phone numbers listed as active leads
-- **Billing:**
-  - Auto-billing persists after cancellation
-  - "Hidden language in contracts"
-  - $350/mo subscription + per-lead fees
-- **Trust:**
-  > "Borders on fraudulent business practices."
-- Sales reps make promises contradicted by terms
-- Customer service nearly unreachable
+- Auto-billing persists after cancellation — *"hidden language in contracts"*
+- *"Borders on fraudulent business practices"* — direct quote
+- Sales reps promise things contradicted by actual terms
 
-#### Weaknesses — Homeowner Side
+Homeowners don't fare much better. Missed appointments with no-show contractors, pros falsely reporting they showed up (homeowner charged a $50 no-show fee), appointments changed hours before scheduled time. One review: *"Feels like an app for scammers."*
 
-- Multiple missed appointments with no-show contractors
-- Pros falsely report showing up → homeowner charged $50 no-show fee
-- Appointments changed hours before scheduled time without notice
-- > "Feels like an app for scammers"
+Charging for leads regardless of quality destroyed trust on both sides. We can't repeat this.
 
-#### Positioning
+### Thumbtack
 
-> Cautionary tale. Charging for leads regardless of quality destroyed trust on both sides. 2.5/5 with 7,000 reviews is a terminal signal. Our model must never charge for dead leads.
+3.3★ across 6K Trustpilot reviews. Free for customers; contractors pay $40+ per lead. Clean UI, fast matching, wide service coverage.
 
----
+The core problem is misaligned incentives. Contractors pay even when the customer never responds — *"literally paying Thumbtack for people to ignore us."* Customers often don't know they've been "matched" to anyone. Sales reps aggressively push $300 prepaid credits. There's no contractor vetting: users report unlicensed workers and call the platform a *"false sense of safety."* Reviews can't be deleted, only edited once.
 
-### 3.2 Thumbtack
+Contractors pay regardless of outcome, so they cut corners on quality. Our 5%-on-completion model only works if the job actually happens.
 
-**Rating:** 3.3/5 · 6K Trustpilot
-**Model:** Free for customers · contractors pay $40+/lead
+### Taskrabbit
 
-#### Strengths
+4.2★ across 55K Trustpilot reviews — the highest-rated hiring platform in this research. Taskers are responsive and professional, pricing is transparent for small tasks.
 
-- Clean UI, fast matching
-- Wide service category coverage
-- Free consumer access
-
-#### Weaknesses
-
-- **Misaligned incentives:**
-  > "Literally paying Thumbtack for people to ignore us."
-- Contractors pay $40+/lead even if customer never responds
-- Customers often unaware they've been "matched" to a pro
-- **Aggressive sales:** reps upsell $300 prepaid credits
-- **No vetting:**
-  > "False sense of safety." Users report unlicensed contractors.
-- Reviews can't be deleted, only edited once
-- Charged after pro repeatedly canceled; couldn't remove review
-
-#### Positioning
-
-> Optimized for lead volume, not job success. Contractors pay regardless of outcome → cut corners on quality. Our 5%-on-completion model aligns incentives: we only earn if the job happens.
+It works because it stays in its lane: furniture assembly, small repairs, moving help. No serious renovation, no licensed trade work. The lesson is that platforms trying to serve everyone (Angi, Thumbtack) see quality collapse. We should scope tightly to home damage and repair.
 
 ---
 
-### 3.3 Taskrabbit
-
-**Rating:** 4.2/5 · 55K Trustpilot — highest in category
-
-#### Strengths
-
-- Highest-rated hiring platform in this research
-- Responsive, professional taskers
-- Transparent pricing for small tasks
-
-#### Weaknesses
-
-- Limited to small tasks — no serious renovation or licensed trade work
-- Service fees accumulate
-
-#### Positioning
-
-> High rating from staying narrow: furniture assembly, small repairs, moving. Platforms that try to serve everyone (Angi, Thumbtack) see quality collapse. We should scope tightly to home damage/repair.
-
----
-
-## 4. All-in-One Competitors (Closest to Our Vision)
-
-### Summary
+## 4. All-in-One Competitors
 
 | App | Scanning | Damage Detection | Estimation | Hiring | Entry Point |
 |-----|:--------:|:----------------:|:----------:|:------:|-------------|
@@ -440,144 +172,36 @@ Guided photo survey
 | SimplyWise | ✅ | ❌ | ✅ | ❌ | "Price this job" (pro) |
 | **Tally (ours)** | **✅** | **✅** | **✅** | **✅** | **"What's wrong?"** |
 
----
+### SimpleRenovate
 
-### 4.1 SimpleRenovate
+"Scan. Post. Compare. Hire." Scan your room, post the project with photos/video, get quotes from verified contractors, compare side-by-side, hire, track, approve payments. Free to post, $5 in-app purchase tier.
 
-**Tagline:** "Scan. Post. Compare. Hire."
-**Rating:** 5.0/5 · 5 ratings (too early)
-**Pricing:** Free to post · $5 in-app purchase tier
+It's conceptually the closest to us — scanning plus hiring in one flow. But it skips damage detection entirely. Their entry point is *"I know what I want done."* Ours is *"I don't know what's wrong with my house,"* which is where most homeowners actually start. Only 5 ratings so far, iPhone only, contains ads.
 
-#### Flow
+### My Home Genius
 
-```
-Scan room
-  → Post project (photos/video)
-  → Receive quotes from verified contractors
-  → Compare side-by-side
-  → Hire
-  → Track progress
-  → Approve payments
-```
+"Scan your home. Know your costs." LiDAR scan → instant remodel estimates (DIY vs pro) → AI photo diagnosis → home health score (0–100) → match with a local pro → paint codes, filter sizes, appliance history.
 
-#### Strengths
+Conceptually very close to us. Their differentiators are home memory (paint codes, filter sizes, breaker panel decoder) and insurance scoring. But estimates are labeled *"rough planning figures, not quotes,"* the affiliate model raises bias questions, and they don't do systematic damage detection with repair recommendations.
 
-- Automatic measurement capture from scan
-- Free project posting
-- Side-by-side bid comparison with credentials and reviews
-- In-app messaging; contract review before payment
+### ArchAI
 
-#### Weaknesses
+"Scan the room. See the redesign. Know the cost." LiDAR scan → AI redesign visualization → cost estimate → export PDF. Good before/after comparison, 60+ furniture pieces, iCloud sync.
 
-- 5 total ratings — no meaningful signal
-- iPhone only
-- Contains advertising
-- Skips damage detection — assumes homeowner already knows what needs fixing
+It's about cosmetic renovation — *"how will my room look if I repaint it"* — not damage assessment. LiDAR-only, no hiring integration. Nails the visualization idea for the wrong problem.
 
-#### Positioning
+### SimplyWise Cost Estimator
 
-> Closest conceptual competitor — scanning + hiring in one flow. But entry point is "I know what I want done." Our entry point is "I don't know what's wrong with my house," which is where most homeowners actually start.
+4.8★ across 37K ratings — the highest-rated estimator we found. Photo → detailed cost breakdown (materials + labor) in seconds, before/after AI renderings, LIDAR scanning, PDF bids, invoicing, AI upsell suggestions. 10,000+ contractors using it.
 
----
-
-### 4.2 My Home Genius
-
-**Tagline:** "Scan your home. Know your costs."
-**Status:** New; limited reviews
-
-#### Flow
-
-```
-LiDAR scan
-  → Instant remodel cost estimates (DIY vs pro)
-  → AI photo diagnosis
-  → Home health score (0–100)
-  → Match with vetted local pro
-  → Paint codes, filter sizes, appliance history
-```
-
-#### Strengths
-
-- Zip-code-tuned cost estimates
-- Home Health Score for insurance discount eligibility
-- Breaker panel decoder (photo → AI reads circuits)
-- Move-in/move-out home record transfer
-- Maintenance reminders (HVAC filters, smoke detector batteries)
-- Roof and hail damage alerts
-
-#### Weaknesses
-
-- New; limited user validation
-- Estimates labeled "rough planning figures, not quotes"
-- Affiliate model raises contractor bias questions
-
-#### Positioning
-
-> Conceptually closest overall — scanning + estimates + pro matching. Differentiators: home memory (paint codes, filter sizes) and insurance scoring. Missing: systematic damage detection with repair recommendations.
-
----
-
-### 4.3 ArchAI
-
-**Tagline:** "Scan the room. See the redesign. Know the cost."
-**Status:** Available on App Store
-
-#### Flow
-
-```
-LiDAR scan
-  → AI redesign visualization
-  → Cost estimate
-  → Export PDF for contractors
-```
-
-#### Strengths
-
-- Before/after: original scan vs AI-generated redesign
-- Cost estimate before contractor engagement
-- 60+ furniture pieces for layout testing
-- iCloud sync
-
-#### Weaknesses
-
-- LiDAR-only (excludes non-Pro iPhones)
-- Cosmetic renovation focus, not damage assessment
-- No contractor hiring integration
-
-#### Positioning
-
-> Nails "visualize before you commit" for aesthetic renovation. Missing damage detection entirely.
-
----
-
-### 4.4 SimplyWise Cost Estimator
-
-**Rating:** 4.8/5 · 37K ratings — highest-rated estimator
-**Audience:** Professional contractors · 10,000+ users
-
-#### Strengths
-
-- Photo → detailed cost breakdown (materials + labor) in seconds
-- Before/after AI renderings for client presentations
-- LIDAR room scanning built in
-- PDF bid generation, invoicing, work order management
-- AI upsell suggestions to increase job value
-
-#### Weaknesses
-
-- Built for contractors pricing jobs, not homeowners understanding costs
-- Requires you to already know what work is needed
-
-#### Positioning
-
-> Proves photo-to-estimate works at scale (37K ratings). Contractor tool, not homeowner tool. Validates our estimation approach while confirming the consumer gap.
+It proves photo-to-estimate works at scale. But it's a contractor tool — you're pricing jobs to send to clients. Built for people who already know what work needs doing, not homeowners trying to figure out what's wrong.
 
 ---
 
 ## 5. Competitive Matrix
 
-| Category | Representative Apps | Scan | Detect | Estimate | Hire | Homeowner |
-|----------|---------------------|:----:|:------:|:--------:|:----:|:---------:|
+| Category | Apps | Scan | Detect | Estimate | Hire | Homeowner |
+|----------|------|:----:|:------:|:--------:|:----:|:---------:|
 | Scanning | magicplan, Polycam, CamPlan, RoomScan | ✅ | ❌ | ❌ ¹ | ❌ | Partial |
 | Damage Detection | Homesly, Home Inspection AI, Chrp | ❌ ² | ✅ | ❌ | ❌ | ❌ ³ |
 | Hiring | Angi, Thumbtack, Taskrabbit | ❌ | ❌ | ❌ | ✅ | Partial |
@@ -587,25 +211,25 @@ LiDAR scan
 
 > ¹ CamPlan: material quantities only · ² Video/photo only · ³ B2B insurance/property mgmt · ⁴ Pro-focused · ⁵ Photo-only, not systematic
 
-**No existing app fills all six cells.**
+Nobody fills all six cells.
 
 ---
 
-## 6. Category Ratings Comparison
+## 6. Ratings at a Glance
 
 ```
-HIRING PLATFORMS (Trustpilot)
+HIRING (Trustpilot)
 Taskrabbit   ████████████████████████████████████████████ 4.2 (55K)
 Thumbtack    ██████████████████████████████▊              3.3 (6K)
 Angi         ████████████████████▌                        2.5 (7K)
 
-SCANNING APPS (App Store)
+SCANNING (App Store)
 magicplan    ████████████████████████████████████████████ 4.7 (116K)
 Polycam      ████████████████████████████████████████████ 4.7 (43K)
 CamPlan      ████████████████████████████████████████████ 4.7 (26K)
 RoomScan Pro ████████████████████████████████▎            4.3 (2K)
 
-ESTIMATORS (App Store)
+ESTIMATING (App Store)
 SimplyWise   ████████████████████████████████████████████ 4.8 (37K)
 ```
 
@@ -613,30 +237,24 @@ SimplyWise   ██████████████████████�
 
 ## 7. Patterns
 
-### What Leaders Do Well
+**What works:**
 
-| Pattern | Example | Evidence |
-|---------|---------|----------|
-| Scanning speed | magicplan "point at corners" | Room mapped in seconds |
-| | CamPlan AI Video Scan | Full apartment < 3 min |
-| Offline capability | CamPlan | Works without connectivity |
-| Export breadth | CamPlan, Polycam | PDF, CAD, 3D formats |
-| Developer responsiveness | RoomScan Pro | Replies to every review |
-| Free tier with real utility | magicplan | 2 full projects, no trial clock |
+- **Speed** — magicplan maps corners in seconds; CamPlan does a full apartment in 3 minutes
+- **Offline** — CamPlan works without connectivity; Polycam's cloud dependency is its biggest complaint
+- **Export options** — PDF, CAD, 3D formats; users want to take their data elsewhere
+- **Developer responsiveness** — RoomScan Pro replies to every review with specific fixes
+- **Genuine free tiers** — magicplan's 2 full projects, not a time-limited trial
 
-### What Users Punish
+**What gets punished:**
 
-| Pattern | Example | Impact |
-|---------|---------|--------|
-| Subscription creep | Polycam: free → $149 → $400/yr | "Predatory" reviews |
-| Trial dark patterns | Polycam auto-enrollment | Refund blocking |
-| Misaligned incentives | Angi/Thumbtack per-lead fees | Both sides distrustful |
-| Measurement corruption | magicplan wall editing | Entire floor plan shifts |
-| Steep learning curves | 12+ attempts across apps | Abandonment |
-| Missing onboarding | RoomScan, magicplan | Trial-and-error only |
-| Cloud lock-in | Polycam | Lose data when canceling |
-| Unvetted contractors | Thumbtack | "False sense of safety" |
-| Mid-scan crashes | RoomScan Pro, Polycam | Data loss during capture |
+- **Subscription creep** — Polycam's $400/yr; magicplan's *"money sucking"* reviews
+- **Trial dark patterns** — auto-enrollment, hidden cancel paths, refund blocking
+- **Misaligned incentives** — Angi/Thumbtack charge for dead leads; both sides end up distrustful
+- **Measurement corruption** — editing one wall shifts the entire floor plan (magicplan)
+- **Steep learning curves** — 12+ attempts for basic mapping across multiple apps
+- **Cloud lock-in** — lose your data when the subscription lapses (Polycam)
+- **Unvetted contractors** — Thumbtack's *"false sense of safety"*
+- **Mid-scan crashes** — RoomScan Pro and Polycam both lose data during capture
 
 ---
 
@@ -645,37 +263,28 @@ SimplyWise   ██████████████████████�
 No app connects all four steps:
 
 ```
-┌──────────────┐     ┌──────────────────┐     ┌────────────────┐     ┌────────────────┐
-│  Scan room   │ ──► │  AI detects      │ ──► │  Market cost   │ ──► │  Email builders│
-│  (LIDAR/     │     │  damage          │     │  estimate      │     │  & organize    │
-│   camera)    │     │                  │     │                │     │  hiring        │
-└──────────────┘     └──────────────────┘     └────────────────┘     └────────────────┘
-       ❌                    ❌                     ❌                      ❌
-   No one does          No one does           No one does            No one does
-   all four together
+Scan room  →  AI detects damage  →  Market cost estimate  →  Email builders & hire
+(LIDAR/       (from scan)           (local pricing data)     (automated outreach)
+ camera)
 ```
 
-### Current Landscape
+What exists today:
 
-| Category | Apps | Where They Stop |
-|----------|------|-----------------|
-| Scanners | magicplan, Polycam, CamPlan | Floor plans — no damage, no hiring |
-| Damage detection | Homesly, Home Inspection AI | Photo-based — no scanning, no hiring |
-| Hiring | Angi, Thumbtack | No scanning, no detection, predatory pricing |
-| Estimators | Fixer AI, SimplyWise | Require you to already know what's wrong |
-| All-in-ones | SimpleRenovate, My Home Genius | Skip damage detection entirely |
+- **Scanners** (magicplan, Polycam, CamPlan) stop at floor plans
+- **Damage detection** (Homesly, Home Inspection AI) is photo-based — no scanning, no hiring
+- **Hiring platforms** (Angi, Thumbtack) have no scanning, no detection, and predatory pricing
+- **Estimators** (Fixer AI, SimplyWise) require you to already know what's wrong
+- **All-in-ones** (SimpleRenovate, My Home Genius) skip damage detection
 
 ---
 
-## 9. Our Positioning
+## 9. Where We Fit
 
-| # | Advantage | Detail |
-|---|-----------|--------|
-| 1 | **Single flow** | Problem → solution in one app, not four |
-| 2 | **Commission on completion** | 5% only when a job happens — vs. per-lead charges |
-| 3 | **Damage detection as hook** | "Water damage → $400–$1,200 → 3 builders" — complete narrative no competitor tells |
-| 4 | **Homeowner-first** | magicplan/CamPlan are contractor tools; Angi/Thumbtack are directories; nobody builds for the confused homeowner |
-| 5 | **Transparent pricing** | Clear 5% breakdown vs. hidden fees, subscription traps, per-lead charges |
+1. **One flow, problem to solution** — homeowner uses one app instead of four
+2. **Commission on completion** — 5% only when a job happens, not per dead lead
+3. **Damage detection as the hook** — *"Your wall has water damage → $400–$1,200 to fix → 3 builders available"* is a complete story nobody else tells
+4. **Homeowner-first** — magicplan and CamPlan are contractor tools; Angi and Thumbtack are directories; nobody builds for the confused homeowner
+5. **Transparent pricing** — clear 5% breakdown vs. hidden fees and subscription traps
 
 ---
 
@@ -683,13 +292,13 @@ No app connects all four steps:
 
 | Risk | Severity | Mitigation |
 |------|:--------:|------------|
-| **AI accuracy** — false positives erode trust (cf. magicplan door/window misclassification) | High | Confidence thresholds; user confirmation flow |
-| **LiDAR coverage** — only Pro iPhones; camera fallback must work for majority | High | Camera-only mode with reduced accuracy disclosure |
-| **Builder supply** — marketplace cold-start problem | High | Manual builder onboarding for MVP |
-| **Category trust deficit** — Angi/Thumbtack poisoned "hire a pro" sentiment | Medium | Aggressive transparency: cost breakdowns, no hidden fees |
-| **Free expectation** — competitors market "free for homeowners" | Medium | Show 5% commission buys better outcomes |
-| **New entrant velocity** — HomeScan AI, Fixer AI, RepairAI, SimpleRenovate all 2025–2026 | Medium | First-mover on full four-step flow |
+| AI false positives erode trust (cf. magicplan's door/window misclassification) | High | Confidence thresholds; user confirmation before reporting |
+| LiDAR only on Pro iPhones — camera fallback must work for everyone | High | Camera-only mode with honest accuracy disclosure |
+| Builder supply — cold-start marketplace problem | High | Manual builder onboarding for MVP |
+| Angi/Thumbtack have poisoned trust in "hire a pro" apps | Medium | Aggressive transparency: full cost breakdowns, no hidden fees |
+| Competitors market as "free for homeowners" — 5% needs justification | Medium | Show what the commission buys: better matches, verified builders |
+| Space is crowding fast — HomeScan AI, Fixer AI, RepairAI, SimpleRenovate all launched 2025–2026 | Medium | First to combine all four steps in one flow |
 
 ---
 
-*Sources: App Store (US/UK/AU), Google Play, Trustpilot (Angi, Thumbtack, Taskrabbit, Polycam), G2, Capterra, Sensor Tower, company websites, PR Newswire (Chrp/Nationwide), press releases. October 2026.*
+*Sources: App Store (US/UK/AU), Google Play, Trustpilot (Angi, Thumbtack, Taskrabbit, Polycam), G2, Capterra, Sensor Tower, company websites, PR Newswire (Chrp/Nationwide). October 2026.*
