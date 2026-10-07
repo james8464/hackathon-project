@@ -1,78 +1,88 @@
 {
-  "features" : [
+  "features": [
     "refractivity"
   ],
-  "fill" : {
-    "solid" : "extended-srgb:1.00000,1.00000,1.00000,1.00000"
+  "fill": {
+    "solid": "extended-srgb:1.00000,1.00000,1.00000,1.00000"
   },
-  "groups" : [
+  "groups": [
     {
-      "layers" : [
+      "layers": [
         {
-          "fill-specializations" : [
+          "fill-specializations": [
             {
-              "appearance" : "dark",
-              "value" : {
-                "solid" : "extended-srgb:0.92941,0.95294,0.97255,1.00000"
+              "appearance": "dark",
+              "value": {
+                "solid": "extended-srgb:0.92941,0.95294,0.97255,1.00000"
               }
             }
           ],
-          "image-name" : "Magnifier.svg",
-          "name" : "Magnifier",
-          "opacity" : 1
+          "image-name": "Magnifier.svg",
+          "name": "Magnifier",
+          "opacity": 1
         },
         {
-          "fill-specializations" : [
+          "fill-specializations": [
             {
-              "appearance" : "dark",
-              "value" : {
-                "solid" : "extended-srgb:0.86275,0.90588,0.94118,1.00000"
+              "appearance": "dark",
+              "value": {
+                "solid": "extended-srgb:0.86275,0.90588,0.94118,1.00000"
               }
             }
           ],
-          "glass" : true,
-          "image-name" : "Lens.svg",
-          "name" : "Lens",
-          "opacity" : 0.18
+          "glass": true,
+          "image-name": "Lens.svg",
+          "name": "Lens",
+          "opacity": 0.18
         },
         {
-          "fill-specializations" : [
+          "image-name": "Door.svg",
+          "name": "Doorway",
+          "opacity": 0.78,
+          "fill-specializations": [
             {
-              "appearance" : "dark",
-              "value" : {
-                "solid" : "display-p3:0.95530,0.97005,1.00000,1.00000"
+              "appearance": "dark",
+              "value": {
+                "solid": "extended-srgb:0.78000,0.82000,0.86000,1.00000"
+              }
+            }
+          ]
+        },
+        {
+          "image-name": "Plan.svg",
+          "name": "Floor plan",
+          "fill-specializations": [
+            {
+              "appearance": "dark",
+              "value": {
+                "solid": "extended-srgb:0.95530,0.97005,1.00000,1.00000"
               }
             }
           ],
-          "image-name" : "House.svg",
-          "name" : "House",
-          "opacity-specializations" : [
+          "opacity-specializations": [
             {
-              "appearance" : "tinted",
-              "value" : 0.62
+              "appearance": "tinted",
+              "value": 0.68
             }
           ]
         }
       ],
-      "refractivity" : {
-        "depth" : 0,
-        "enabled" : true,
-        "strength" : 0.5
+      "refractivity": {
+        "depth": 0,
+        "enabled": true,
+        "strength": 0.5
       },
-      "shadow" : {
-        "kind" : "neutral",
-        "opacity" : 0.22
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.22
       },
-      "translucency" : {
-        "enabled" : true,
-        "value" : 0.3
+      "translucency": {
+        "enabled": true,
+        "value": 0.3
       }
     }
   ],
-  "supported-platforms" : {
-    "circles" : [
-      "watchOS"
-    ],
-    "squares" : "shared"
+  "supported-platforms": {
+    "squares": "shared"
   }
 }
