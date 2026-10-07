@@ -1,248 +1,60 @@
-# Why Tally, and Why It Doesn't Exist Yet
+# Why Tally
 
 **For the Build Challenge: Unaite, MWM, Apple & ⌘+F**
 
----
+Tally's proposed entry point is **renovation planning**. A person planning work needs a usable scope and budget before asking for quotes. An artisan needs measurements, photos, quantities, and assumptions before giving a useful price. Tally aims to make one project brief serve both people: simple for the standard user, detailed for the artisan. A room scan and optional visible-condition notes help populate that brief.
 
-## The pitch in one paragraph
-
-Tally lets you scan your home with an iPhone, finds the damage you didn't know you had, tells you what it costs to fix, and gets quotes from builders. One app covering what currently takes four: a scanner, an inspector, a calculator, and a phone book. The technology to do this has existed for about two years. Nobody has stitched it together. We have, and we want to ship it.
+This is a product hypothesis to test with prospective renovators and artisans. The app has not yet implemented the planned two-role journey, and a scan is not a professional survey.
 
 ---
 
-## 1. The problem is real, expensive, and universal
+## 1. The problem
 
-Home damage is the largest category of avoidable homeowner spending in the developed world, and it hides:
+Renovation decisions often begin with an imprecise idea: “repaint the kitchen” or “replace the floor.” That is enough to start a conversation, but not enough to compare quotes fairly. People may not know the area, the preparation needed, or whether a visible stain should be included. Artisans receive incomplete enquiries and must spend time clarifying them before they can price the work.
 
-| Fact | Source |
-|------|--------|
-| 70% of non-catastrophic home insurance claims originate *inside* the home | Chrp / Nationwide |
-| Water damage is the #2 homeowners claim in the US; average cost exceeds **$15,000** | Chrp / Nationwide |
-| 30% of homes have active plumbing hazards likely to cause a claim within 4 years | Chrp / Nationwide |
-| Residential fires from electrical malfunctions: **23,700 per year**, average loss **$88,000** | Chrp / Nationwide |
+The result is a weak handoff between intent and quote. A clearer brief should help both sides understand the same scope, including what is excluded. Tally should make it easy for a standard user to start without requiring them to speak like a contractor.
 
-Why homeowners miss it:
+## 2. The product thesis
 
-- They don't know what to look for
-- A crack in the wall is either cosmetic or the early sign of subsidence
-- A stain on the ceiling is either old paint or a leaking roof that will cost £4,000 next winter
-- Professional inspection costs $300 to $600 just to tell you which one it is
-- You either need an expert or you need to already know, which is the whole problem
+1. **Start with the intended renovation.** The user names the room and the work they want done. Damage is an optional condition note, not a required trigger.
+2. **Create a shared project.** An iPhone scan or manual measurement path produces an approximate plan, photos, quantities, and a scope checklist. The user can correct all measurements and confirm any suggested issue.
+3. **Separate planning from quoting.** Tally shows a budget range with assumptions. The artisan verifies quantities and prepares their own line-item quote with materials, labor, allowances, exclusions, and timing.
+4. **Show the right detail to each role.** A first-launch choice selects Standard user or Artisan. The role can change later; the underlying project remains the same.
+5. **Make the commercial terms clear.** Planning and quote requests are free. The proposed 5% fee applies only to completed jobs booked through Tally and must be shown before commitment.
 
-Everyone who has bought a house has stood in a room thinking *"is that crack new?"* and done nothing about it. That inaction is where the money goes.
+The main test is whether this shared brief reduces clarification work for artisans and helps standard users judge quotes with more confidence. The hackathon demo can test the interaction using one prepared local project. It cannot prove a live marketplace or completed-job economics.
 
----
+## 3. Why an iPhone app
 
-## 2. Why it doesn't exist yet
+- ARKit and LiDAR where available can speed up room capture. Camera and manual entry keep the flow usable without a Pro device.
+- On-device image processing keeps draft home imagery local until the user chooses to share it.
+- SwiftUI and system materials support a familiar, accessible interface for both role views.
+- Share sheets let users send a project brief or quote draft during the demo without building a backend.
 
-We did the competitive homework. Full analysis in [`market research.md`](market%20research.md). The conclusion is blunt:
+Dimensions from a phone are approximate. The interface must say so, let users correct them, and tell artisans to verify them before a binding quote. Optional AI condition flags must be user-confirmed and must not claim to find hidden or structural faults.
 
-**No app on any platform connects scanning, damage detection, cost estimation, and contractor hiring.** Every competitor does two of the four at best.
+## 4. Competitive context
 
-| Category | Apps | Where they stop |
-|----------|------|-----------------|
-| Scanning | magicplan (116K reviews), Polycam, CamPlan | Floor plans. No damage, no hiring. |
-| Damage detection | Homesly, Home Inspection AI, Chrp | Photos only. No scanning, no hiring. |
-| Hiring | Angi (2.5★), Thumbtack (3.3★) | No scanning, no detection. Both rated poorly. |
-| Estimating | Fixer AI, SimplyWise | Assume you already know what's wrong. |
-| All-in-ones | SimpleRenovate, My Home Genius | Skip damage detection entirely. |
+The existing [`market research.md`](market%20research.md) documents room scanners, estimating tools, renovation products, and hiring platforms. Several already serve parts of renovation planning; SimpleRenovate and My Home Genius are especially relevant comparisons. We should not pitch Tally as the only renovation app. The proposed distinction is the shared project brief and two role-specific views that carry the same measurements and scope into an artisan-authored quote.
 
-Four structural reasons the gap persists. They're also why our Apple-first approach is the right one.
+That distinction is a hypothesis, not an established market fact. Before launch, recheck competitor features and interview both sides. The early launch should focus on one city and one or two common work categories, such as painting and flooring.
 
-### 2.1 The hardware was the bottleneck
+## 5. Business and trust
 
-- Consumer-grade room scanning required LiDAR
-- Until recently that meant a $1,100 Pro device
-- Now in every iPhone Pro since 2020, plus iPad Pro: tens of millions of devices
-- Most competing apps treat LiDAR as an afterthought or ignore it (Polycam, CamPlan)
-- We treat it as the foundation
-- The hardware just became good enough, and nobody has built for it properly
+The proposed model is a disclosed 5% platform fee on a job booked through Tally and completed. An illustrative £3,000 job would produce a £150 fee. The payer, collection method, taxes, refunds, and payout terms remain to be validated. The hackathon build should show only a clearly simulated fee breakdown.
 
-### 2.2 The AI was siloed
+Trust depends on accurate labels:
 
-- Damage detection models existed in research and enterprise (insurance)
-- Running one on-device alongside an AR session, in real time, is an iOS engineering problem
-- Apple Intelligence and the Neural Engine make it tractable in 2026 in a way it wasn't in 2023
-- Enterprise tools like Chrp prove the detection works
-- They just wrapped it in an insurer's portal instead of a consumer app
+- A Tally budget is a **planning estimate**, not an artisan quote.
+- Scan measurements are **approximate**, not construction-grade.
+- Seeded artisans and quotes in the demo are **simulated**, not live responses.
+- An AI flag is a **possible visible issue**, not a diagnosis.
+- A quote draft is controlled by the artisan, including exclusions and schedule.
 
-### 2.3 The business models were misaligned
+These distinctions make the product easier to use honestly and keep the two sides aligned on what has actually been agreed.
 
-- Angi and Thumbtack charge contractors per lead, whether or not the job happens
-- Contractors pay for dead leads, homeowners get ghosted
-- Both sides rate the platforms 2.5 to 3.3 stars on Trustpilot
-- Nobody has built a hiring layer where the platform only earns when work is completed
-- Our %-on-completion model aligns everyone: we only get paid when the homeowner and builder finish the job
-- It's a structural fix, not a feature
+## 6. Why it fits the challenge
 
-### 2.4 Four apps means four companies
+The demo can show a complete, native iPhone concept in three minutes: choose a role, open a renovation project, review the plan and budget, compare prepared quotes, switch to Artisan, and draft a detailed quote from the same project. The technical work is concrete—room capture, local project data, estimates, and a clear dual-view interface—while the business work is equally concrete: validate scope clarity with renovators and quote usefulness with artisans.
 
-- Scanner companies sell to contractors
-- Detection companies sell to insurers
-- Directories sell leads
-- Each is a viable standalone business
-- Combining them into one consumer flow means none of them makes as much money as they do today, so nobody does it
-- That's not a technical barrier, it's an incentive barrier
-- A hackathon team is exactly the kind of unencumbered builder that steps over it
-
----
-
-## 3. Why it's an Apple project, specifically
-
-This isn't a web app we happen to build in Xcode. It's an iOS app, and the hackathon's technology list reads like our architecture doc:
-
-| Challenge technology | How Tally uses it |
-|----------------------|-------------------|
-| **LiDAR / ARKit** | Core scanning. Scene reconstruction maps walls, floors, ceilings. Depth data tells the damage model how far a surface is from the camera. |
-| **On-device AI / custom ML models** | Damage detection runs on the Neural Engine. A wall crack scan can't wait for a cloud round-trip, and home imagery shouldn't leave the device. |
-| **Apple Intelligence / Foundation Models** | Natural-language summaries of findings (*"The stain on your bedroom ceiling is consistent with a roof leak; budget £800 to £2,400"*), estimate explanation, quote comparison. |
-| **Vision framework** | Classification pass over scanned frames to flag candidate damage regions before the heavier model runs. |
-| **StoreKit 2** | Premium builder subscription tier, an in-app digital service. The 5% commission is billed on physical repair services outside IAP per App Review 3.1.5, the same model as Airbnb and Uber. Both monetization paths are native and App Review clean. |
-| **Siri / App Intents** | *"Hey Siri, what did my last scan find?"* Natural entry point for a tool people use once a month. |
-| **Liquid Glass** | Scan overlay UI, live floor-plan drawing during capture. |
-| **App Store Connect submission** | The challenge asks for a submitted build. On-device processing and local scan storage is what App Review likes to see. |
-
-The Apple angle isn't decoration:
-
-- A LiDAR scanner with a cloud-dependent AI pipeline is worse than one that processes on-device
-- Slower, less private, and useless in a basement with no signal
-- Apple's stack is the correct engineering choice here
-- That makes Apple's sponsorship a natural fit rather than a logo placement
-
-For Apple specifically:
-
-- Tally uses technologies Apple is actively promoting: LiDAR adoption, on-device inference, Apple Intelligence
-- It's in a category (home improvement) with an obvious, non-gimmicky consumer use case
-- It's the kind of app that makes LiDAR look like a feature people asked for
-- That's the demo Apple wants to show
-
----
-
-## 4. Why it's an MWM project
-
-MWM brings product, growth, and monetization expertise. Tally has a clear, modelable business.
-
-**Revenue model**
-
-- 5% commission on completed repair jobs, billed through Stripe (test mode for the MVP)
-- No charge for scanning, no subscription, no lead fees
-- The homeowner's cost to use Tally is zero
-- Builder acquisition is outbound (we email builders), so there's no paid-marketing cold start
-- Unit economics: a single £3,000 job produces £150
-- Ten jobs a month in one city is £1,500/month with no inventory, no staff, no fulfillment cost beyond the marketplace itself
-
-**Growth model**
-
-- Scans are shareable by nature: floor plans, before/after damage photos
-- Builder-side growth is self-reinforcing: more jobs leads to more builders, which leads to faster quotes, which leads to more jobs
-- The "find out what's wrong with your house for free" hook beats Angi's "describe your project and pray" form
-
-**Why it scales past a hackathon**
-
-- The hard parts (scan pipeline, on-device model, estimate database) are one-time builds
-- Each additional city is a pricing-data problem and a builder-outreach list
-- That's operations, not engineering
-- MWM's playbook for launching and monetizing apps maps directly onto it
-
----
-
-## 5. Why it should win
-
-### 5.1 It matches the brief almost point-for-point
-
-The challenge asks for *"an app with a clear use case, a working core experience and a path to monetization."*
-
-| Brief requirement | Tally |
-|-------------------|-------|
-| Clear use case | Scan your home, know what's wrong, know what it costs, hire someone |
-| Working core experience | One continuous flow; scan completes on-device in under a minute |
-| Path to monetization | 5% on completed jobs, Stripe billing, StoreKit 2 for the premium tier. No subscription for homeowners, no lead fees. |
-| Real user problem | Validated by insurance data: 70% of interior claims, $15K+ average water damage |
-| Plan to bring to market | Outbound builder acquisition city-by-city; free scans as the consumer hook |
-
-### 5.2 The competitive whitespace is documented, not assumed
-
-- `market research.md` covers 15+ competitors across four categories
-- Ratings, pricing, and direct user quotes
-- The conclusion: nobody fills all six cells of the capability matrix
-- Verifiable in about ten minutes of reading
-- When a judge asks *"why doesn't this already exist?"* we have an answer with receipts
-
-### 5.3 Both halves of the judging criteria are covered
-
-Teams are two tech + two business. Tally genuinely needs both:
-
-- **Tech:** LiDAR scene reconstruction, on-device damage classification, AR session management, estimate generation. Real engineering, not a CRUD app with a chatbot wrapper.
-- **Business:** market sizing, commission modeling, builder-side supply strategy, launch sequencing. The research is done and the pricing is defensible.
-
-### 5.4 It's honest about its risks
-
-| Risk | Our answer |
-|------|------------|
-| AI false positives | Confidence thresholds, user confirmation before anything reaches a builder |
-| LiDAR only on Pro iPhones | Camera-only fallback for everyone else, with honest accuracy disclosure |
-| Builder supply (cold start) | Manual outreach for MVP. Builders are reachable by email, unlike consumer users. |
-| Category trust deficit (Angi/Thumbtack poisoned "hire a pro") | Full cost breakdown, commission disclosed upfront, no charge unless work happens |
-
-### 5.5 It's a story, not a feature list
-
-Most hackathon apps demo as *"here's a thing it can do."* Tally demos as a narrative:
-
-> *You scan your kitchen wall. The app flags a crack, says it looks structural, estimates £400 to £1,200 to fix, and has three builders in your area ready to quote by tomorrow. You've gone from worried to informed to actioned in one session.*
-
-A three-minute pitch that lands without explanation. Judges should be able to imagine themselves using it, which is more than most submissions manage.
-
-### 5.6 It actually ships in two days
-
-Big visions die at hackathons. Ours is scoped to survive them:
-
-- **No backend.** Scans, detections, estimates, and quotes all live on-device in Core Data. Nothing to deploy, nothing to fall over.
-- **Detection is tiered.** Vision heuristics (edges, color anomalies, saliency) always work as a baseline. A Create ML classifier trained on a few hundred images upgrades it if accuracy clears the bar. If neither impresses, we label it honestly as beta and let users confirm every finding.
-- **Cost data is bundled.** No Zillow API keys, no approval queues. A JSON repair database plus regional multipliers ships in the bundle and works offline.
-- **Builders are seeded.** Eight to twelve researched profiles in the bundle. Real recruitment starts after the demo, not during it.
-- **Demo quotes are simulated, and we say so.** A local notification drops fake responses into the comparison table during the pitch. Announcing that out loud is a credibility gain, not a confession.
-- **Every cut is listed.** `planning.md` names what's out of scope (Mailgun, Stripe Connect, chat, i18n, admin dashboards) with a reason for each. Scope discipline is the single strongest signal that a team will finish.
-
-The test: a judge can walk up to the demo device, scan a wall, and see the whole flow work in 90 seconds, with no network connection.
-
----
-
-## 6. Why sponsorship is worth it
-
-**For Apple**
-
-- A LiDAR + on-device AI showcase in a consumer category with a clear use case
-- If LiDAR-era iPhones are going to justify their Pro premium, apps like this are the argument
-- Sponsoring a team that leans into Apple's stack, rather than one that uses it as a checkbox, demonstrates the ecosystem working as intended
-
-**For MWM**
-
-- A team building with a real monetization path from day one
-- Applying the exact skills MWM wants to mentor
-- Tally's commission model is the kind of alignment MWM's growth philosophy rewards
-
-**For Unaite**
-
-- A French student team shipping to the App Store with a defensible market thesis
-- The kind of project that becomes the federation's case study for *build*
-
-**For ⌘+F**
-
-- Deep native engineering: ARKit, Vision, StoreKit, on-device models
-- Supported by experienced Apple developers
-- The kind of codebase where mentorship actually compounds
-
-**For the winning team**
-
-- A product with a documented gap, a working build, and a plausible first revenue event
-- Not a demo that dies at the venue
-
----
-
-## 7. The one-sentence version
-
-**Every other app in this space does one of the four things badly or two of them well. Tally does all four in one native Apple experience, for a problem that costs homeowners $15,000 a claim at a time, with a business model that only makes money when the fix actually happens.**
-
----
-
-*Supporting documents: [`market research.md`](market%20research.md) (competitive analysis across 15+ apps) and [`planning.md`](planning.md) (full technical and business plan).*
+The practical cut is in [`planning.md`](planning.md): no live two-sided backend, production payments, or automated diagnosis in the hackathon must-have scope. The result should be a believable first step toward a real renovation workflow, with its limitations visible rather than hidden.

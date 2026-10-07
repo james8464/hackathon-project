@@ -1,16 +1,18 @@
 # Tally
 
-Scan your home with your iPhone, find hidden damage, get a cost estimate, hire a builder. One app instead of four.
+Tally is an iPhone app for planning home renovations. A standard user can turn a room scan or manual measurements into a clear work brief, see an indicative budget, and compare artisan quotes. An artisan can inspect the same project in more detail and prepare a line-item quote. Visible damage can be added to the scope, but damage diagnosis is not the main product promise.
 
-Our project for "Build Challenge : Unaite, MWM, Apple & ⌘+F" (October 2026).
+On first launch, the planned app asks users to choose **Standard user** or **Artisan**. The choice changes the home screen and level of detail and can be changed later in Settings. The current repository is still at the planning and prototype stage; this role flow is documented, not implemented yet.
 
-## Docs
+Project for the October 2026 Build Challenge: Unaite, MWM, Apple & ⌘+F.
 
-- `planning.md` | Product scope, MVP definition, technical approach, timeline
-- `justification.md` | Why the project is unique and worth building
-- `market research.md` | Competitive analysis across 15+ apps
-- `pitch.md` | Demo script, slide outline, judge Q&A
-- `Tally/GIT guide.md` | Git workflow for the team
+## Documents
+
+- [`planning.md`](planning.md): product scope, both role flows, MVP, technical approach, timeline
+- [`justification.md`](justification.md): why this renovation-first product is worth building
+- [`market research.md`](market%20research.md): competitor landscape and questions to validate
+- [`pitch.md`](pitch.md): proposed three-minute demo and judge answers
+- [`Tally/GIT guide.md`](Tally/GIT%20guide.md): current `main` branch workflow
 
 ## Team
 
@@ -19,17 +21,10 @@ Our project for "Build Challenge : Unaite, MWM, Apple & ⌘+F" (October 2026).
 - Theophile
 - Guilhem
 
-## Setup
+## Open the iPhone project
 
-1. Clone the repo: `git clone https://github.com/james8464/hackathon-project.git`
-2. Run `git switch main && git pull` to get latest changes
-3. Create a feature branch: `git switch -c feature/your-feature-name`
-4. Work in Xcode, then commit & push
-5. Create a Pull Request to merge into `main`
+1. Clone the repository and switch to `main`.
+2. Open `Tally/Tally.xcodeproj` in Xcode.
+3. Choose an iPhone simulator or connected iPhone and build the `Tally` scheme.
 
-## Git workflow
-
-- Never work directly on `main`
-- Create a branch for each feature/fix
-- Commit with clear messages
-- Push branch and create PR for merging
+The app icon is in `Tally/Tally/AppIcon.icon`. The previous house-and-magnifier icon is archived in `Tally/IconArtwork/Original-AppIcon.icon`.

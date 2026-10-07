@@ -1,136 +1,98 @@
 # Pitch
 
-The Build Challenge asks for a 3-minute pitch plus a submitted build. This is the script, the demo, and the answer sheet for whatever the judges ask.
+Working pitch for the October 2026 Build Challenge. The renovation-first positioning and two-role flow still need user and artisan validation. The app currently has a starter UI; the product journey below is the intended demo, not a claim that it is already implemented.
 
 ---
 
 ## One-liner
 
-Tally scans your home, finds damage you didn't know you had, tells you what it costs to fix, and gets you builder quotes. One app instead of four.
-
----
+Tally turns a room scan into a renovation plan: a clear scope and budget for the person doing the work, and a detailed brief and quote draft for the artisan who will deliver it.
 
 ## Structure (3:00)
 
-**0:00 to 0:25 | The hook**
+**0:00–0:25 | The problem**
 
-- Open with the question everyone has asked in a house: *"Is that crack new?"*
-- Nobody knows. So they do nothing. Then it becomes a $15,000 water damage claim
-- Stat: 70% of non-catastrophic insurance claims start *inside* the home (Chrp/Nationwide)
-- Today the answer costs $300 to $600 and a week of waiting for an inspector
+- You know you want to renovate a room, but measuring it, defining the work, and getting comparable quotes are separate jobs.
+- Vague briefs produce vague prices. Artisans need quantities, photos, and assumptions before they can quote responsibly.
 
-**0:25 to 0:50 | What Tally does**
+**0:25–0:50 | The product**
 
-- Four steps, one app: scan, detect, estimate, hire
-- Free for homeowners. We take 5% only when the job is actually done
-- One sentence: *"We turn your iPhone into the home inspector you never called"*
+- On first launch, choose Standard user or Artisan.
+- Standard mode: plan the work, scan or enter measurements, see a planning budget, and send one brief.
+- Artisan mode: review the same project with measurements and scope detail, then draft a line-item quote.
+- Condition flags help catch visible issues that may affect the scope; they are not a structural diagnosis.
 
-**0:50 to 1:50 | Live demo** (script below, screen recording as fallback)
+**0:50–1:50 | Live demo**
 
-**1:50 to 2:15 | Why nobody has done it**
+Show one kitchen refresh project in both roles. Use a prepared local project and clearly label seeded artisans and quotes as simulated.
 
-- Show the capability matrix (one slide): scanners stop at floor plans, detectors are photo-only, hiring platforms are rated 2.5 to 3.3 stars
-- Four structural reasons the gap exists: hardware just matured, AI was siloed, business models were misaligned, four apps means four companies
-- We're the first team with no legacy revenue to protect
+**1:50–2:15 | Why it is different**
 
-**2:15 to 2:40 | Business**
+Room scanners, renovation estimators, and hiring services overlap with parts of this journey. Our hypothesis is that a shared, role-specific brief can make the handoff between renovator and artisan clearer. We will validate that hypothesis with both sides rather than claim no competitor serves renovation.
 
-- 5% on completed jobs. Homeowners pay nothing, builders pay nothing to receive quotes
-- One £3,000 job = £150 to us. 10 jobs a month in one city = £1,500/month, no inventory, no staff
-- Angi charges contractors $350/month plus per-lead for a 2.5-star experience. Our incentives are the opposite
+**2:15–2:40 | Business**
 
-**2:40 to 3:00 | Close**
+Planning and requesting quotes are free. The proposed model is a disclosed 5% platform fee on jobs booked through Tally and completed. Real payer, billing, and payout operations need validation before launch; the demo shows the calculation only.
 
-- Built for the Apple stack: LiDAR scanning, on-device Vision and Core ML, Foundation Models summaries, StoreKit 2 for the premium tier
-- Submitted to the App Store, privacy-first: nothing leaves the device
-- Ask: what's next is one city, real builders, and the model improving with every confirmed scan
+**2:40–3:00 | Close**
 
----
+Built for iPhone: room capture, on-device processing, system-native UI, and a manual path when scanning is unavailable. Next: validate a narrow renovation category in one city with real users and artisans.
 
-## Demo script (60 to 70 seconds)
+## Demo script (60–70 seconds)
 
-Pre-conditions: demo device unlocked, app on home screen, one room already prepared (pre-scanned fallback loaded if anything fails).
+| Step | Action | What judges see |
+|------|--------|-----------------|
+| 1 | Choose Standard user | A simple renovation-focused home |
+| 2 | Open a prepared kitchen project | Requested painting and flooring work |
+| 3 | Scan or review its saved plan | Approximate dimensions that can be corrected |
+| 4 | Confirm the scope | Work checklist and one user-confirmed water stain |
+| 5 | View budget and share brief | Planning range, assumptions, three seeded artisans |
+| 6 | Compare quotes | Clearly simulated prices, scope, exclusions, timing |
+| 7 | Switch to Artisan | Detailed measurements and editable quantities for the same project |
+| 8 | Draft a quote | Materials, labor, allowances, and schedule |
 
-| # | Action | What judges see | Time |
-|---|--------|-----------------|------:|
-| 1 | Tap Scan, sweep the kitchen wall | Live AR overlay, progress, capture | 15s |
-| 2 | Tap finish | Results: 2 detections, bounding boxes, health score 72 | 10s |
-| 3 | Tap the crack | Detail: type, confidence 0.83, suggested repair, $400 to $1,200 | 8s |
-| 4 | Tap "Get estimates" | Cost range with breakdown, regional adjustment, plain-English summary | 8s |
-| 5 | Tap "Contact builders" | 3 seeded builders near the address | 5s |
-| 6 | Select all, send | Native mail composer pre-filled (or demo-mode send) | 5s |
-| 7 | Quotes arrive (simulated) | Comparison table: price, timeline, rating | 8s |
-| 8 | Accept one | Commission breakdown: $3,000 base + $150 Tally = $3,150 | 6s |
-| 9 | Share report | PDF via share sheet | 5s |
-
-Running line while demoing: *"One tap from scan to a booked builder, and the only number we added is the 5%."*
-
-Backup if live fails: switch to screen recording (captured during rehearsal), say *"Here's the same flow recorded this morning"* and keep talking. Never debug on stage.
-
----
+Keep a recording of the same flow as a fallback. Do not imply simulated quote responses came from real artisans.
 
 ## Slides (8 max)
 
-1. **Problem**: the crack photo + the $15,000 stat
-2. **Demo video**: 45-second loop of the flow (always prepared, even if demo runs live)
-3. **How it works**: four-step diagram, Apple tech called out under each step
-4. **The gap**: capability matrix, Tally row all checkmarks
-5. **Why now**: LiDAR since 2020, on-device inference matured, nobody has connected the steps
-6. **Business**: 5% model, unit economics, comparison to Angi's $350/month
-7. **Validation**: 5 user interview quotes, competitor ratings from Trustpilot
-8. **Team + ask**: four names, two tech two business, submitted to App Store
-
----
+1. Renovation planning problem and two-sided handoff
+2. Demo of one project in both roles
+3. Standard user flow
+4. Artisan detailed view and quote draft
+5. Competitive landscape and the shared-brief hypothesis
+6. Business model and transparent fee example
+7. Validation plan: renovators and artisans
+8. Team and next milestone
 
 ## Anticipated questions
 
-**How accurate is the damage detection?**
+**Is Tally a damage assessment app or a renovation app?**
 
-Two-tier design. Baseline heuristics (Vision edges, color anomalies, saliency) catch candidates reliably. Our Create ML classifier targets 75%+ precision on a held-out test set. Every detection shows a confidence score, users confirm or reject before anything reaches a builder, and we label the feature beta rather than overpromise. False positives cost trust, so the UX is built around user confirmation.
+Renovation planning is the entry point. The user states the work they want done. A scan and optional condition notes help make the scope more complete. We do not promise hidden-damage detection or professional inspection.
 
-**Why doesn't magicplan just add this?**
+**How accurate are the measurements and estimates?**
 
-Their revenue comes from contractor subscriptions scanning for floor plans. Consumer hiring would fight their own customer base. Angi and Thumbtack could bundle scanning, but they're locked into per-lead fees that generated their 2.5 and 3.3 star ratings. The four pieces sit in four industries with no incentive to merge them. That's the structural gap in `market research.md`.
+Measurements are approximate until corrected and verified by an artisan. Tally shows a planning range with assumptions, not a binding quote. An artisan controls their own quantities and final offer.
 
-**How do you get builders onto the platform?**
+**What does the role choice change?**
 
-Outbound email, city by city, starting with the seeded relationships we research during prep week. Builders are reachable professionals with websites and licenses, unlike consumer marketplaces where both sides must arrive simultaneously. Angi proved demand exists at $350/month. We ask for nothing until jobs are flowing.
+Standard mode uses plain language, a simple plan, budget, and quote comparison. Artisan mode shows measurements, photos, line items, materials, labor, and exclusions. A person can change roles later without losing the project.
 
-**What about App Review?**
+**Do quotes really arrive in the demo?**
 
-Camera and location permissions requested in context with clear purpose strings. All image analysis on-device, nothing uploaded, so the privacy label says "data not collected." The 5% commission bills on physical repair services, permitted outside IAP under guideline 3.1.5 (the Airbnb/Uber model). Premium builder subscriptions use StoreKit 2 as required. Onboarding discloses the fee with a concrete example and an explicit checkbox.
+No. The hackathon build has no live marketplace backend. Seeded artisans and incoming quotes are labeled as simulated. A real artisan can draft and share a quote locally; live delivery is a later phase.
 
-**Why 5%? Is that enough?**
+**Why a 5% fee?**
 
-It undercuts everything contractors currently pay: Angi's $350/month plus per-lead, Thumbtack's $40+ per lead. And it only charges when work completes. At 10 jobs a month in one city it's £1,500/month with zero fulfillment cost. The number can rise or fall later; alignment matters more than the exact figure today.
+It is a proposed fee on completed jobs, disclosed before booking. The demo shows the math, not a real charge. Interviews and production payment design must validate who pays and how it is collected.
 
-**What happens when the AI is wrong?**
+**Can you ship two roles in a short hackathon?**
 
-Users confirm every detection before it appears in a report. Confidence thresholds gate what's shown. We document known weak spots (wall colors, lighting) in the app. The alternative, pretending certainty, is what kills trust in this category.
-
-**Isn't the market crowded? (Fixer AI, HomeScan AI, RepairAI, SimpleRenovate)**
-
-All launched in the last 18 months, all photo-only single-point tools, all tiny (0 to3 ratings). None scan a physical space, none combine all four steps. Crowded at the entry point, empty at the integration level.
-
-**What's the cold-start problem?**
-
-Classic two-sided marketplaces need both sides at once. We don't: homeowners get a free, useful scan with no marketplace dependency. Builders join because leads arrive. The scan is the acquisition engine, the marketplace is the monetization. Supply builds behind existing demand.
-
-**Can you actually ship this in two days?**
-
-`planning.md` names every cut: no backend, bundled cost data, seeded builders, simulated demo quotes, Mailgun and Stripe Connect pushed post-hackathon. Every must-have screen exists in the plan with an owner. Feature freeze is midday October16 so the demo gets rehearsals instead of features.
-
-**Where do you go after the hackathon?**
-
-One launch city, real builder recruitment, backend quote delivery, then property data APIs (comparables, permits). The model retrains on user-confirmed labels, which is a compounding advantage nobody in the space has today.
-
----
+Both roles use the same local project model and prepared demo project. The standard flow is built first; Artisan is a more detailed view and quote draft. Live accounts, sync, payments, and automated condition detection are outside the must-have scope.
 
 ## Pitch hygiene
 
-- Rehearse to a timer. Cut anything at 3:10 without mercy
-- Three full run-throughs on build day 2, including the failure path
-- Screen recording made on the same device, same room
-- Phone in airplane mode for one rehearsal: if the flow survives, the network can't kill the demo
-- Business profiles lead sections 1, 5, 6; tech profiles lead 3 and 4 and field accuracy questions
-- No reading slides. The matrix and the math are visual aids, not scripts
+- Rehearse to three minutes and include one role switch.
+- Mark all seeded profiles and quotes as demo data.
+- Keep a prepared project and screen recording on the demo device.
+- Say “planning estimate” and “artisan quote” consistently.
