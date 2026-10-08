@@ -10,6 +10,7 @@ Project for the October 2026 Build Challenge: Unaite, MWM, Apple & ⌘+F.
 
 ## Documents
 
+- [`Design/README.md`](Design/README.md): iPhone design system and live Figma file
 - [`planning.md`](planning.md): product scope, both role flows, MVP, technical approach, timeline
 - [`justification.md`](justification.md): why this renovation-first product is worth building
 - [`market research.md`](market%20research.md): competitor landscape and questions to validate
