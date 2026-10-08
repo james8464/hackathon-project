@@ -1,8 +1,10 @@
 # Tally
 
-Tally is an iPhone app for planning home renovations. A standard user can turn a room scan or manual measurements into a clear work brief, see an indicative budget, and compare artisan quotes. An artisan can inspect the same project in more detail and prepare a line-item quote. Visible damage can be added to the scope, but damage diagnosis is not the main product promise.
+Tally is a planned iPhone app for renovation work. A homeowner scans a room with LiDAR on a supported iPhone, or uses camera capture and manual measurements on another iPhone, to create a shared project brief and receive a preliminary price estimate in minutes. An artisan sees the same project with quantities, photos, assumptions, and condition notes, verifies the measurements, and drafts a detailed quote. A scan may reveal visible issues that belong in the work scope; it cannot inspect hidden damage.
 
-On first launch, the planned app asks users to choose **Standard user** or **Artisan**. The choice changes the home screen and level of detail and can be changed later in Settings. The current repository is still at the planning and prototype stage; this role flow is documented, not implemented yet.
+On first launch, the planned app asks users to choose **Standard user** or **Artisan**. The choice changes the home screen and level of detail and can be changed later in Settings. Homeowners would get a limited number of free quote requests; artisans would get a few free quote drafts before a paid plan. A proposed 5% platform fee would apply to a job booked through Tally and completed, with the payer and terms disclosed before booking.
+
+**Current state (8 October 2026):** the repository contains the Xcode starter UI and the finished app icon. Scanning, pricing, role selection, subscriptions, and booking are planned, not implemented. The team intends to begin testing now and target a testable build within two days; public release depends on implementation, validation, and App Store review.
 
 Project for the October 2026 Build Challenge: Unaite, MWM, Apple & ⌘+F.
 

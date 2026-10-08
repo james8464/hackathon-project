@@ -1,98 +1,51 @@
 # Pitch
 
-Working pitch for the October 2026 Build Challenge. The renovation-first positioning and two-role flow still need user and artisan validation. The app currently has a starter UI; the product journey below is the intended demo, not a claim that it is already implemented.
-
----
+Working pitch for the October 2026 Build Challenge. The product and business claims below describe the intended app. As of 8 October, the repository still has the Xcode starter UI and icon; the team is beginning tests and targeting an internal test build within two days.
 
 ## One-liner
 
-Tally turns a room scan into a renovation plan: a clear scope and budget for the person doing the work, and a detailed brief and quote draft for the artisan who will deliver it.
+Tally turns an iPhone room scan into a measured renovation brief and a preliminary local price estimate, then gives an artisan the same project to verify and quote.
 
-## Structure (3:00)
+## Three-minute story
 
-**0:00–0:25 | The problem**
+**The problem:** Every renovation starts with guesswork. Homeowners struggle to describe the work and set a budget; artisans spend time on site visits and free quotes for jobs they may never win.
 
-- You know you want to renovate a room, but measuring it, defining the work, and getting comparable quotes are separate jobs.
-- Vague briefs produce vague prices. Artisans need quantities, photos, and assumptions before they can quote responsibly.
+**The product:** A homeowner chooses the intended work, scans a room with LiDAR on a supported iPhone or uses camera capture and manual measurements, confirms any visible condition issues, and sees a preliminary planning range in minutes. An artisan opens the shared project, checks the dimensions and quantities, then drafts a detailed quote. The first-launch choice shows a simpler Standard user view or a detailed Artisan view.
 
-**0:25–0:50 | The product**
+**The price advantage to prove:** Tally intends to combine scope, quantities, location, and a history of completed local jobs validated by Tally. That job-history dataset does not exist yet. The prototype uses a dated, sourced local rate table. We must test the two-minute flow and compare estimate error with real job prices before claiming greater accuracy than a general LLM.
 
-- On first launch, choose Standard user or Artisan.
-- Standard mode: plan the work, scan or enter measurements, see a planning budget, and send one brief.
-- Artisan mode: review the same project with measurements and scope detail, then draft a line-item quote.
-- Condition flags help catch visible issues that may affect the scope; they are not a structural diagnosis.
+**The business:** Homeowners receive a limited number of free quote requests, and artisans receive a few free quote drafts. Proposed paid plans expand those allowances. Tally also proposes a disclosed 5% fee when a job booked through Tally is completed. Prices, limits, payer, and billing flow still need validation; demo charges are simulated.
 
-**0:50–1:50 | Live demo**
+**The distinction:** magicplan can generate estimates from floor plans using a professional estimator and custom price libraries. Obat includes a substantial built-in price library and artisan quoting tools. Tally's proposed difference is one scan-based project that gives homeowners a planning range before contacting a professional and gives artisans a detailed, editable brief for their own quote. We need to validate this workflow with both audiences and avoid claiming that competitors cannot estimate prices.
 
-Show one kitchen refresh project in both roles. Use a prepared local project and clearly label seeded artisans and quotes as simulated.
+**The close:** A native iPhone workflow could give both sides a more useful starting point for renovation work. We are beginning tests now and targeting a testable internal build within two days, with public release dependent on implementation, validation, and review.
 
-**1:50–2:15 | Why it is different**
+## Demo path
 
-Room scanners, renovation estimators, and hiring services overlap with parts of this journey. Our hypothesis is that a shared, role-specific brief can make the handoff between renovator and artisan clearer. We will validate that hypothesis with both sides rather than claim no competitor serves renovation.
+1. Choose Standard user and open a prepared painting-and-flooring project.
+2. Show the supported LiDAR capture or saved room plan, plus camera/manual fallback.
+3. Correct an approximate measurement and confirm a visible condition note.
+4. Show a planning range with location, source date, assumptions, and free quote allowance.
+5. Show simulated artisan responses, clearly labeled as demo data.
+6. Switch to Artisan; verify quantities and draft a line-item quote from the same project.
+7. Show proposed paid-plan allowances and a simulated 5% completed-job fee.
 
-**2:15–2:40 | Business**
+Keep a recording of the same flow as a fallback. Do not imply that seeded artisans, quote responses, completed-job data, or payments are live.
 
-Planning and requesting quotes are free. The proposed model is a disclosed 5% platform fee on jobs booked through Tally and completed. Real payer, billing, and payout operations need validation before launch; the demo shows the calculation only.
+## Judge questions
 
-**2:40–3:00 | Close**
+**Is the estimate a quote?** No. It is a preliminary planning range. The artisan verifies measurements, chooses materials and labor, and controls the final quote.
 
-Built for iPhone: room capture, on-device processing, system-native UI, and a manual path when scanning is unavailable. Next: validate a narrow renovation category in one city with real users and artisans.
+**Can every iPhone make a LiDAR scan?** No. Apple's RoomPlan capture requires a LiDAR device. The planned fallback is camera-assisted capture with manual measurement correction.
 
-## Demo script (60–70 seconds)
+**Can Tally detect damage?** It can help record visible issues for the work scope. It does not diagnose hidden or structural problems.
 
-| Step | Action | What judges see |
-|------|--------|-----------------|
-| 1 | Choose Standard user | A simple renovation-focused home |
-| 2 | Open a prepared kitchen project | Requested painting and flooring work |
-| 3 | Scan or review its saved plan | Approximate dimensions that can be corrected |
-| 4 | Confirm the scope | Work checklist and one user-confirmed water stain |
-| 5 | View budget and share brief | Planning range, assumptions, three seeded artisans |
-| 6 | Compare quotes | Clearly simulated prices, scope, exclusions, timing |
-| 7 | Switch to Artisan | Detailed measurements and editable quantities for the same project |
-| 8 | Draft a quote | Materials, labor, allowances, and schedule |
+**Is it more accurate than ChatGPT?** That is a testable hypothesis, not a current fact. We will compare estimates with completed local jobs and a general LLM baseline after obtaining validated data.
 
-Keep a recording of the same flow as a fallback. Do not imply simulated quote responses came from real artisans.
+**Can you ship in two days?** The goal is an internal test build. The checked-in app is still a starter UI, and a public release requires a working flow, device testing, and App Store review.
 
-## Slides (8 max)
+## Sources for competitor and platform wording
 
-1. Renovation planning problem and two-sided handoff
-2. Demo of one project in both roles
-3. Standard user flow
-4. Artisan detailed view and quote draft
-5. Competitive landscape and the shared-brief hypothesis
-6. Business model and transparent fee example
-7. Validation plan: renovators and artisans
-8. Team and next milestone
-
-## Anticipated questions
-
-**Is Tally a damage assessment app or a renovation app?**
-
-Renovation planning is the entry point. The user states the work they want done. A scan and optional condition notes help make the scope more complete. We do not promise hidden-damage detection or professional inspection.
-
-**How accurate are the measurements and estimates?**
-
-Measurements are approximate until corrected and verified by an artisan. Tally shows a planning range with assumptions, not a binding quote. An artisan controls their own quantities and final offer.
-
-**What does the role choice change?**
-
-Standard mode uses plain language, a simple plan, budget, and quote comparison. Artisan mode shows measurements, photos, line items, materials, labor, and exclusions. A person can change roles later without losing the project.
-
-**Do quotes really arrive in the demo?**
-
-No. The hackathon build has no live marketplace backend. Seeded artisans and incoming quotes are labeled as simulated. A real artisan can draft and share a quote locally; live delivery is a later phase.
-
-**Why a 5% fee?**
-
-It is a proposed fee on completed jobs, disclosed before booking. The demo shows the math, not a real charge. Interviews and production payment design must validate who pays and how it is collected.
-
-**Can you ship two roles in a short hackathon?**
-
-Both roles use the same local project model and prepared demo project. The standard flow is built first; Artisan is a more detailed view and quote draft. Live accounts, sync, payments, and automated condition detection are outside the must-have scope.
-
-## Pitch hygiene
-
-- Rehearse to three minutes and include one role switch.
-- Mark all seeded profiles and quotes as demo data.
-- Keep a prepared project and screen recording on the demo device.
-- Say “planning estimate” and “artisan quote” consistently.
+- [Apple RoomPlan device support](https://developer.apple.com/documentation/RoomPlan/RoomCaptureSession/isSupported)
+- [magicplan PRO Estimator](https://help.magicplan.app/estimate-plan)
+- [Obat built-in price library](https://www.obat.fr/devis-factures/bibliotheques/)

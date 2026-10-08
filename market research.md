@@ -2,6 +2,17 @@
 
 Competitive notes originally assembled for a damage-first concept across room scanning, damage detection, cost estimation, and hiring. Tally is now positioned around **renovation planning** for standard users and detailed project briefs and quote drafting for artisans. Treat prices, ratings, and product features below as a research snapshot to recheck before using them in a pitch. Sources noted in the original research: App Store, Google Play, Trustpilot, G2, Capterra, Sensor Tower, PR Newswire, and company sites. October 2026.
 
+## Current product thesis and verified comparisons (8 October 2026)
+
+Tally aims to make one room scan useful to both sides: a homeowner gets a preliminary local planning range in minutes, while an artisan receives measurements, photos, condition notes, and editable quantities for a detailed quote. The preferred capture path is LiDAR on a supported iPhone; a separate camera/manual fallback is needed on other iPhones. [Apple says RoomPlan requires a LiDAR device](https://developer.apple.com/documentation/RoomPlan/RoomCaptureSession/isSupported).
+
+The proposed pricing advantage is a future history of completed local jobs validated by Tally, combined with location, work type, and measured quantities. That dataset does **not** exist yet. A prototype can use dated local rate data. “Two-minute scan” and “more accurate than an LLM” are hypotheses to test with timed sessions and actual job-price comparisons.
+
+- [magicplan PRO Estimator](https://help.magicplan.app/estimate-plan) already calculates materials and labor from floor plans and supports custom item libraries. It is inaccurate to say magicplan cannot estimate a job.
+- [Obat's built-in price library](https://www.obat.fr/devis-factures/bibliotheques/) contains prefilled construction items and supports artisan quoting. It is inaccurate to say an artisan must build their own list before Obat can price work.
+- Tally's proposed distinction is the **shared homeowner-to-artisan project**, with a preliminary homeowner budget before contact and an artisan-authored quote from the same editable scope. Whether this is meaningfully faster or better than alternatives needs user testing.
+- Proposed monetization: limited free quote requests for homeowners, a few free quote drafts before an artisan paid plan, and a disclosed 5% fee on jobs booked through Tally and completed. Limits, plan prices, payer, and willingness to pay are unvalidated.
+
 ---
 
 ## 1. Room Scanning & Floor Plan Apps
@@ -322,7 +333,8 @@ Why it works:
 
 | Product group | Examples | Relevant capability | Question to investigate |
 |---------------|----------|---------------------|-------------------------|
-| Room capture | magicplan, Polycam, CamPlan | Plans and approximate quantities | How easily can a standard user turn the plan into work scope? |
+| Room capture and estimating | magicplan, Polycam, CamPlan | Plans, quantities, and in magicplan's case professional estimating | How easily can a standard user get a local planning range before contacting an artisan? |
+| Artisan quoting | Obat | Built-in construction price library and quote creation | What advantage does a shared homeowner-originated scan brief give the artisan? |
 | Renovation and hiring | SimpleRenovate, My Home Genius | Planning, estimates, or professional matching | How detailed is the shared brief and the artisan quote workflow? |
 | Pro estimating | SimplyWise | Materials and labor estimates | Can an artisan correct project inputs and explain exclusions? |
 | Service marketplaces | Angi, Thumbtack | Finding professionals | Does a better brief improve quote comparability and lead quality? |
@@ -378,7 +390,7 @@ SimplyWise   ██████████████████████�
 
 The earlier damage-first thesis was “scan → detect → estimate → hire.” The current product direction is “choose work → capture or enter measurements → confirm scope → plan budget → send a brief → compare artisan quotes.” Optional condition notes help avoid omissions; they are not the main reason to start.
 
-Several products in this document already scan rooms, estimate renovation costs, or connect customers with professionals. In particular, SimpleRenovate and My Home Genius mean that “renovation planning plus hiring” cannot be treated as empty whitespace. The proposed Tally distinction is a shared project record shown at two levels: plain-language planning for a standard user and verified quantities plus a line-item quote draft for an artisan.
+Several products already scan rooms, estimate renovation costs, or connect customers with professionals. magicplan and Obat also show that professional estimation and price libraries are established capabilities. The proposed Tally distinction is a shared project record shown at two levels: a preliminary local budget for a standard user before contacting anyone, and verified quantities plus a line-item quote draft for an artisan. A future history of Tally-validated completed local jobs could improve pricing, but it cannot be claimed as a current asset.
 
 Research questions before claiming an advantage:
 
@@ -386,6 +398,9 @@ Research questions before claiming an advantage:
 2. Do artisans trust and use approximate room measurements when they can correct them?
 3. Which work categories have enough pricing structure for a useful early range?
 4. How do the closest competitors handle artisan-side quoting, exclusions, and revisions today?
+5. Can participants complete the scan-to-estimate flow in two minutes on LiDAR and non-LiDAR iPhones?
+6. How does Tally's estimate error compare with completed job prices and a general LLM baseline for the same scope?
+7. Will both sides accept limited free quotes, paid plans, and a separate 5% fee at job completion?
 
 ## 9. Where We Fit
 
@@ -393,6 +408,7 @@ Research questions before claiming an advantage:
 - **Artisan:** inspect the same project with more detail, verify quantities, and author a quote rather than inherit an algorithmic price.
 - **Trust:** label measurements as approximate, estimates as planning figures, and demo quotes as simulated. Disclose the proposed completion fee before a booking.
 - **Initial market:** one city and one or two work categories, then expand only after interviews with both sides.
+- **Stage:** test build targeted within two days from 8 October 2026; the checked-in app is still a starter UI, so public-release claims depend on functional and price validation.
 
 ---
 

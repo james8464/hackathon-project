@@ -4,24 +4,28 @@ How we build Tally for the Build Challenge: Unaite, MWM, Apple & ⌘+F.
 
 - Kick-off: Friday 9 October
 - Build days: Thursday 15 and Friday 16 October at MWM, Boulogne-Billancourt
-- Deliverable: working build submitted through App Store Connect + 3-minute pitch
+- Deliverable target: tested internal build, App Store Connect submission when ready, and 3-minute pitch
 - Team: 4 students (2 tech, 2 business)
 
 ---
 
 ## 1. Product overview
 
-Tally helps people plan a home renovation, understand the likely cost, and get comparable quotes from artisans. A room scan can supply dimensions and reveal visible condition issues that should be included in the scope. Damage assessment supports renovation planning; it is not the product's sole entry point or a professional diagnosis.
+Tally turns an iPhone room scan into a measured renovation brief, a preliminary price estimate, and a starting point for an artisan quote. LiDAR is the preferred capture path on supported iPhones; camera capture with manual measurement correction is the planned fallback. Room scans can supply dimensions and photos of visible condition issues that belong in the work scope. They cannot reveal hidden damage or replace a site inspection.
 
-**Primary audience:** people planning work such as painting, flooring, tiling, or a bathroom refresh. They may know what they want to change but need help defining the work, setting a budget, and briefing an artisan.
+**Primary audience:** people planning renovation, painting, flooring, tiling, or a bathroom refresh. They may know what to change but need help defining the work, setting a budget, and briefing an artisan. The target is a preliminary estimate in minutes, with a two-minute scan/brief flow to test rather than promise before measurement.
 
-**Second audience:** artisans who need a more detailed project brief, verified measurements, quantities, and a practical way to draft a quote. Both roles work from the same project information.
+**Second audience:** artisans who need a more detailed project brief, measurements they can verify, quantities, and a practical way to draft a quote. Both roles work from the same project information. Tally aims to reduce unproductive site visits and free quoting time, which must be tested with artisans.
 
 **First launch:** ask whether the person is a **Standard user** or an **Artisan** before requesting camera or location access. Save the choice on-device, show the matching home screen, and allow it to be changed later in Settings. Standard mode uses plain language and planning ranges; Artisan mode exposes measurements, assumptions, materials, labor, and quote details. The selection changes presentation and tools, not ownership of project data.
 
-Tally is free to plan with and to request quotes. The proposed business model is a disclosed 5% platform fee when a job booked through Tally is completed. The estimate shown by Tally is a planning range, never an artisan's final quote.
+**Business model:** homeowners receive a limited number of free quote requests, with a proposed paid tier for more. Artisans receive a few free quote drafts, then a proposed paid plan. A separate, disclosed 5% platform fee applies only when a job booked through Tally is completed. Exact free limits, subscription prices, payer, and billing rules require validation. A Tally estimate is a planning range, never an artisan's final quote.
 
-**Why now:** iPhone scanning and on-device analysis can make a useful room brief quickly. The product still needs a camera-only or manual path when LiDAR is unavailable.
+**Why now:** iPhone scanning and on-device analysis can make a useful room brief quickly. Apple RoomPlan requires a LiDAR device, so non-LiDAR iPhones need a separate camera-assisted and manual measurement flow.
+
+**Price-data hypothesis:** use quantities, work type, location, and a history of completed local jobs whose scope and final price Tally has validated. This dataset does not exist yet. The prototype may use a small, dated, sourced local rate table and must identify it as illustrative. A claim of greater accuracy than a general LLM requires a measured comparison against real completed jobs; do not put it in product copy before that test.
+
+**Current state (8 October 2026):** the checked-in app is an Xcode starter screen with the app icon. The team is set up to begin testing, with a target of a testable prototype within two days. Scanning, estimates, role views, and payments are not yet implemented or ready for public release.
 
 ---
 
@@ -31,14 +35,15 @@ Tally is free to plan with and to request quotes. The proposed business model is
 First launch → choose Standard user or Artisan → role-specific home
 
 Standard user
-Create renovation project → choose room and intended work → scan or enter
-measurements → review a simple plan and confirm condition notes → see a
-budget range → share a clear brief with artisans → compare quotes → book
+Create renovation project → choose room and intended work → LiDAR scan or
+camera/manual capture → correct measurements and visible condition notes →
+see a preliminary local planning range → use a free quote request or paid
+allowance → share a brief → compare artisan quotes → book
 
 Artisan
 Open a project brief → inspect detailed plan, photos, and measurements →
 verify quantities and assumptions → prepare materials/labor breakdown →
-draft and share a quote
+use a free quote draft or paid allowance → draft and share a quote
 ```
 
 The hackathon demo uses one prepared renovation project so both roles can be shown without relying on live cross-device delivery. The standard user journey is the main pitch; switching to Artisan shows the detailed view of that same project. Quotes received during the demo are explicitly simulated.
@@ -53,9 +58,10 @@ The hackathon demo uses one prepared renovation project so both roles can be sho
 - I can scan the room or enter measurements manually when scanning is unavailable.
 - I see a simple plan, photos, and a checklist of work to confirm before asking for quotes.
 - I can add a visible issue, or confirm or dismiss an issue the app flags, so an artisan sees the right scope.
-- I see an honest budget range and its assumptions before I contact anyone.
+- I see a preliminary price range in minutes, its local rate source and date, and its assumptions before I contact anyone.
 - I share one project brief with several artisans and compare their quotes by scope, price, and timing.
 - I can see any platform fee before agreeing to a job.
+- I can see how many free quote requests remain and what a paid plan would cost before purchasing.
 
 ### Artisan
 
@@ -64,6 +70,7 @@ The hackathon demo uses one prepared renovation project so both roles can be sho
 - I verify dimensions and quantities rather than treating an iPhone scan as construction-grade measurement.
 - I can break a quote into materials, labor, allowances, exclusions, and schedule.
 - I can export or share a quote draft; a live inbox and delivery system require the later backend phase.
+- I can see how many free quote drafts remain and what the paid artisan plan would cost before purchasing.
 
 ### Demo scenario
 
@@ -76,16 +83,20 @@ A user plans to refresh a kitchen: repaint walls and replace flooring. The scan 
 ### Must have (demo-blocking)
 
 - First-launch Standard user / Artisan choice, persisted locally, with a Settings switch
-- Standard flow: project goal, room scan or manual measurements, simple plan, editable scope, budget range, artisan list, quote request, quote comparison
+- Standard flow: project goal, LiDAR room scan on supported devices or camera/manual fallback, simple plan, editable scope, local planning range, artisan list, limited free quote requests, quote comparison
 - Artisan flow: detailed view of the same project, editable quantities/assumptions, materials and labor quote draft
 - Clear labels distinguishing Tally planning estimates from artisan quotes
+- An explicit location and rate-table source/date on every demo estimate; no claim of verified job-history pricing until that data exists
+- A visible example of limited free homeowner requests and artisan drafts, with paid-plan screens clearly marked as proposed
 - Seeded artisan profiles and simulated incoming quotes, visibly marked as demo data
 - Commission breakdown with the proposed 5% fee disclosed before booking
 - Offline local persistence for role, project, measurements, scope, estimates, and quote drafts
+- LiDAR room capture on a supported test device, with approximate measurements clearly editable
+- Camera/photo and manual measurement fallback for a non-LiDAR test device
 
 ### Should have (if time allows)
 
-- LiDAR mesh on supported Pro devices; camera-only path on other iPhones
+- Improved LiDAR mesh detail and camera capture guidance
 - Vision-assisted condition flags with user confirmation before they enter a brief
 - PDF export of the renovation brief and artisan quote draft
 - Foundation Models summary with a template fallback
@@ -102,7 +113,7 @@ A user plans to refresh a kitchen: repaint walls and replace flooring. The scan 
 
 - Live two-sided accounts, real-time quote delivery, chat, and backend sync
 - Automated payments, Stripe Connect payouts, refunds, and disputes
-- Production subscriptions or priority listing
+- Production subscription billing and entitlement enforcement
 - Structural or safety certification from AI detections
 - Property data APIs, insurance integration, Android, web, and iPad-specific layouts
 
@@ -126,10 +137,10 @@ Never cut the role choice, standard renovation brief and estimate, artisan detai
 |--------|----------|-----|
 | UI | SwiftUI with Liquid Glass materials | Challenge technology, fast iteration |
 | Current iOS target | 27.0 | Matches the checked-in Xcode project; revisit device support before release |
-| Scanning | ARKit plus manual measurement entry | Room capture on supported iPhones, usable fallback everywhere |
+| Scanning | RoomPlan/ARKit on LiDAR iPhones; separate camera-assisted and manual path elsewhere | Measured room capture where supported, editable fallback on other devices |
 | Condition notes | User confirmation, optionally assisted by Vision/Core ML | Helpful to scope work without claiming a diagnosis |
 | Summaries | Foundation Models where available, template fallback | Challenge technology, graceful degradation |
-| Storage | Core Data | Shared local project model for both role views |
+| Storage | SwiftData | Matches the checked-in Xcode starter project; shared local project model for both role views |
 | Charts | Swift Charts | Budget ranges and quote comparison |
 | Reports | PDFKit | Share sheet export |
 | Payments | Fee disclosure and simulated breakdown for MVP | Real transactions follow a production service flow |
@@ -198,7 +209,7 @@ The first release helps users describe a renovation. Visible damage can change t
 
 ### 5.3 Renovation estimates
 
-No external pricing API is needed for the demo. A bundled table of indicative local costs gives a planning range for the selected work and quantities.
+No external pricing API is needed for the demo. A bundled table of indicative local costs gives a planning range for the selected work and quantities. Record each rate's location, unit, date, source, and assumptions. Keep demo data separate from a future Tally-validated history of completed local jobs. A job enters that history only with consent, confirmed scope, final paid amount, completion date, and location; do not imply that such history exists today.
 
 | Work type | Quantity basis |
 |-----------|----------------|
@@ -210,7 +221,7 @@ No external pricing API is needed for the demo. A bundled table of indicative lo
 | Plumbing or electrical work | provisional allowance, artisan verification required |
 | Condition remediation | provisional allowance if the user confirms an issue |
 
-The standard view shows low–high ranges, inclusions, exclusions, and the assumptions behind quantities and regional adjustment. Users can correct measurements and budget. Label every number “planning estimate, not a quote.”
+The standard view shows low–high ranges, inclusions, exclusions, source/date, and the assumptions behind quantities and regional adjustment. Users can correct measurements and budget. Label every number “planning estimate, not a quote.” Time a scan-to-estimate usability test; the two-minute target and any claim of greater accuracy than a general LLM need evidence from real jobs.
 
 The artisan view exposes the same quantities plus editable labor, materials, waste allowance, tax, exclusions, and schedule. A quote draft is authored by the artisan; Tally's estimate must never be presented as their offer. Keep a manual fallback for every computed quantity.
 
@@ -228,7 +239,7 @@ The artisan view exposes the same quantities plus editable labor, materials, was
 
 The proposed 5% platform fee applies to completed jobs booked through Tally, not to planning, scanning, or requesting a quote. The standard user sees the base artisan quote, fee, and total before agreeing. The artisan sees the same calculation and the proposed terms.
 
-For the hackathon, calculate and display the breakdown with a clearly labeled simulated completion state. Do not collect a real payment or present a seeded quote as a live transaction. Production billing, payouts, refunds, and tax treatment require a separately validated service and payment flow. A future premium artisan subscription would be an optional digital service.
+For the prototype, calculate and display the breakdown with a clearly labeled simulated completion state. Do not collect a real payment or present a seeded quote as a live transaction. Production billing, payouts, refunds, and tax treatment require a separately validated service and payment flow. The proposed homeowner and artisan paid plans also require validated prices, limits, entitlements, and purchase flows before release.
 
 ### 5.6 Project briefs and sharing
 
@@ -236,7 +247,7 @@ The standard brief contains the room plan, photos, requested renovation work, co
 
 Use PDFKit for export if time permits; otherwise use a plain text brief through the system share sheet. Nothing leaves the device unless the user shares it. The demo uses local data and labels simulated quotes plainly.
 
-### 5.7 Data model (Core Data)
+### 5.7 Data model (planned SwiftData)
 
 - **UserPreference**: selected role (Standard user or Artisan), onboarding completion; role can change in Settings
 - **Project**: title, room, intended work, address/region if supplied, timing, status
@@ -244,8 +255,10 @@ Use PDFKit for export if time permits; otherwise use a plain text brief through 
 - **ScopeItem**: work type, description, quantity, unit, user confirmation, condition note link if relevant
 - **ConditionNote**: image/region, candidate label and confidence if suggested, confirmed/dismissed status, artisan verification note
 - **PlanningEstimate**: project and scope relationships, low/high, unit basis, regional factor, assumptions
+- **RateSource**: work type, unit, locality, value/range, source, effective date, validation status
 - **Artisan**: profile, specialties, service area, verification status, contact details
 - **QuoteDraft / Quote**: project and artisan relationships, line items, labor, materials, allowances, exclusions, schedule, status, total
+- **PlanEntitlement**: role, remaining free quote allowance, proposed paid tier; backend-backed enforcement follows later
 - **Job**: accepted quote, disclosed platform fee, completion status (demo only in MVP)
 
 ### 5.8 Permissions and privacy
@@ -257,7 +270,7 @@ Required:
 
 Optional:
 
-- Location (regional pricing, skip with default multiplier)
+- Location (regional pricing; allow manual city/postcode entry instead of permission)
 - Photo library (save scans)
 
 Not requested for MVP: contacts, microphone, Bluetooth.
@@ -275,83 +288,42 @@ Privacy story for App Review and the pitch:
 
 ### 6.1 Revenue
 
-- Planning, scanning, and requesting quotes are free to the standard user.
+- Planning and scanning are free. Homeowners receive a limited number of free quote requests; the exact allowance and paid-tier price need user testing.
 - Proposed platform fee: 5% of a completed job booked through Tally, disclosed before acceptance. The payer and collection process must be validated before launch.
-- Artisans receive project briefs without a per-lead charge. A premium artisan tier is a later experiment, not required for the demo.
+- Artisans can draft a few quotes free before a paid artisan plan. Test whether the subscription plus a completed-job fee is acceptable; do not charge for an unqualified lead.
 
-Illustration: a £3,000 completed job would produce a £150 platform fee. This is a model example, not a forecast.
+Illustration: a €3,000 completed job would produce a €150 platform fee. This is a model example, not a forecast.
 
 ### 6.2 Market entry
 
-Begin with one city and one or two common renovation categories, such as painting and flooring. Recruit artisans able to quote those jobs, then test whether standard users trust the brief and whether artisans find its measurements and scope useful. Damage detection is an optional helper that reduces missed work, not the acquisition promise.
+Begin with one city and one or two common renovation categories, such as painting and flooring. Recruit artisans able to quote those jobs, then test whether standard users trust the brief and whether artisans find its measurements and scope useful. Collect completed-job data only with consent and verification; compare resulting estimates against actual prices and a general LLM baseline. Damage detection is an optional helper that reduces missed work, not the acquisition promise.
 
 ---
 
-## 7. Timeline
+## 7. Timeline and release gate
 
-### Friday 9 October: kick-off (17:00 to 20:00)
+### 8–10 October: two-day test-build target
 
-Tech profiles:
+The repo, Xcode project, and icon are set up. The functional app is not built yet. Aim to ship a **testable internal build** within two days, then use real tests to decide what can be shown at the 15–16 October challenge. This is a target, not a claim that App Store review or a public launch can finish in two days.
 
-- Finalize MVP cuts, confirm no scope drift
-- Repo check: branching, protection, build passes on all Macs
-- Agree the two role views, shared project model, and screen list before leaving
+**Day 1 — shared project and capture:** choose a role, create a renovation project, capture a LiDAR room where supported, provide camera/photo plus manual measurements elsewhere, and save editable dimensions and visible condition notes with SwiftData. If LiDAR capture takes longer than planned, keep the manual path usable.
 
-Business profiles:
+**Day 2 — estimate and quote:** produce a preliminary range from a dated local rate table, show its assumptions, let the artisan verify quantities and draft a quote, and prepare one complete local test scenario. Show free quote allowances and proposed paid plans without live billing. Display the proposed 5% completion fee in a simulated booking example.
 
-- Builder profile content plan (who, what fields)
-- Renovation cost research: gather indicative painting, flooring, and tiling ranges
-- Draft pitch skeleton
+**Test gate before calling the build shippable:** run on a LiDAR iPhone and a non-LiDAR iPhone; time scan-to-estimate; compare sample estimates with known job prices; check offline access, editable measurements, clear estimate-versus-quote labels, and visible demo-data labels. Do not claim a two-minute flow or superior accuracy until the measurements support it.
 
-Everyone:
+### 15–16 October: challenge delivery
 
-- Assign demo scenario (section 3)
-- Confirm demo device (one iPhone Pro with LiDAR, one backup)
-
-### 10 to 14 October: prep week (remote,5 days)
-
-Tech:
-
-- Day 1: ARKit scan prototype (preview, mesh, capture)
-- Day 2: standard project brief and manual measurement path; condition note spike only if time remains
-- Day 3: role selection, artisan detail view, and quote-draft model
-- Day 4: Core Data project model, plan review, scope checklist
-- Day 5: cost table, artisan seeding, both role flows navigable
-
-Business:
-
-- Repair cost database finished and handed to tech
-- Artisan directory content and sample detailed quote finished
-- 5 user interviews: ask about renovation plans, budget uncertainty, trust in rough measurements, and quote comparison
-- Pitch draft v1
-- App Store Connect: bundle ID, signing, screenshots drafted
-
-Checkpoint Wednesday 14 October evening: every must-have screen reachable, even if rough.
-
-### Thursday 15 October: build day 1
-
-Goal: end-to-end flow works once, no polish.
-
-- Morning: integrate role choice → project goal → scan/manual plan → scope
-- Afternoon: budget range, artisan list, and brief sharing
-- Evening: artisan detailed view and quote draft, comparison table, fee math, Core Data pass
-- Stop condition: demo works top to bottom on one device by 19:00
-
-### Friday 16 October: build day 2
-
-- Morning: polish both role views, empty states, error states, and optional PDF
-- Midday: feature freeze. TestFlight upload, App Store Connect submission started
-- Afternoon: demo rehearsals (3 full runs), fix what breaks, screen recording captured as backup
-- Evening: pitch practice to a timer, submit everything
+Polish the tested path, prepare an internal/TestFlight build where signing allows, rehearse the three-minute demonstration, and capture a backup recording. App Store submission is a separate release step subject to functional completeness and review.
 
 **Submission checklist**
 
-- [ ] Build uploaded to App Store Connect
-- [ ] App icon, screenshots, description, privacy labels
-- [ ] Demo device with a prepared renovation project and both role views
-- [ ] Screen recording backup (in case live demo fails)
-- [ ] Pitch at 3 minutes or under
-- [ ] `market research.md` and `justification.md` ready to share with judges
+- [ ] Build installed and tested on supported devices
+- [ ] App icon, screenshots, description, and privacy disclosures reviewed
+- [ ] One prepared renovation project and both role views
+- [ ] Estimate data source and limitations visible in the UI
+- [ ] Screen recording backup and three-minute pitch
+- [ ] Research and business claims checked against current evidence
 
 ---
 
@@ -365,11 +337,14 @@ Product:
 - Scan or manual measurement path works; approximate dimensions are labeled and editable.
 - Estimate and 5% fee calculations pass representative cases; zero crashes in 10 demo rehearsals.
 - Project planning works offline; simulated quotes are clearly labeled.
+- Homeowner and artisan free-quote allowances and proposed paid tiers are explained without implying that billing is live.
+- A timed scan-to-estimate test records whether the two-minute target is met on both device types.
 
 Validation:
 
 - Interview at least 5 prospective renovators and 3 artisans about scope clarity, estimate trust, and quote usefulness.
 - Cost data covers the selected launch work types with documented assumptions.
+- Local rate sources are dated; estimate error is compared with actual jobs and a general LLM baseline before an accuracy advantage is claimed.
 - Pitch runs in three minutes and shows both roles without relying on a backend.
 
 ---
@@ -385,6 +360,8 @@ Validation:
 | Detection model accuracy is weak | High | Manual condition notes are sufficient; optional AI suggestions require confirmation |
 | App Store review or demo device causes delay | Medium | TestFlight/local build, backup device, prepared project, screen recording |
 | Payment details are unsettled | Medium | Show fee math only; validate payer, billing, and terms before production |
+| No verified local job history yet | High | Use sourced illustrative rates, collect data with consent, and withhold accuracy claims pending a measured comparison |
+| Two-day delivery target is too ambitious | High | Prioritize one complete test path, preserve manual capture fallback, and describe it as an internal test build |
 
 ---
 
@@ -392,7 +369,7 @@ Validation:
 
 **After the hackathon:** validate the renovation-first positioning with users and artisans, recruit verified artisans in one city, add live project delivery and quote responses, then develop production booking and payment operations.
 
-**Later:** more renovation categories, multi-room projects, better quantities, property data where useful, photo-assisted condition notes, in-app messaging, and an optional premium artisan tier.
+**Later:** more renovation categories, multi-room projects, better quantities, a consent-based history of validated local jobs, photo-assisted condition notes, in-app messaging, and production paid-plan billing.
 
 **Success criteria to leave the hackathon with:** a coherent two-role demo, evidence that renovators and artisans value the shared brief, and a codebase that can support live delivery later.
 
