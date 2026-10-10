@@ -1,21 +1,21 @@
-# Tally
+# Plumb
 
-Tally is a planned iPhone app for renovation work. A homeowner scans a room with LiDAR on a supported iPhone, or uses camera capture and manual measurements on another iPhone, to create a shared project brief and receive a preliminary price estimate in minutes. An artisan sees the same project with quantities, photos, assumptions, and condition notes, verifies the measurements, and drafts a detailed quote. A scan may reveal visible issues that belong in the work scope; it cannot inspect hidden damage.
+**Plumb** is a planned iPhone-first strength-training companion. Put the phone where its camera can see a supported exercise, do a set, and review one specific observation linked to the movement it saw. Try another set and compare. The product is designed to say when the view is too weak to support a cue.
 
-On first launch, the planned app asks users to choose **Standard user** or **Artisan**. The choice changes the home screen and level of detail and can be changed later in Settings. Homeowners would get a limited number of free quote requests; artisans would get a few free quote drafts before a paid plan. A proposed 5% platform fee would apply to a job booked through Tally and completed, with the payer and terms disclosed before booking.
+The iPhone is the core experience. Apple Watch workout data and spoken feedback through AirPods are optional additions. Apple Foundation Models may help phrase validated observations on eligible devices; the coaching facts come from camera pose analysis and exercise-specific rules, with a non-generative fallback. Plumb is a fitness aid, not medical advice or a guarantee of safe technique.
 
-**Current state (8 October 2026):** the repository contains the Xcode starter UI and the finished app icon. Scanning, pricing, role selection, subscriptions, and booking are planned, not implemented. The team intends to begin testing now and target a testable build within two days; public release depends on implementation, validation, and App Store review.
+**Current state (10 October 2026):** this repository contains the renamed Xcode starter app, a new Plumb icon, brand assets, and the product plan. The visible app screen introduces the concept. Camera analysis, Watch integration, coaching, subscriptions, and workout history are not implemented. The challenge goal is a tested iPhone camera-to-cue prototype for a side-view bodyweight squat; public release has a separate validation gate.
 
 Project for the October 2026 Build Challenge: Unaite, MWM, Apple & ⌘+F.
 
 ## Documents
 
-- [`Design/README.md`](Design/README.md): Tally brand theme and live Figma guide
-- [`planning.md`](planning.md): product scope, both role flows, MVP, technical approach, timeline
-- [`justification.md`](justification.md): why this renovation-first product is worth building
-- [`market research.md`](market%20research.md): competitor landscape and questions to validate
-- [`pitch.md`](pitch.md): proposed three-minute demo and judge answers
-- [`Tally/GIT guide.md`](Tally/GIT%20guide.md): current `main` branch workflow
+- [`Design/README.md`](Design/README.md): Plumb brand theme, colors, typography, icon, and live Figma guide
+- [`planning.md`](planning.md): experience, scoped MVP, technical approach, privacy, validation, and timeline
+- [`justification.md`](justification.md): why a focused camera technique companion is worth testing
+- [`market research.md`](market%20research.md): primary-source alternatives and customer research plan
+- [`pitch.md`](pitch.md): three-minute story, demo path, and claim boundaries
+- [`Plumb/GIT guide.md`](Plumb/GIT%20guide.md): the team's current `main` branch workflow
 
 ## Team
 
@@ -27,7 +27,7 @@ Project for the October 2026 Build Challenge: Unaite, MWM, Apple & ⌘+F.
 ## Open the iPhone project
 
 1. Clone the repository and switch to `main`.
-2. Open `Tally/Tally.xcodeproj` in Xcode.
-3. Choose an iPhone simulator or connected iPhone and build the `Tally` scheme.
+2. Open [`Plumb/Plumb.xcodeproj`](Plumb/Plumb.xcodeproj) in Xcode.
+3. Choose an iPhone simulator or connected iPhone and build the `Plumb` scheme.
 
-The app icon is in `Tally/Tally/AppIcon.icon`. The previous house-and-magnifier icon is archived in `Tally/IconArtwork/Original-AppIcon.icon`.
+The layered Icon Composer source is [`Plumb/Plumb/AppIcon.icon`](Plumb/Plumb/AppIcon.icon). Flat marks and a preview are in [`Plumb/BrandArtwork`](Plumb/BrandArtwork).

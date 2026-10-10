@@ -1,428 +1,188 @@
-# Market Research
+# Plumb — market and competitor research
 
-Competitive notes originally assembled for a damage-first concept across room scanning, damage detection, cost estimation, and hiring. Tally is now positioned around **renovation planning** for standard users and detailed project briefs and quote drafting for artisans. Treat prices, ratings, and product features below as a research snapshot to recheck before using them in a pitch. Sources noted in the original research: App Store, Google Play, Trustpilot, G2, Capterra, Sensor Tower, PR Newswire, and company sites. October 2026.
+**Research snapshot: 10 October 2026.** This is a source-backed map of alternatives and a validation plan, not a proven market-size estimate. Product claims below are based on official product or support pages as viewed for this reset; features and prices can change. The new Plumb concept has not yet been tested with customers.
 
-## Current product thesis and verified comparisons (8 October 2026)
+## 1. The job to be done
 
-Tally aims to make one room scan useful to both sides: a homeowner gets a preliminary local planning range in minutes, while an artisan receives measurements, photos, condition notes, and editable quantities for a detailed quote. The preferred capture path is LiDAR on a supported iPhone; a separate camera/manual fallback is needed on other iPhones. [Apple says RoomPlan requires a LiDAR device](https://developer.apple.com/documentation/RoomPlan/RoomCaptureSession/isSupported).
+> When I train alone, I want to know one thing I can change in my next set, so I can make my movement more consistent without hiring a trainer for every workout.
 
-The proposed pricing advantage is a future history of completed local jobs validated by Tally, combined with location, work type, and measured quantities. That dataset does **not** exist yet. A prototype can use dated local rate data. “Two-minute scan” and “more accurate than an LLM” are hypotheses to test with timed sessions and actual job-price comparisons.
+This is narrower than “AI personal trainer.” The first target is a self-directed person practicing foundational strength movements. They already have a smartphone and may use a Watch or AirPods, but should not need to buy equipment. They may be training at home or in a gym. The key behavior is not merely recording a set; it is **acting on feedback and trying again**.
 
-- [magicplan PRO Estimator](https://help.magicplan.app/estimate-plan) already calculates materials and labor from floor plans and supports custom item libraries. It is inaccurate to say magicplan cannot estimate a job.
-- [Obat's built-in price library](https://www.obat.fr/devis-factures/bibliotheques/) contains prefilled construction items and supports artisan quoting. It is inaccurate to say an artisan must build their own list before Obat can price work.
-- Tally's proposed distinction is the **shared homeowner-to-artisan project**, with a preliminary homeowner budget before contact and an artisan-authored quote from the same editable scope. Whether this is meaningfully faster or better than alternatives needs user testing.
-- Proposed monetization: limited free quote requests for homeowners, a few free quote drafts before an artisan paid plan, and a disclosed 5% fee on jobs booked through Tally and completed. Limits, plan prices, payer, and willingness to pay are unvalidated.
+### Segments to test
 
----
+| Segment | Current workaround | Likely friction | What to learn |
+| --- | --- | --- | --- |
+| Beginner doing home strength | Tutorial and mirror | Unsure what to notice; awkward camera setup | Whether one cue is understandable and nonjudgmental |
+| Self-directed gym regular | Phone video or training log | Time spent replaying clips; social discomfort filming | Whether an evidence-linked result is worth setup time |
+| Remote client of a trainer | Send clips in chat | Slow feedback; unclear clip organization | Whether human annotation plus Plumb's measurements saves time |
+| Trainer | In-person observation or video review app | Review effort and client follow-through | Which automated observations are useful vs distracting |
 
-## 1. Room Scanning & Floor Plan Apps
+Start with the first two. A coach product is a later opportunity and should not dictate the initial interface.
 
-| App | Rating | Reviews | Pricing | Offline | Estimation |
-|-----|:------:|--------:|---------|:-------:|:----------:|
-| magicplan | 4.7★ | 116K+ | 2 free projects, then sub | Partial | ❌ |
-| Polycam | 4.7★ | 43K+ | $26.99 to $199.99/mo | ❌ | ❌ |
-| RoomScan Pro | 4.3★ | 2K+ | Free + IAP | Partial | ❌ |
-| CamPlan | 4.7★ | 26K+ | Subscription | ✅ | Materials only |
+## 2. Alternatives people already use
 
-### magicplan
+### A. Do nothing, mirror, or record a phone video
 
-The most established player: been around since 2012, 116K+ reviews, still shipping updates.
+This is the true baseline. It is free and flexible, and a phone video preserves the original movement. It asks the person to know what to look for, find time to review, and remember the last set. Plumb must beat this on setup plus interpretation, not just produce a colorful score.
 
-What works:
+**Validation task:** time a person from deciding to film to choosing a concrete next-set adjustment, with and without Plumb. Ask whether the cue matched what they could see themselves.
 
-- Scanning is genuinely fast. Point your phone at the corners of a room, the floor plan draws itself in real time
-- No waiting for cloud processing
-- One user measured their entire house in 15 minutes before a Home Depot trip
-- Free tier gives you two full projects with everything unlocked, no trial clock counting down
-- More generous than most competitors
+### B. In-person trainer or trusted training partner
 
-Where it falls apart:
+Human coaching can consider pain, goals, equipment, fatigue, prior history, and a full 3D view. Plumb cannot claim equivalent judgment from a single camera. The opportunity is a useful, affordable observation between human sessions, and later a clearer clip for a trainer to review.
 
-- Measurements drift when you merge rooms. Pull one wall and every connected room shifts with it
-- Users have asked for a "lock room" feature for years. Still isn't there
-- Door/window detection is inconsistent. The same window sometimes comes back as a door in the next scan
-- Furniture placement is sloppy, objects move between sessions
-- No onboarding at all. Reviews suggest it takes 12+ attempts to map a home properly
-- Pricing is a sore spot. One user left a 5-star review just so more people would see their complaint: *"I only rated this five stars so everyone can see what a MONEY SUCKING app this is."*
+**Validation task:** have qualified trainers independently review the same sets and rate the visibility, correctness, and usefulness of Plumb's proposed cues. Record disagreements and the context the camera missed.
 
-**Question for Tally:** can a scan become an editable renovation brief that both the person planning the work and the artisan can use?
+## 3. Product comparison from primary sources
 
-### Polycam
+| Alternative | What its own materials describe | Implication for Plumb | Source |
+| --- | --- | --- | --- |
+| **Tempo** | 3D motion tracking, rep counting, range-of-motion and on-screen form cues within its class experience. Tempo says cues are selective, not shown for every mistake. | Form feedback is an existing category. Plumb should test an iPhone-only, short-set workflow without a dedicated class or hardware setup. | [Tempo support](https://support.tempo.fit/support/solutions/articles/151000154714-3d-tempo-vision-form-feedback) |
+| **Ochy** | A short side/back phone video produces running gait analysis and progress comparisons. | Camera-based technique analysis already exists in running. Plumb's first focus is foundational strength sets and an immediate second-set loop. | [Ochy for runners](https://www.ochy.io/runners) |
+| **OnForm** | Coaches capture, mark up, voice-over, and share athlete videos for remote review. | Human review and video annotation are strong substitutes. A future trainer feature should complement this rather than pretend to replace it. | [OnForm knowledge base](https://support.onform.com/article/94-what-is-onform) |
+| **Peloton Guide** | Its Movement Tracker detects participation in movements during classes; Peloton support states it does not count reps or provide form correction. | Do not conflate movement recognition with technique advice. Plumb's narrow claim requires direct evidence for each cue. | [Peloton support](https://support.onepeloton.com/s/article/Peloton-Hardware-Movement-Tracker?language=en_CA) |
+| **Apple Fitness+** | Guided strength and other classes, personalized plans, and real-time metrics from Watch or compatible heart-rate devices. | Plumb is about a person's own movement in an unscripted set, not competing on class production or workout catalog. | [Apple Fitness+](https://www.apple.com/apple-fitness-plus/) |
 
-4.7★ across 43K reviews, ~100K downloads and ~$500K revenue per month (Sensor Tower).
+**Important qualification:** these are descriptions of specific products and pages, not a complete feature audit or independent accuracy test. Some products may add features or offer versions with different capabilities. Recheck before public comparative marketing.
 
-What works:
+## 4. Positioning hypothesis
 
-- Scans accurate enough for professional 3D modeling
-- Photogrammetry mode works on any iPhone, no LiDAR needed
-- Exports feed into Blender, SketchUp, and nerfstudio
-- Popular with contractors who need to reference measurements remotely
+**Category:** technique companion for independent strength training.
 
-The problem is pricing:
+**For:** people who practice strength exercises alone and want a useful observation from their own set.
 
-| Period | Price |
-|--------|------:|
-| Launch | Free |
-| 2023 | $149/yr |
-| 2025 | $400/yr |
+**Plumb provides:** a camera-based, evidence-linked cue and a way to compare the next set.
 
-That's for basic measurement features. Worse:
+**Unlike:** a tutorial library, a raw video recorder, or a generic AI chat response, Plumb begins with measured motion from the user's actual set and can decline to comment when the camera cannot support a claim.
 
-- Scan data lives behind their cloud. Stop paying and you lose measurements you already took
-- Reviews mention auto-enrollment in free trials without clear consent
-- Scans vanish mid-session, save hangs require force quits
-- Polycam actively blocks Apple-initiated refunds
-- One user called the company *"predatory."*
-- Another: *"Now the app has all that functionality stripped out in favor of cloud processing and putting everything behind yet another subscription service."*
+This is a proposed wedge, not a statement that competitors lack evidence, privacy, or technique features. The best position may change after interviewing users and trainers.
 
-Pricing drove what was once a well-liked app into a trust deficit.
+### Reasons someone might choose Plumb
 
-### RoomScan Pro LiDAR
+1. They can start with their existing iPhone.
+2. One cue is less cognitively demanding than reviewing an entire video.
+3. The evidence points to a specific rep, which makes a suggestion checkable.
+4. A second set shows a visible change rather than an abstract score.
+5. Local processing and opt-in clip saving address a sensitive filming context.
+6. Watch and AirPods enrich the experience without gating the core benefit.
 
-4.3★ across 2K reviews.
+### Reasons someone may reject it
 
-What works:
+- They do not want to film in a gym or cannot find a safe phone position.
+- They already work with a trainer or prefer to self-review video.
+- Their exercise, camera angle, clothing, or environment produces weak pose tracking.
+- They distrust automated coaching or find a cue obvious, wrong, or distracting.
+- The app's supported exercise list is too small.
 
-- Input method is clever: touch your phone against each wall and it draws the plan
-- Works in poorly-lit spaces where the camera fails
-- Measurements import directly into Symbility and Xactimate, which is why insurance adjusters use it
-- Developers respond to every review with specific fixes
+These objections should be tested before expanding the product.
 
-What doesn't:
+### The choice Plumb has to win
 
-- Crashes on complex rooms
-- Joining rooms places them in distorted positions with no easy correction
-- Features aren't self-explanatory
-- One reviewer called the pricing *"ridiculous"*
+The first competitor is the user's existing phone camera. Plumb adds setup guidance, automatic review, and a next-set prompt, but also asks for framing time, permission, battery, and trust. A convincing test should compare the **whole task**—from placing the phone to deciding what to change—rather than comparing the quality of a finished cue with an unreviewed clip. If setup takes longer than the saved review time, the product may be most useful to a narrower group of deliberate trainees.
 
-Strong in its niche (insurance/restoration), rough everywhere else.
+An in-person trainer remains the benchmark for contextual judgment. The more credible position is a record that helps the person notice a limited visible pattern between coached sessions. For a trainer, the camera result could reduce sorting and timestamping work, but the coach must be able to disagree and add context. Plumb should never imply that an automated rule outranks the person who knows the athlete's constraints.
 
-### CamPlan
+## 5. Technology opportunity and constraint
 
-4.7★, 26K ratings, 800K+ users.
+Apple's Vision framework can detect 2D body joint points with confidence values and has a 3D body-pose request. It does not provide a universal “good form” judgment. 3D pose can benefit from depth where available, but single-camera estimation and occlusion still demand careful exercise-specific validation. [Apple 2D pose guidance](https://developer.apple.com/documentation/vision/detecting-human-body-poses-in-images), [Apple 3D pose guidance](https://developer.apple.com/documentation/vision/identifying-3d-human-body-poses-in-images).
 
-What works:
+Foundation Models can generate language or structured output, but on-device availability depends on device and region, and generation may take seconds. Apple's guidance calls for an availability check and fallback. It should phrase a validated observation, not calculate joint angles or decide whether movement is safe. [Apple Foundation Models guidance](https://developer.apple.com/documentation/foundationmodels/generating-content-and-performing-tasks-with-foundation-models).
 
-- Standout feature is AI Video Scan: film a quick walkthrough on any iPhone (even without LiDAR) and AI draws the floor plan
-- Full apartment in under 3 minutes
-- Works offline
-- Exports in everything: PDF, PNG, DXF, SVG, USDZ, OBJ, DAE
-- Material quantity estimation for paint, flooring, and drywall straight from the scan
+Watch sessions and HealthKit can provide workout metrics with permission; AirPods Pro 3 can also supply heart rate to supported third-party workout apps with Health permissions. These data do not establish technique quality. [Apple workout sessions](https://developer.apple.com/documentation/healthkit/running-workout-sessions), [Apple AirPods Pro 3 support](https://support.apple.com/en-lamr/guide/airpods/dev1b40fb47d/web).
 
-The catch:
+## 6. Commercial hypotheses
 
-- Closest scanning competitor to our vision because it combines scanning with estimation
-- But it is built for contractors creating estimates for clients. Tally's updated hypothesis is that the same project information can support a simpler standard-user brief and a detailed artisan quote view.
+### Who pays and why
 
----
+The likely payer is the person training independently. A few free analyses should demonstrate the whole loop. A Plumb Plus plan might unlock frequent analyses, longer history, and set comparisons. The draft price is €7.99/month or €49.99/year, **not a validated price**. A trainer plan could become relevant only after observing repeat coach/client use.
 
-## 2. AI Damage Detection Apps
+### What to measure before pricing
 
-| App | Type | Input | Single-Scan? | Pricing | Homeowner? |
-|-----|------|-------|:------------:|---------|:----------:|
-| Homesly.ai | B2B SaaS | Video | ❌ (needs 2 states) | Paid after trial | ❌ |
-| Home Inspection AI | Pro tool | Photos | ✅ | $9.99/wk | ❌ |
-| Chrp | Insurance | Photos | ✅ | Free (insurer) | Partial |
-| HomeScan AI | Consumer | Photo | ✅ | Free | ✅ |
-| Fixer AI | Consumer | Photo | ✅ | Free | ✅ |
-| RepairAI | Consumer | Photo | ✅ | Free | ✅ |
+- Can a person get a useful result on the first session?
+- What proportion tries a second set after a cue?
+- Does the cue agree with qualified human review?
+- How often does Plumb abstain because visibility is poor, and is the retake guidance helpful?
+- How many people return in a week without reminders?
+- Would they pay for more analyses, saved comparisons, or trainer review? Which feature creates the willingness to pay?
 
-### Homesly.ai
+### Market-sizing method, once evidence exists
 
-B2B for property managers:
+No defensible revenue forecast follows from app-store download totals or the number of gym members alone. Define an initial geography and a reachable population of iPhone owners who practice supported strength movements independently. Then measure four separate rates: willingness to film, ability to obtain a valid camera view, repeat use after a first cue, and conversion to the paid benefit. An annual subscription scenario would be `reachable people × valid-first-session rate × retained active rate × paid conversion × net annual revenue per payer`. Each input should have an observed source and a low/base/high range; the result should be labeled a scenario, not total market size.
 
-- Walk through a rental unit with your phone
-- AI flags damage
-- Compares move-in vs move-out footage
-- Auto-calculates security deposit deductions
-- Dispatches vendors
-- Saves hours of manual inspection
+There is also a practical capacity question: how many sets can an on-device app analyze before heat, battery, storage, or a person's patience limits use? The answer affects packaging. A free allowance should let a user complete at least one full compare-two-sets loop. Charging before the second set would block the very behavior that demonstrates value. A paid tier needs a recurring reason to exist—progress history, repeatable comparisons, or coach review—not merely the same cue without a limit.
 
-The limits:
+### Pricing experiment
 
-- Needs *both* move-in and move-out footage. Single-scan doesn't work
-- Entirely landlord-focused, no homeowner flow
+Start with interviews about the cost of the current workaround: time reviewing clips, occasional trainer sessions, and abandoned recordings. Then show the **same working result** to respondents and test whether they would use it again at a stated price. Separate intent from payment behavior. If a subscription is tested, measure conversion after a complete free loop, renewal, cancellation reasons, and whether the limits discourage healthy use. The draft €7.99/month and €49.99/year are hypotheses for testing, not evidence that the market will pay.
 
-This is a comparison for the original damage-first concept. Tally's current plan treats visible condition notes as optional scope inputs; it does not promise single-scan diagnosis.
+Avoid a market-size claim until the team defines geography, target exercise population, conversion assumptions, and a source for each input. Download volumes of fitness apps do not automatically translate to demand for a camera form coach.
 
-### Home Inspection AI
+### Distribution experiments
 
-New app, no meaningful ratings yet.
+1. Small in-person tests with strength-training clubs or student gyms, with explicit filming consent and no footage posted.
+2. Trainer-led demonstrations of a before/after set, showing the evidence and limits.
+3. A privacy-safe share card that describes a user's *own observed change* without exposing a video or sensitive health metrics by default.
+4. App Store listing focused on supported exercises and device requirements, without unproven injury or accuracy claims.
 
-The flow:
+The team should not acquire users with a promise of universal AI coaching before the first exercise works reliably.
 
-- Capture photos
-- AI highlights damage with bounding boxes, confidence scores, severity ratings, and recommended actions
-- Export a PDF report
-- Detects cracks, water damage, mold, drywall holes, ceiling/window/door damage, electrical and plumbing issues
-- On-device processing by default, good for privacy
+## 7. Research plan
 
-The catch:
+### Qualitative interviews
 
-- $9.99/week or $29.99/month
-- Priced for professional inspectors, not homeowners
-- Useful reference for how photo findings are presented; it does not validate Tally's renovation workflow or proposed fee.
+Interview at least 6 self-directed exercisers and 3 trainers. Ask about their last attempt to improve technique, what they filmed, how they judged a clip, what made a cue credible, and how they would feel about a phone camera in their usual training space. Show a low-confidence example as well as an ideal result. Do not lead with “Would you use an AI coach?”
 
-### Chrp (Nationwide Insurance)
+### Prototype study
 
-AI-powered home risk platform partnered with Nationwide:
+Collect at least 30 consented sets across different people, iPhones, lighting, camera positions, and clothing. Obtain a human rep-count annotation and expert review of every candidate cue. Include partial-body and occluded footage on purpose. Report coverage and errors by condition; a high aggregate score can hide a bad experience for certain users or environments.
 
-- Guided photo survey
-- AI reviews each image against 400+ known failure points
-- Flags corrosion, faulty wiring, fire hazards
-- Tailored report
+### Interview prompts and signals
 
-The data they've published is worth paying attention to:
+Ask participants to recall the last exercise they wanted to improve, whether they recorded it, where they placed the phone, what they looked for, and what they changed afterward. Watch them set up a real supported exercise without coaching from the researcher. After the result, ask them to point to the evidence for the cue, describe it in their own words, and say whether they would try it. Observe the second set. Their behavior is stronger evidence than agreement with a concept description.
 
-| Metric | Value |
-|--------|------:|
-| Non-catastrophic claims originating inside the home | 70% |
-| Water damage rank (US homeowners claims) | #2 |
-| Avg. water damage claim cost | >$15,000 |
-| Avg. fire loss | >$88,000 |
-| Homes with active plumbing hazards (claim within 4 years) | 30% |
+For trainers, ask which camera-visible signals are helpful, which cannot be judged from one view, and when a cue could create a harmful misunderstanding. Show low-confidence and false-positive examples as well as successful ones. Record how they would phrase a correction and whether the result would save review time. Do not treat a trainer's approval of one sample as validation for all bodies, exercises, and camera angles.
 
-This belongs to the earlier damage-assessment research. It may inform optional condition notes, but insurance risk assessment is not Tally's primary use case.
+### Evidence ledger for a launch decision
 
-### New Entrants (2025-2026)
+Maintain a small table for each hypothesis: source, date, sample, observed result, limitation, and next decision. Keep three decisions separate: **Can it observe?** (coverage and measurement agreement), **Does it help?** (comprehension and next-set behavior), and **Will people return/pay?** (retention and purchase evidence). A visually polished demo can answer none of these on its own. Conversely, a narrow but reliable squat loop is enough to justify expanding the exercise library experimentally.
 
-Three apps launched recently with overlapping value props:
+### Decision thresholds
 
-| App | Flow | Ratings |
-|-----|------|--------:|
-| **HomeScan AI** | Photo → AI diagnosis (severity + cost + repair steps) | 3 · 5.0★ |
-| **Fixer AI** | Project description + photo → pricing breakdown → match with pros | 0 |
-| **RepairAI** | Photo → AI calls local shops to collect quotes | 1 · 5.0★ |
+The first release decision needs both **accuracy and usefulness**. The [product plan](planning.md) proposes initial internal gates for framing success, rep count, cue support, and post-set latency. If a category fails, either improve it or suppress it; do not compensate with more persuasive AI wording.
 
-The shared lesson:
+## 8. Open questions and evidence gaps
 
-- These small or recent products need fresh verification before comparison.
-- Photo-first estimates show demand for early price guidance.
-- Tally should test whether a measured, editable renovation brief is more useful to both sides than a photo-only estimate.
+- Which single exercise is most valuable and most camera-observable for the first audience?
+- Does the camera setup feel acceptable in gyms, or is the true first market at-home training?
+- Are users more motivated by a technique cue, rep history, or a human coach's review?
+- What is the acceptable abstention rate before the product feels broken?
+- Can the same cue language work across body types and mobility differences without implying a universal standard?
+- Does optional live speech help, or interrupt concentration and music?
+- Does Watch effort context improve decisions, or add interface noise?
+- Which paid feature drives real repeat use rather than a one-off curiosity?
+- What retention and deletion controls make people comfortable saving a clip?
 
----
+## 9. Claims discipline
 
-## 3. Contractor Hiring Platforms
+| Claim | Current status | Evidence needed |
+| --- | --- | --- |
+| “Plumb counts squat reps accurately.” | Unproven | Labeled, diverse physical-device test sets |
+| “Plumb helps improve technique.” | Hypothesis | User behavior and expert-reviewed before/after observations |
+| “Plumb prevents injury.” | Do not claim | Outside the intended scope; medical-level evidence would be required |
+| “Works live.” | Future possibility | Latency, reliability, and distraction tests |
+| “Private by default.” | Design requirement | Verified local data flow and retention implementation |
+| “Works across the Apple ecosystem.” | Roadmap | Real Watch/HealthKit and audio integration tested on devices |
 
-| Platform | Rating | Reviews | Consumer Cost | Contractor Cost |
-|----------|:------:|--------:|---------------|-----------------|
-| Angi | 2.5★ | 7K (Trustpilot) | Free | $350/mo + per-lead |
-| Thumbtack | 3.3★ | 6K (Trustpilot) | Free | $40+/lead |
-| Taskrabbit | 4.2★ | 55K (Trustpilot) | Free + fees | % of job |
+## 10. Source register
 
-### Angi (formerly HomeAdvisor)
+Official product and platform sources used above:
 
-2.5★ across 7,000 Trustpilot reviews. Founded 1998, largest home services marketplace globally. Free for homeowners; contractors pay $350/month plus per-lead fees.
-
-The rating distribution is bimodal:
-
-```
-5-star ████████████████████████████████████████ 84%
-4-star █████ 10%
-3-star █ 2%
-1-star █ 3%
-```
-
-84% five-star reviews but a 2.5 average, meaning the one-star reviews are *extremely* angry.
-
-What contractors report:
-
-- *"I've had over 54 leads and only 4 have come to fruition"* (7% conversion)
-- Same lead sold to multiple contractors simultaneously
-- Disconnected phone numbers listed as active leads
-- Auto-billing persists after cancellation, *"hidden language in contracts"*
-- *"Borders on fraudulent business practices"*
-- Sales reps promise things contradicted by actual terms
-
-What homeowners report:
-
-- Missed appointments with no-show contractors
-- Pros falsely reporting they showed up, homeowner charged a $50 no-show fee
-- Appointments changed hours before scheduled time
-- One review: *"Feels like an app for scammers."*
-
-The lesson for Tally is to test whether artisans value a complete project brief and to avoid charging for unqualified leads.
-
-### Thumbtack
-
-3.3★ across 6K Trustpilot reviews. Free for customers; contractors pay $40+ per lead.
-
-What works:
-
-- Clean UI, fast matching, wide service coverage
-
-The core problem is misaligned incentives:
-
-- Contractors pay even when the customer never responds: *"literally paying Thumbtack for people to ignore us"*
-- Customers often don't know they've been "matched" to anyone
-- Sales reps aggressively push $300 prepaid credits
-- No contractor vetting. Users report unlicensed workers and call the platform a *"false sense of safety"*
-- Reviews can't be deleted, only edited once
-
-The proposed 5%-on-completion model needs validation with artisans and standard users; a clear scope and fee disclosure matter more than a headline rate.
-
-### Taskrabbit
-
-4.2★ across 55K Trustpilot reviews, the highest-rated hiring platform in this research.
-
-What works:
-
-- Taskers are responsive and professional
-- Pricing is transparent for small tasks
-
-Why it works:
-
-- Stays in its lane: furniture assembly, small repairs, moving help
-- No serious renovation, no licensed trade work
-- Platforms trying to serve everyone (Angi, Thumbtack) see quality collapse
-- We should scope the first Tally launch to a few common renovation categories
-
----
-
-## 4. All-in-One Competitors
-
-| App | Scanning | Damage Detection | Estimation | Hiring | Entry Point |
-|-----|:--------:|:----------------:|:----------:|:------:|-------------|
-| SimpleRenovate | ✅ | ❌ | ❌ | ✅ | "I know what I want" |
-| My Home Genius | ✅ | Photo only | ✅ | ✅ | "What are my costs?" |
-| ArchAI | ✅ | ❌ | ✅ | ❌ | "How will it look?" |
-| SimplyWise | ✅ | ❌ | ✅ | ❌ | "Price this job" (pro) |
-| **Tally (planned)** | **✅** | **Optional** | **✅** | **✅** | **"Plan the work"** |
-
-### SimpleRenovate
-
-"Scan. Post. Compare. Hire." Scan your room, post the project with photos/video, get quotes from verified contractors, compare side-by-side, hire, track, approve payments. Free to post, $5 in-app purchase tier.
-
-- Conceptually the closest to us: scanning plus hiring in one flow
-- But it skips damage detection entirely
-- Their renovation-first entry point is now close to Tally's intended audience
-- Compare how each product handles scope details, editable measurements, and the artisan-side quote view before making a differentiation claim
-- Only 5 ratings so far, iPhone only, contains ads
-
-### My Home Genius
-
-"Scan your home. Know your costs." LiDAR scan, instant remodel estimates (DIY vs pro), AI photo diagnosis, home health score (0-100), match with a local pro, paint codes, filter sizes, appliance history.
-
-- Conceptually very close to us
-- Their differentiators: home memory (paint codes, filter sizes, breaker panel decoder) and insurance scoring
-- Its distinction between planning figures and quotes is appropriate; Tally should make the same distinction explicit
-- Affiliate model raises bias questions
-- No systematic damage detection with repair recommendations
-
-### ArchAI
-
-"Scan the room. See the redesign. Know the cost." LiDAR scan, AI redesign visualization, cost estimate, export PDF. Good before/after comparison, 60+ furniture pieces, iCloud sync.
-
-- About cosmetic renovation: *"how will my room look if I repaint it"*
-- Not damage assessment
-- LiDAR-only, no hiring integration
-- Nails the visualization idea for the wrong problem
-
-### SimplyWise Cost Estimator
-
-4.8★ across 37K ratings, the highest-rated estimator we found. Photo, detailed cost breakdown (materials + labor) in seconds, before/after AI renderings, LIDAR scanning, PDF bids, invoicing, AI upsell suggestions. 10,000+ contractors using it.
-
-- Proves photo-to-estimate works at scale
-- But it's a contractor tool. You're pricing jobs to send to clients
-- Built for people who already know what work needs doing
-- Tally should test a shared brief that starts with the standard user and carries through to the artisan quote
-
----
-
-## 5. Comparison for the renovation-first concept
-
-| Product group | Examples | Relevant capability | Question to investigate |
-|---------------|----------|---------------------|-------------------------|
-| Room capture and estimating | magicplan, Polycam, CamPlan | Plans, quantities, and in magicplan's case professional estimating | How easily can a standard user get a local planning range before contacting an artisan? |
-| Artisan quoting | Obat | Built-in construction price library and quote creation | What advantage does a shared homeowner-originated scan brief give the artisan? |
-| Renovation and hiring | SimpleRenovate, My Home Genius | Planning, estimates, or professional matching | How detailed is the shared brief and the artisan quote workflow? |
-| Pro estimating | SimplyWise | Materials and labor estimates | Can an artisan correct project inputs and explain exclusions? |
-| Service marketplaces | Angi, Thumbtack | Finding professionals | Does a better brief improve quote comparability and lead quality? |
-
-Tally's two-role project record is a proposed product design, not a validated feature advantage. Recheck current competitor capabilities before claiming a gap.
-
----
-
-## 6. Ratings at a Glance
-
-```
-HIRING (Trustpilot)
-Taskrabbit   ████████████████████████████████████████████ 4.2 (55K)
-Thumbtack    ██████████████████████████████▊              3.3 (6K)
-Angi         ████████████████████▌                        2.5 (7K)
-
-SCANNING (App Store)
-magicplan    ████████████████████████████████████████████ 4.7 (116K)
-Polycam      ████████████████████████████████████████████ 4.7 (43K)
-CamPlan      ████████████████████████████████████████████ 4.7 (26K)
-RoomScan Pro ████████████████████████████████▎            4.3 (2K)
-
-ESTIMATING (App Store)
-SimplyWise   ████████████████████████████████████████████ 4.8 (37K)
-```
-
----
-
-## 7. Patterns
-
-**What works:**
-
-- **Speed:** magicplan maps corners in seconds, CamPlan does a full apartment in 3 minutes
-- **Offline:** CamPlan works without connectivity, Polycam's cloud dependency is its biggest complaint
-- **Export options:** PDF, CAD, 3D formats. Users want to take their data elsewhere
-- **Developer responsiveness:** RoomScan Pro replies to every review with specific fixes
-- **Genuine free tiers:** magicplan's 2 full projects, not a time-limited trial
-
-**What gets punished:**
-
-- **Subscription creep:** Polycam's $400/yr, magicplan's *"money sucking"* reviews
-- **Trial dark patterns:** auto-enrollment, hidden cancel paths, refund blocking
-- **Misaligned incentives:** Angi/Thumbtack charge for dead leads, both sides end up distrustful
-- **Measurement corruption:** editing one wall shifts the entire floor plan (magicplan)
-- **Steep learning curves:** 12+ attempts for basic mapping across multiple apps
-- **Cloud lock-in:** lose your data when the subscription lapses (Polycam)
-- **Unvetted contractors:** Thumbtack's *"false sense of safety"*
-- **Mid-scan crashes:** RoomScan Pro and Polycam both lose data during capture
-
----
-
-## 8. Renovation-first opportunity to validate
-
-The earlier damage-first thesis was “scan → detect → estimate → hire.” The current product direction is “choose work → capture or enter measurements → confirm scope → plan budget → send a brief → compare artisan quotes.” Optional condition notes help avoid omissions; they are not the main reason to start.
-
-Several products already scan rooms, estimate renovation costs, or connect customers with professionals. magicplan and Obat also show that professional estimation and price libraries are established capabilities. The proposed Tally distinction is a shared project record shown at two levels: a preliminary local budget for a standard user before contacting anyone, and verified quantities plus a line-item quote draft for an artisan. A future history of Tally-validated completed local jobs could improve pricing, but it cannot be claimed as a current asset.
-
-Research questions before claiming an advantage:
-
-1. Do prospective renovators prefer a measured brief over photos and a free-text description?
-2. Do artisans trust and use approximate room measurements when they can correct them?
-3. Which work categories have enough pricing structure for a useful early range?
-4. How do the closest competitors handle artisan-side quoting, exclusions, and revisions today?
-5. Can participants complete the scan-to-estimate flow in two minutes on LiDAR and non-LiDAR iPhones?
-6. How does Tally's estimate error compare with completed job prices and a general LLM baseline for the same scope?
-7. Will both sides accept limited free quotes, paid plans, and a separate 5% fee at job completion?
-
-## 9. Where We Fit
-
-- **Standard user:** state the intended renovation, create an editable room brief, understand a planning budget, and compare the scope included in artisan quotes.
-- **Artisan:** inspect the same project with more detail, verify quantities, and author a quote rather than inherit an algorithmic price.
-- **Trust:** label measurements as approximate, estimates as planning figures, and demo quotes as simulated. Disclose the proposed completion fee before a booking.
-- **Initial market:** one city and one or two work categories, then expand only after interviews with both sides.
-- **Stage:** test build targeted within two days from 8 October 2026; the checked-in app is still a starter UI, so public-release claims depend on functional and price validation.
-
----
-
-## 10. Risks
-
-| Risk | Severity | Mitigation |
-|------|:--------:|------------|
-| Approximate scan dimensions mislead quote decisions | High | Editable measurements and artisan verification before a binding quote |
-| LiDAR only on Pro iPhones, camera fallback must work for everyone | High | Camera-only mode with honest accuracy disclosure |
-| Artisan supply and two-sided handoff | High | Manual artisan recruitment; prepared local projects for the demo |
-| Angi/Thumbtack have poisoned trust in "hire a pro" apps | Medium | Aggressive transparency: full cost breakdowns, no hidden fees |
-| The proposed 5% fee may not suit both sides | Medium | Test who pays and show the fee before commitment |
-| Renovation competitors already overlap with the concept | High | Recheck current features and validate the shared two-role brief |
-
----
-
-*Sources: App Store (US/UK/AU), Google Play, Trustpilot (Angi, Thumbtack, Taskrabbit, Polycam), G2, Capterra, Sensor Tower, company websites, PR Newswire (Chrp/Nationwide). October 2026.*
+- [Tempo: 3D vision and form feedback](https://support.tempo.fit/support/solutions/articles/151000154714-3d-tempo-vision-form-feedback)
+- [Ochy: runner analysis](https://www.ochy.io/runners)
+- [OnForm: video analysis and coaching](https://support.onform.com/article/94-what-is-onform)
+- [Peloton Guide: Movement Tracker](https://support.onepeloton.com/s/article/Peloton-Hardware-Movement-Tracker?language=en_CA)
+- [Apple Fitness+](https://www.apple.com/apple-fitness-plus/)
+- [Apple Vision: 2D pose](https://developer.apple.com/documentation/vision/detecting-human-body-poses-in-images)
+- [Apple Vision: 3D pose](https://developer.apple.com/documentation/vision/identifying-3d-human-body-poses-in-images)
+- [Apple Foundation Models](https://developer.apple.com/documentation/foundationmodels/generating-content-and-performing-tasks-with-foundation-models)
+- [Apple HealthKit privacy](https://developer.apple.com/documentation/healthkit/protecting-user-privacy)

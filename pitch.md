@@ -1,51 +1,60 @@
-# Pitch
+# Plumb — three-minute pitch
 
-Working pitch for the October 2026 Build Challenge. The product and business claims below describe the intended app. As of 8 October, the repository still has the Xcode starter UI and icon; the team is beginning tests and targeting an internal test build within two days.
+**Working pitch, 10 October 2026.** The concept is planned; the repository currently contains a starter iPhone app and brand work, not a functioning camera coach. Demonstrations must identify which steps are live and which are recorded or simulated.
 
-## One-liner
+## One line
 
-Tally turns an iPhone room scan into a measured renovation brief and a preliminary local price estimate, then gives an artisan the same project to verify and quote.
+Plumb turns an iPhone camera into a private technique mirror: after a strength set, it shows one specific, evidence-linked cue to try on the next set.
 
-## Three-minute story
+## The story
 
-**The problem:** Every renovation starts with guesswork. Homeowners struggle to describe the work and set a budget; artisans spend time on site visits and free quotes for jobs they may never win.
+**The problem (0:00–0:35).** Most people train without anyone watching their form. A video tutorial can show an ideal movement, but it cannot tell you what changed in *your* last six reps. Recording yourself helps, yet reviewing every clip and knowing what to look for takes time and expertise.
 
-**The product:** A homeowner chooses the intended work, scans a room with LiDAR on a supported iPhone or uses camera capture and manual measurements, confirms any visible condition issues, and sees a preliminary planning range in minutes. An artisan opens the shared project, checks the dimensions and quantities, then drafts a detailed quote. The first-launch choice shows a simpler Standard user view or a detailed Artisan view.
+**The product (0:35–1:25).** Put your iPhone where it can see your full body, choose a supported exercise, and do a set. Plumb tracks visible joint motion on device. It identifies the reps, shows the evidence, and offers one short cue. The next set becomes a small experiment: did that observable pattern change? It speaks in plain language and tells you when the camera view is too weak to judge.
 
-**The price advantage to prove:** Tally intends to combine scope, quantities, location, and a history of completed local jobs validated by Tally. That job-history dataset does not exist yet. The prototype uses a dated, sourced local rate table. We must test the two-minute flow and compare estimate error with real job prices before claiming greater accuracy than a general LLM.
+**The Apple ecosystem (1:25–1:55).** The iPhone camera is the core sensor. An optional Apple Watch can add workout and effort context. AirPods can deliver a quiet spoken cue; compatible AirPods heart-rate data may add context in a later, permissioned workout flow. Apple Foundation Models can make a validated observation easier to understand on supported devices, with a deterministic fallback everywhere else. The model does not invent the movement measurement.
 
-**The business:** Homeowners receive a limited number of free quote requests, and artisans receive a few free quote drafts. Proposed paid plans expand those allowances. Tally also proposes a disclosed 5% fee when a job booked through Tally is completed. Prices, limits, payer, and billing flow still need validation; demo charges are simulated.
+**Why Plumb (1:55–2:25).** Existing products offer classes, hardware-based form feedback, running analysis, or coach video review. Plumb's proposed wedge is a focused iPhone-only loop for self-directed strength training: evidence, one cue, another set, and visible progress. Privacy and uncertainty are part of that loop. We will test whether people find it useful enough to return and pay for a deeper history.
 
-**The distinction:** magicplan can generate estimates from floor plans using a professional estimator and custom price libraries. Obat includes a substantial built-in price library and artisan quoting tools. Tally's proposed difference is one scan-based project that gives homeowners a planning range before contacting a professional and gives artisans a detailed, editable brief for their own quote. We need to validate this workflow with both audiences and avoid claiming that competitors cannot estimate prices.
-
-**The close:** A native iPhone workflow could give both sides a more useful starting point for renovation work. We are beginning tests now and targeting a testable internal build within two days, with public release dependent on implementation, validation, and review.
+**The close (2:25–3:00).** Better form is not a single score. It is noticing one thing, changing it, and seeing the result. Plumb helps you find your line, one set at a time.
 
 ## Demo path
 
-1. Choose Standard user and open a prepared painting-and-flooring project.
-2. Show the supported LiDAR capture or saved room plan, plus camera/manual fallback.
-3. Correct an approximate measurement and confirm a visible condition note.
-4. Show a planning range with location, source date, assumptions, and free quote allowance.
-5. Show simulated artisan responses, clearly labeled as demo data.
-6. Switch to Artisan; verify quantities and draft a line-item quote from the same project.
-7. Show proposed paid-plan allowances and a simulated 5% completed-job fee.
-
-Keep a recording of the same flow as a fallback. Do not imply that seeded artisans, quote responses, completed-job data, or payments are live.
+1. Show the branded setup guide and side-view bodyweight squat selection.
+2. Frame the whole body and start a short set on a physical iPhone. If the venue makes live capture unreliable, introduce the fallback as a **recorded test set**.
+3. Show detected reps, the selected observation, its timestamp/rep evidence, and a confidence label.
+4. Show a second set with a change in the observed metric, or show the honest low-confidence retake path.
+5. Mention Watch, AirPods, and Foundation Models only at the level actually implemented in the build.
 
 ## Judge questions
 
-**Is the estimate a quote?** No. It is a preliminary planning range. The artisan verifies measurements, chooses materials and labor, and controls the final quote.
+**Is this a medical or injury-prevention app?** No. Plumb observes limited camera-visible movement patterns and offers general training cues. It does not diagnose pain, certify safety, prescribe weight, or replace a qualified professional.
 
-**Can every iPhone make a LiDAR scan?** No. Apple's RoomPlan capture requires a LiDAR device. The planned fallback is camera-assisted capture with manual measurement correction.
+**Does the AI watch raw video and decide what good form is?** The proposed pipeline uses Vision pose points and exercise-specific rules for factual observations. Foundation Models may phrase a validated observation; if unavailable, reviewed templates work offline.
 
-**Can Tally detect damage?** It can help record visible issues for the work scope. It does not diagnose hidden or structural problems.
+**Can it coach live?** Post-set feedback is the first target. Live prompts are a later feature gated by tracking confidence, latency, and user testing so cues do not distract or mislead.
 
-**Is it more accurate than ChatGPT?** That is a testable hypothesis, not a current fact. We will compare estimates with completed local jobs and a general LLM baseline after obtaining validated data.
+**Do I need a Watch or AirPods?** No. The iPhone is enough for the core experience. Accessories add context or audio delivery, not the underlying pose measurement.
 
-**Can you ship in two days?** The goal is an internal test build. The checked-in app is still a starter UI, and a public release requires a working flow, device testing, and App Store review.
+**Why is a single-camera result trustworthy?** It is trustworthy only within a tested exercise and camera angle. Plumb links each cue to evidence and suppresses feedback when important joints are obscured. The team will measure agreement with annotated sets and expert review before broader claims.
 
-## Sources for competitor and platform wording
+**What is the business?** A proposed freemium allowance for analyzed sets and a paid tier for more analysis and comparison history. Pricing is a hypothesis, not a current subscription.
 
-- [Apple RoomPlan device support](https://developer.apple.com/documentation/RoomPlan/RoomCaptureSession/isSupported)
-- [magicplan PRO Estimator](https://help.magicplan.app/estimate-plan)
-- [Obat built-in price library](https://www.obat.fr/devis-factures/bibliotheques/)
+**What can you ship for the challenge?** The target is one real iPhone camera-to-cue loop for a side-view bodyweight squat. Watch, live audio, and generative wording are additions if the core loop is reliable. Public release requires separate validation and App Store work.
+
+## Claims to avoid until proven
+
+- “Prevents injuries” or “guarantees correct form”
+- “Works for every exercise and angle”
+- “Apple Watch or AirPods can see your form”
+- “AI personal trainer” without explaining the limited, evidence-based scope
+- “Private” if raw footage is uploaded or retained without explicit consent
+- Any success, accuracy, latency, or retention figure that has not been measured
+
+## Source notes
+
+- [Apple Vision body pose](https://developer.apple.com/documentation/vision/detecting-human-body-poses-in-images)
+- [Apple Foundation Models availability](https://developer.apple.com/documentation/foundationmodels/generating-content-and-performing-tasks-with-foundation-models)
+- [Apple HealthKit multi-device workout sample](https://developer.apple.com/documentation/healthkit/building-a-multidevice-workout-app)
+- [Apple AirPods Pro 3 workout heart rate](https://support.apple.com/en-lamr/guide/airpods/dev1b40fb47d/web)
+- Competitor evidence and open questions: [market research](market%20research.md)
