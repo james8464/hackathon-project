@@ -1,8 +1,8 @@
 # Plumb artwork
 
-- `PlumbMark.svg` and `PlumbMark-Reversed.svg` are the flat editorial mark for light and dark surfaces.
-- `AppIconPreview.svg` / `.png` are flat previews of the icon idea. The production icon is the layered, editable `../Plumb/AppIcon.icon` file; Icon Composer supplies the final Liquid Glass rendering and appearance variants.
-- Keep the symbol centered with clear space around the bob. Do not substitute a generic person, dumbbell, or SF Symbol for the mark.
-- Primary colors: Ink `#16231F`, Chalk `#F5F7F3`, Mint `#BEEBD6`. UI action tint is Evergreen `#1F6A53` in light mode and Signal `#8FE1BC` in dark mode. Mint is an accent, not body text on white.
+- `PlumbMark.svg` and `PlumbMark-Reversed.svg` are the flat moving-person mark for light and dark surfaces.
+- `AppIconPreview.png` is exported from Icon Composer. `AppIconPreview.svg` is a flat vector study. The production source is the layered, editable `../Plumb/AppIcon.icon` package.
+- The iPhone icon uses black on white in Default, white on black in Dark, and the same silhouette under the system tint in Mono. Icon Composer applies restrained Liquid Glass only to the open camera corners; the figure stays crisp.
+- Keep the figure upright and give it generous clear space. Do not add a dumbbell, pose joints, a full camera outline, decorative gradients, or a second figure.
 
-The symbol is a plumb line: a fixed reference and a centered hanging weight. It expresses alignment and deliberate progress rather than a claim of perfect posture.
+The figure suggests a person moving through a set. Two open corners turn it into an observed moment, matching the camera-based coaching loop without claiming one perfect posture for everyone.

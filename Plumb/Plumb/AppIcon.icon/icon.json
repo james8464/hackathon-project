@@ -1,34 +1,64 @@
 {
-  "features": ["refractivity"],
-  "fill": {"solid": "extended-srgb:0.08627,0.13725,0.12157,1.00000"},
-  "groups": [
+  "features" : [
+    "refractivity"
+  ],
+  "fill" : {
+    "solid" : "extended-srgb:1.00000,1.00000,1.00000,1.00000"
+  },
+  "groups" : [
     {
-      "layers": [
+      "layers" : [
         {
-          "image-name": "Weight.svg",
-          "name": "Plumb weight",
-          "glass": true,
-          "opacity": 0.94,
-          "fill-specializations": [
-            {"appearance": "dark", "value": {"solid": "extended-srgb:0.85098,0.96863,0.90588,1.00000"}}
+          "fill-specializations" : [
+            {
+              "appearance" : "dark",
+              "value" : {
+                "solid" : "extended-srgb:1.00000,1.00000,1.00000,1.00000"
+              }
+            }
           ],
-          "opacity-specializations": [
-            {"appearance": "tinted", "value": 0.72}
-          ]
+          "glass" : true,
+          "image-name" : "Frame.svg",
+          "name" : "Camera frame",
+          "opacity" : 0.96
         },
         {
-          "image-name": "Axis.svg",
-          "name": "Plumb line",
-          "opacity": 1,
-          "fill-specializations": [
-            {"appearance": "dark", "value": {"solid": "extended-srgb:0.96078,0.96863,0.95294,1.00000"}}
-          ]
+          "fill-specializations" : [
+            {
+              "appearance" : "dark",
+              "value" : {
+                "solid" : "extended-srgb:1.00000,1.00000,1.00000,1.00000"
+              }
+            },
+            {
+              "appearance" : "tinted",
+              "value" : {
+                "solid" : "extended-srgb:1.00000,1.00000,1.00000,1.00000"
+              }
+            }
+          ],
+          "glass" : false,
+          "image-name" : "Athlete.svg",
+          "name" : "Moving person",
+          "opacity" : 1
         }
       ],
-      "refractivity": {"depth": 0, "enabled": true, "strength": 0.18},
-      "shadow": {"kind": "neutral", "opacity": 0.12},
-      "translucency": {"enabled": true, "value": 0.08}
+      "refractivity" : {
+        "depth" : 0,
+        "enabled" : true,
+        "strength" : 0.1
+      },
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.06
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.03
+      }
     }
   ],
-  "supported-platforms": {"squares": "shared"}
+  "supported-platforms" : {
+    "squares" : "shared"
+  }
 }

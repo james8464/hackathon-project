@@ -2,27 +2,29 @@
 
 - [Live Figma brand guide](https://www.figma.com/design/Y9asB4rM1J0tJcbr7Wim2q)
 - [Editable local Figma copy](Plumb%20%E2%80%94%20Brand%20Theme.fig)
-- [Colour palette preview](Plumb%20Brand%20Theme%20preview.png)
+- [Brand preview](Plumb%20Brand%20Theme%20preview.png)
 - [Production app icon and flat artwork](../Plumb/BrandArtwork/README.md)
 
 The Figma guide is the identity reference for the iPhone app: purpose, mark, colour, type, voice, and icon appearance. It deliberately defines a brand rather than fixed screen layouts. The local `.fig` file is a saved snapshot; edit the live file for new decisions, then save a fresh project copy.
 
 ## Idea and identity
 
-**Plumb** is a calm, observant workout-technique companion. Its line and hanging weight suggest a measured reference and deliberate progress. The mark never implies that there is one perfect posture for everyone. The promise is **“Find your line.”** Keep the mark upright, with at least a bob-width of clear space. Use the layered [Icon Composer source](../Plumb/Plumb/AppIcon.icon) for the iPhone icon. Use the flat mark for editorial and product materials.
+**Plumb** is a calm, observant workout-technique companion. The mark is a single person in motion; two open corners in the iPhone icon evoke the camera observing a set. The mark never implies that there is one perfect posture for everyone. The promise is **“Find your line.”** Preserve the pose and leave generous clear space. Use the layered [Icon Composer source](../Plumb/Plumb/AppIcon.icon) for the iPhone icon and the flat mark for editorial materials.
 
 ## Colour
 
 | Token | Hex | Role |
 | --- | --- | --- |
-| Ink | `#16231F` | Identity, primary text, dark icon ground |
-| Chalk | `#F5F7F3` | Quiet brand ground and reversed text |
+| Black | `#141414` | Primary icon figure, text, and dark icon ground |
+| White | `#FFFFFF` | Light icon ground and reversed figure |
+| Ink | `#16231F` | Supporting text and interior brand ground |
+| Chalk | `#F5F7F3` | Quiet interior ground and reversed text |
 | Mist | `#DCE8E1` | Subtle supporting surface |
 | Evergreen | `#1F6A53` | Light appearance action tint |
-| Mint | `#BEEBD6` | Sparse accent and app icon weight |
+| Mint | `#BEEBD6` | Sparse interior accent, never part of the app icon |
 | Signal | `#8FE1BC` | Dark appearance action tint |
 
-In the app, use dynamic semantic iOS colours for backgrounds, labels, separators, warnings, and errors. Treat the palette as a brand reference, with Evergreen and Signal reserved for actions and Mint kept out of small text on white. The Figma file includes Light, Dark, and increased contrast modes. The camera view should leave the person and their movement clearly visible.
+The icon is strictly black and white in its main appearances. In the app, use dynamic semantic iOS colours for backgrounds, labels, separators, warnings, and errors. Evergreen, Signal, and Mint are restrained interior accents; Mint stays out of small text on white. The Figma file includes Light, Dark, and increased contrast modes. The camera view should leave the person and their movement clearly visible.
 
 ## Typography
 

@@ -1,10 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
-  <title>Plumb icon flat study: movement inside a camera frame</title>
-  <rect width="1024" height="1024" fill="#FFFFFF"/>
-  <g fill="none" stroke="#141414" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M210 320V210H320"/>
-    <path d="M720 810H810V720"/>
-  </g>
   <g fill="none" stroke="#141414" stroke-width="48" stroke-linecap="round" stroke-linejoin="round">
     <path d="M563 357L466 527"/>
     <path d="M536 393L658 429L720 396"/>
